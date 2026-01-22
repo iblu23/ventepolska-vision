@@ -3,6 +3,8 @@ import { cn } from "@/lib/utils";
 import { ArrowRight, BadgeCheck, Clock, Factory, ShieldCheck, Wrench } from "lucide-react";
 import { GlowGridBackdrop } from "@/components/landing/GlowGridBackdrop";
 import { SectionHeading } from "@/components/landing/SectionHeading";
+import { Motion3DTilt, ParallaxLayer } from "@/components/landing/Motion3DTilt";
+import { HeroCarousel } from "@/components/landing/HeroCarousel";
 import heroImage from "@/assets/vente-hero.jpg";
 import gallery05 from "@/assets/gallery-05.jpg";
 import gallery06 from "@/assets/gallery-06.jpg";
@@ -12,12 +14,16 @@ import gallery09 from "@/assets/gallery-09.jpg";
 
 function Stat({ value, label }: { value: string; label: string }) {
   return (
-    <div className="rounded-xl border border-border/60 bg-surface/70 p-4 shadow-card backdrop-blur">
-      <p className="text-2xl font-semibold tracking-tight">{value}</p>
-      <p className="mt-1 text-sm text-muted-foreground">{label}</p>
-    </div>
+    <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
+      <div className="h-full rounded-xl border border-teal-200/50 bg-white/80 p-4 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
+        <p className="text-2xl font-semibold tracking-tight text-slate-800">{value}</p>
+        <p className="mt-1 text-sm text-slate-500">{label}</p>
+      </div>
+    </Motion3DTilt>
   );
 }
+
+
 
 function InfoCard({
   icon: Icon,
@@ -29,33 +35,55 @@ function InfoCard({
   description: string;
 }) {
   return (
-    <div className="group rounded-2xl border border-border/60 bg-surface/60 p-6 shadow-card backdrop-blur transition-transform duration-200 hover:-translate-y-1">
+    <div className="group h-full rounded-2xl border border-teal-200/50 bg-white/80 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
       <div className="flex items-start gap-4">
-        <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary/12 text-primary">
+        <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600">
           <Icon className="h-5 w-5" />
         </div>
         <div>
-          <h3 className="text-lg font-semibold">{title}</h3>
-          <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{description}</p>
+          <h3 className="text-lg font-semibold text-slate-800">{title}</h3>
+          <p className="mt-1 text-sm text-slate-500 leading-relaxed">{description}</p>
         </div>
       </div>
     </div>
   );
 }
 
+
+
 function GalleryTile({ src, alt, className }: { src: string; alt: string; className?: string }) {
   return (
-    <div className={cn("relative overflow-hidden rounded-2xl border border-border/60 bg-card shadow-card", className)}>
-      <img
-        src={src}
-        alt={alt}
-        loading="lazy"
-        className="h-full w-full object-cover transition-transform duration-500 will-change-transform hover:scale-[1.04]"
-      />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
-    </div>
+    <Motion3DTilt tiltMax={3} liftAmount={6} className={cn("h-full", className)}>
+      <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-card shadow-card h-full">
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          className="h-full w-full object-cover transition-transform duration-500 will-change-transform hover:scale-[1.04]"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+      </div>
+    </Motion3DTilt>
   );
 }
+
+// Reusable Unified Panel Component
+function UnifiedPanel({ children, className }: { children: React.ReactNode; className?: string }) {
+  return (
+    <Motion3DTilt className={cn("h-full", className)}>
+      <div
+        className="relative overflow-hidden rounded-3xl border border-teal-200/40 bg-white/70 p-8 shadow-lg shadow-teal-500/5 backdrop-blur-sm md:p-12"
+        style={{
+          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(240, 253, 250, 0.7) 100%)"
+        }}
+      >
+        {children}
+      </div>
+    </Motion3DTilt>
+  );
+}
+
+
 
 export function LandingPage() {
   return (
@@ -67,282 +95,564 @@ export function LandingPage() {
           <div className="container relative py-14 md:py-20">
             <div className="grid items-center gap-10 md:grid-cols-12">
               <div className="md:col-span-6 animate-fade-in">
-                <p className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-surface/70 px-3 py-1 text-xs text-muted-foreground shadow-card backdrop-blur">
-                  <BadgeCheck className="h-4 w-4 text-primary" />
-                  Produkcja zgodna z normami UE • precyzja • szczelność
-                </p>
-                <h1 className="mt-5 text-4xl font-semibold tracking-tight md:text-5xl">
-                  Produkcja i montaż kanałów oraz kształtek wentylacyjnych
-                </h1>
-                <p className="mt-4 max-w-xl text-muted-foreground leading-relaxed">
-                  Precyzyjne elementy HVAC pod Twój projekt — od doradztwa, przez produkcję, po terminową
-                  realizację i montaż. Wydajność, trwałość i jakość, która się broni w praktyce.
-                </p>
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-                  <Button variant="hero" size="xl" asChild>
-                    <a href="#kontakt">
-                      Zapytaj o wycenę <ArrowRight />
-                    </a>
-                  </Button>
-                  <Button variant="glass" size="xl" asChild>
-                    <a href="#oferta">Zobacz ofertę</a>
-                  </Button>
-                </div>
+                <Motion3DTilt tiltMax={5} liftAmount={12} className="h-full">
+                  {/* Panel with matte glass + aqua rim border */}
+                  <div className="h-full rounded-2xl border border-teal-200/40 bg-white/70 p-6 md:p-8 shadow-lg shadow-teal-500/5 backdrop-blur-sm"
+                    style={{
+                      background: "linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(240,253,250,0.7) 100%)",
+                    }}
+                  >
+                    {/* Badge - depth 1.6 (foreground) */}
+                    <ParallaxLayer depth={1.6}>
+                      <Motion3DTilt tiltMax={2} liftAmount={4}>
+                        <p className="inline-flex items-center gap-2 rounded-full border border-teal-200/50 bg-white/80 px-3 py-1 text-xs text-muted-foreground shadow-sm backdrop-blur">
+                          <BadgeCheck className="h-4 w-4 text-teal-600" />
+                          Produkcja zgodna z normami UE • precyzja • szczelność
+                        </p>
+                      </Motion3DTilt>
+                    </ParallaxLayer>
 
-                <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3">
-                  <Stat value="100×100" label="min. wymiar kanału (mm)" />
-                  <Stat value="1500" label="max. długość odcinka (mm)" />
-                  <Stat value="0.5–1.5" label="grubość blachy (mm)" />
-                </div>
+                    {/* Main Content Panel - depth 1.3 (mid) */}
+                    <ParallaxLayer depth={1.3}>
+                      <div className="group relative mt-6 rounded-3xl border border-teal-200/50 bg-white/80 p-6 md:p-8 shadow-xl shadow-teal-500/10 backdrop-blur-md transition-all duration-300 hover:shadow-teal-500/20 hover:border-teal-300/60">
+                        {/* Decorative side accent */}
+                        <div className="absolute left-0 top-8 h-12 w-1 rounded-r-full bg-teal-500/40" />
+
+                        <h1 className="text-4xl font-semibold tracking-tight md:text-5xl text-slate-800 leading-[1.15]">
+                          Produkcja i montaż <br />
+                          <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
+                            kanałów oraz kształtek
+                          </span> <br />
+                          wentylacyjnych
+                        </h1>
+                        <p className="mt-6 max-w-xl text-lg text-slate-600 leading-relaxed font-medium/80">
+                          Precyzyjne elementy HVAC pod Twój projekt — od doradztwa, przez produkcję, po terminową
+                          realizację i montaż. Wydajność, trwałość i jakość, która się broni w praktyce.
+                        </p>
+                      </div>
+                    </ParallaxLayer>
+
+                    {/* CTA Buttons - depth 1.6 (foreground) */}
+                    <ParallaxLayer depth={1.6}>
+                      <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3">
+                        <div className="relative group">
+                          <Button variant="hero" size="xl" className="w-full relative z-10" asChild>
+                            <a href="#kontakt">
+                              Zapytaj o wycenę <ArrowRight className="ml-2 h-5 w-5" />
+                            </a>
+                          </Button>
+                          
+                          {/* Glass panel background */}
+                          <div className="absolute inset-0 rounded-xl border border-teal-200/50 bg-white/70 shadow-lg shadow-teal-500/5 backdrop-blur-sm transition-all duration-300 group-hover:border-teal-300/60 group-hover:shadow-teal-500/20 pointer-events-none"
+                            style={{
+                              background: "linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(240,253,250,0.7) 100%)",
+                              transform: 'translateZ(-20px)',
+                            }}
+                          />
+                          
+                          {/* Hover effects */}
+                          <div className="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-300 group-hover:border-teal-500/60 group-hover:shadow-[0_0_30px_rgba(20,184,166,0.6),0_0_60px_rgba(20,184,166,0.3)] group-hover:transform-gpu pointer-events-none"
+                            style={{
+                              transform: 'translateZ(-25px) translateZ(0px)',
+                              transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                            }}
+                          />
+                          
+                          {/* Active click state */}
+                          <div className="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-150 active:border-teal-500/80 active:shadow-[0_0_40px_rgba(20,184,166,0.8),0_0_80px_rgba(20,184,166,0.4)] active:transform-gpu pointer-events-none"
+                            style={{
+                              transform: 'translateZ(-35px) translateZ(0px)',
+                            }}
+                          />
+                          
+                          {/* Volumetric edge glow */}
+                          <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
+                            <div className="absolute inset-0 rounded-xl border-2 border-teal-500/40 shadow-[0_0_20px_rgba(20,184,166,0.8),inset_0_0_20px_rgba(20,184,166,0.2)]"
+                              style={{
+                                filter: 'blur(2px)',
+                              }}
+                            />
+                          </div>
+                          
+                          {/* Glass reflection ripple */}
+                          <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none">
+                            <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-transparent via-white/20 to-transparent transform scale-0 group-hover:scale-150 transition-transform duration-700"
+                              style={{
+                                transformOrigin: 'center',
+                              }}
+                            />
+                          </div>
+                          
+                          {/* Lens flare */}
+                          <div className="absolute inset-0 rounded-xl overflow-hidden opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
+                            <div className="absolute top-1/2 left-1/2 w-8 h-8 -translate-x-1/2 -translate-y-1/2 bg-gradient-radial from-teal-300/40 via-teal-200/20 to-transparent animate-pulse" />
+                          </div>
+                          
+                          {/* Circuit patterns */}
+                          <div className="absolute inset-0 rounded-xl opacity-10 transition-opacity duration-300 pointer-events-none">
+                            <div className="absolute inset-0 rounded-xl"
+                              style={{
+                                backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(20,184,166,0.1) 2px, rgba(20,184,166,0.1) 4px)`,
+                              }}
+                            />
+                          </div>
+                        </div>
+                        <div className="relative group">
+                          <Motion3DTilt tiltMax={4} liftAmount={8} className="w-full">
+                            <Button variant="hero" size="xl" className="w-full relative z-10" asChild>
+                              <a href="#oferta">
+                                Zobacz ofertę <ArrowRight className="ml-2 h-5 w-5" />
+                              </a>
+                            </Button>
+                            
+                            {/* Glass panel background */}
+                            <div className="absolute inset-0 rounded-xl border border-teal-200/50 bg-white/70 shadow-lg shadow-teal-500/5 backdrop-blur-sm transition-all duration-300 group-hover:border-teal-300/60 group-hover:shadow-teal-500/20 pointer-events-none"
+                              style={{
+                                background: "linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(240,253,250,0.7) 100%)",
+                                transform: 'translateZ(-20px)',
+                              }}
+                            />
+                            
+                            {/* Hover effects */}
+                            <div className="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-300 group-hover:border-teal-500/60 group-hover:shadow-[0_0_30px_rgba(20,184,166,0.6),0_0_60px_rgba(20,184,166,0.3)] group-hover:transform-gpu pointer-events-none"
+                              style={{
+                                transform: 'translateZ(-25px) translateZ(0px)',
+                                transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                              }}
+                            />
+                            
+                            {/* Active click state */}
+                            <div className="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-150 active:border-teal-500/80 active:shadow-[0_0_40px_rgba(20,184,166,0.8),0_0_80px_rgba(20,184,166,0.4)] active:transform-gpu pointer-events-none"
+                              style={{
+                                transform: 'translateZ(-35px) translateZ(0px)',
+                              }}
+                            />
+                            
+                            {/* Volumetric edge glow */}
+                            <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
+                              <div className="absolute inset-0 rounded-xl border-2 border-teal-500/40 shadow-[0_0_20px_rgba(20,184,166,0.8),inset_0_0_20px_rgba(20,184,166,0.2)]"
+                                style={{
+                                  filter: 'blur(2px)',
+                                }}
+                              />
+                            </div>
+                            
+                            {/* Glass reflection ripple */}
+                            <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none">
+                              <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-transparent via-white/20 to-transparent transform scale-0 group-hover:scale-150 transition-transform duration-700"
+                                style={{
+                                  transformOrigin: 'center',
+                                }}
+                              />
+                            </div>
+                            
+                            {/* Lens flare */}
+                            <div className="absolute inset-0 rounded-xl overflow-hidden opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
+                              <div className="absolute top-1/2 left-1/2 w-8 h-8 -translate-x-1/2 -translate-y-1/2 bg-gradient-radial from-teal-300/40 via-teal-200/20 to-transparent animate-pulse" />
+                            </div>
+                            
+                            {/* Circuit patterns */}
+                            <div className="absolute inset-0 rounded-xl opacity-10 transition-opacity duration-300 pointer-events-none">
+                              <div className="absolute inset-0 rounded-xl"
+                                style={{
+                                  backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(20,184,166,0.1) 2px, rgba(20,184,166,0.1) 4px)`,
+                                }}
+                              />
+                            </div>
+                          </Motion3DTilt>
+                        </div>
+                        <div className="relative group">
+                          <Motion3DTilt tiltMax={4} liftAmount={8} className="w-full">
+                            <Button variant="hero" size="xl" className="w-full relative z-10" asChild>
+                              <a href="#galeria">
+                                Galeria <ArrowRight className="ml-2 h-5 w-5" />
+                              </a>
+                            </Button>
+                            
+                            {/* Glass panel background */}
+                            <div className="absolute inset-0 rounded-xl border border-teal-200/50 bg-white/70 shadow-lg shadow-teal-500/5 backdrop-blur-sm transition-all duration-300 group-hover:border-teal-300/60 group-hover:shadow-teal-500/20 pointer-events-none"
+                              style={{
+                                background: "linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(240,253,250,0.7) 100%)",
+                                transform: 'translateZ(-20px)',
+                              }}
+                            />
+                            
+                            {/* Hover effects */}
+                            <div className="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-300 group-hover:border-teal-500/60 group-hover:shadow-[0_0_30px_rgba(20,184,166,0.6),0_0_60px_rgba(20,184,166,0.3)] group-hover:transform-gpu pointer-events-none"
+                              style={{
+                                transform: 'translateZ(-25px) translateZ(0px)',
+                                transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                              }}
+                            />
+                            
+                            {/* Active click state */}
+                            <div className="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-150 active:border-teal-500/80 active:shadow-[0_0_40px_rgba(20,184,166,0.8),0_0_80px_rgba(20,184,166,0.4)] active:transform-gpu pointer-events-none"
+                              style={{
+                                transform: 'translateZ(-35px) translateZ(0px)',
+                              }}
+                            />
+                            
+                            {/* Volumetric edge glow */}
+                            <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
+                              <div className="absolute inset-0 rounded-xl border-2 border-teal-500/40 shadow-[0_0_20px_rgba(20,184,166,0.8),inset_0_0_20px_rgba(20,184,166,0.2)]"
+                                style={{
+                                  filter: 'blur(2px)',
+                                }}
+                              />
+                            </div>
+                            
+                            {/* Glass reflection ripple */}
+                            <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none">
+                              <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-transparent via-white/20 to-transparent transform scale-0 group-hover:scale-150 transition-transform duration-700"
+                                style={{
+                                  transformOrigin: 'center',
+                                }}
+                              />
+                            </div>
+                            
+                            {/* Lens flare */}
+                            <div className="absolute inset-0 rounded-xl overflow-hidden opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
+                              <div className="absolute top-1/2 left-1/2 w-8 h-8 -translate-x-1/2 -translate-y-1/2 bg-gradient-radial from-teal-300/40 via-teal-200/20 to-transparent animate-pulse" />
+                            </div>
+                            
+                            {/* Circuit patterns */}
+                            <div className="absolute inset-0 rounded-xl opacity-10 transition-opacity duration-300 pointer-events-none">
+                              <div className="absolute inset-0 rounded-xl"
+                                style={{
+                                  backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(20,184,166,0.1) 2px, rgba(20,184,166,0.1) 4px)`,
+                                }}
+                              />
+                            </div>
+                          </Motion3DTilt>
+                        </div>
+                      </div>
+
+                    </ParallaxLayer>
+
+                    {/* Stat cards - depth 1.6 (foreground) */}
+                    <ParallaxLayer depth={1.6}>
+                      <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3">
+                        <Stat value="100×100" label="min. wymiar kanału (mm)" />
+                        <Stat value="1500" label="max. długość odcinka (mm)" />
+                        <Stat value="0.5–1.5" label="grubość blachy (mm)" />
+                      </div>
+                    </ParallaxLayer>
+                  </div>
+                </Motion3DTilt>
               </div>
 
-              <div className="md:col-span-6">
-                <div className="relative rounded-3xl border border-border/60 bg-card/40 p-2 shadow-elevated backdrop-blur">
-                  <div className="relative overflow-hidden rounded-2xl">
-                    <img
-                      src={heroImage}
-                      alt="Produkcja kanałów wentylacyjnych – nowoczesna linia produkcyjna"
-                      className="h-[360px] w-full object-cover md:h-[520px]"
-                      loading="eager"
-                    />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/55 via-transparent to-transparent" />
-                    <div className="pointer-events-none absolute -left-16 -top-16 h-64 w-64 rounded-full bg-primary-glow/20 blur-3xl" />
-                    <div className="pointer-events-none absolute -bottom-20 -right-16 h-72 w-72 rounded-full bg-primary/15 blur-3xl" />
-                  </div>
-                </div>
+              <div className="md:col-span-6 h-full min-h-[500px] md:min-h-0">
+                <HeroCarousel />
               </div>
             </div>
           </div>
         </section>
 
-        {/* ABOUT */}
+        {/* ABOUT / EXPERIENCE - Unified Panel */}
         <section id="o-firmie" className="container py-14 md:py-20">
-          <div className="grid gap-10 md:grid-cols-12 md:items-start">
-            <div className="md:col-span-5">
-              <SectionHeading
-                eyebrow="O firmie"
-                title="Doświadczenie HVAC, automatyzacja i realna jakość"
-                description="Powstaliśmy z połączenia szczecińskich firm z wieloletnią praktyką. Dziś łączymy rzemiosło z automatyzacją — żeby dowieźć powtarzalność, szczelność i terminowość."
-              />
+          <UnifiedPanel>
+            <div className="grid gap-10 md:grid-cols-12">
+              <div className="md:col-span-5">
+                <SectionHeading
+                  className="h-full"
+                  eyebrow="O firmie"
+                  title={
+                    <>
+                      Doświadczenie HVAC,{" "}
+                      <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
+                        automatyzacja i realna jakość
+                      </span>
+                    </>
+                  }
+                  description="Powstaliśmy z połączenia szczecińskich firm z wieloletnią praktyką. Dziś łączymy rzemiosło z automatyzacją — żeby dowieźć powtarzalność, szczelność i terminowość."
+                />
+              </div>
+              <div className="md:col-span-7 grid gap-4">
+                <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
+                  <InfoCard
+                    icon={Factory}
+                    title="Nowoczesna linia produkcyjna"
+                    description="Zautomatyzowany park maszynowy, który utrzymuje parametry i tolerancje w ryzach — seria po serii."
+                  />
+                </Motion3DTilt>
+                <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
+                  <InfoCard
+                    icon={ShieldCheck}
+                    title="Trwałość i zgodność"
+                    description="Materiały: stal ocynkowana i nierdzewna. Produkcja zgodna z europejskimi normami jakości."
+                  />
+                </Motion3DTilt>
+                <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
+                  <InfoCard
+                    icon={Clock}
+                    title="Terminowość"
+                    description="Proces zaprojektowany pod harmonogramy inwestycji: szybka wycena, klarowna komunikacja i sprawna realizacja."
+                  />
+                </Motion3DTilt>
+              </div>
             </div>
-            <div className="md:col-span-7 grid gap-4">
-              <InfoCard
-                icon={Factory}
-                title="Nowoczesna linia produkcyjna"
-                description="Zautomatyzowany park maszynowy, który utrzymuje parametry i tolerancje w ryzach — seria po serii."
-              />
-              <InfoCard
-                icon={ShieldCheck}
-                title="Trwałość i zgodność"
-                description="Materiały: stal ocynkowana i nierdzewna. Produkcja zgodna z europejskimi normami jakości."
-              />
-              <InfoCard
-                icon={Clock}
-                title="Terminowość"
-                description="Proces zaprojektowany pod harmonogramy inwestycji: szybka wycena, klarowna komunikacja i sprawna realizacja."
-              />
-            </div>
-          </div>
+          </UnifiedPanel>
         </section>
 
         {/* OFFER */}
         <section id="oferta" className="relative">
           <div className="container py-14 md:py-20">
-            <SectionHeading
-              eyebrow="Oferta"
-              title="Kanały i kształtki: prostokątne oraz okrągłe"
-              description="Produkcja elementów zgodnie z wymiarami podanymi przez klienta — dopasowana do projektu i warunków montażowych."
-            />
+            <UnifiedPanel>
+              <SectionHeading
+                eyebrow="Oferta"
+                title={
+                  <>
+                    <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
+                      Kanały i kształtki
+                    </span>
+                    : prostokątne oraz okrągłe
+                  </>
+                }
+                description="Produkcja elementów zgodnie z wymiarami podanymi przez klienta — dopasowana do projektu i warunków montażowych."
+              />
 
-            <div className="mt-10 grid gap-4 md:grid-cols-3">
-              <div className="rounded-2xl border border-border/60 bg-surface/60 p-6 shadow-card backdrop-blur">
-                <h3 className="text-lg font-semibold">Kanały prostokątne</h3>
-                <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-                  <li>• standard i pod wymiar</li>
-                  <li>• wzory przetłoczeń: trapez, Z</li>
-                  <li>• stal ocynkowana / nierdzewna</li>
-                </ul>
+              <div className="mt-10 grid gap-4 md:grid-cols-3">
+                <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
+                  <div className="h-full rounded-2xl border border-teal-200/50 bg-white/80 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
+                    <h3 className="text-lg font-semibold text-slate-800">Kanały prostokątne</h3>
+                    <ul className="mt-3 space-y-2 text-sm text-slate-500">
+                      <li>• standard i pod wymiar</li>
+                      <li>• wzory przetłoczeń: trapez, Z</li>
+                      <li>• stal ocynkowana / nierdzewna</li>
+                    </ul>
+                  </div>
+                </Motion3DTilt>
+                <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
+                  <div className="h-full rounded-2xl border border-teal-200/50 bg-white/80 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
+                    <h3 className="text-lg font-semibold text-slate-800">Kształtki prostokątne</h3>
+                    <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+                      <li>• łuki symetryczne, kolana</li>
+                      <li>• redukcje, trójniki i czwórniki</li>
+                      <li>• dyfuzory i elementy na zamówienie</li>
+                    </ul>
+                  </div>
+                </Motion3DTilt>
+                <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
+                  <div className="h-full rounded-2xl border border-teal-200/50 bg-white/80 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
+                    <h3 className="text-lg font-semibold text-slate-800">Elementy okrągłe</h3>
+                    <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+                      <li>• rury spiralne SPIRO</li>
+                      <li>• kolana i kształtki okrągłe</li>
+                      <li>• sprawne terminy realizacji</li>
+                    </ul>
+                  </div>
+                </Motion3DTilt>
               </div>
-              <div className="rounded-2xl border border-border/60 bg-surface/60 p-6 shadow-card backdrop-blur">
-                <h3 className="text-lg font-semibold">Kształtki prostokątne</h3>
-                <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-                  <li>• łuki symetryczne, kolana</li>
-                  <li>• redukcje, trójniki i czwórniki</li>
-                  <li>• dyfuzory i elementy na zamówienie</li>
-                </ul>
-              </div>
-              <div className="rounded-2xl border border-border/60 bg-surface/60 p-6 shadow-card backdrop-blur">
-                <h3 className="text-lg font-semibold">Elementy okrągłe</h3>
-                <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-                  <li>• rury spiralne SPIRO</li>
-                  <li>• kolana i kształtki okrągłe</li>
-                  <li>• sprawne terminy realizacji</li>
-                </ul>
-              </div>
-            </div>
+            </UnifiedPanel>
           </div>
         </section>
 
         {/* AC */}
         <section id="klimatyzacja" className="container py-14 md:py-20">
-          <div className="grid gap-10 md:grid-cols-12 md:items-center">
-            <div className="md:col-span-7">
-              <SectionHeading
-                eyebrow="Klimatyzacja"
-                title="Doradztwo, sprzedaż i montaż klimatyzacji"
-                description="Kompleksowa obsługa: dobór urządzeń, dostawa i montaż, uruchomienie oraz serwis. Komfort i oszczędność energii bez kompromisów."
-              />
-              <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                <InfoCard
-                  icon={Wrench}
-                  title="Od doboru do uruchomienia"
-                  description="Dobieramy rozwiązania do potrzeb i warunków obiektu — z naciskiem na efektywność oraz kulturę pracy."
-                />
-                <InfoCard
-                  icon={BadgeCheck}
-                  title="Serwis i wsparcie"
-                  description="Utrzymanie, przeglądy i szybka reakcja — żeby system działał stabilnie w sezonie."
-                />
+          <UnifiedPanel>
+            <div className="grid gap-10 md:grid-cols-12">
+              <div className="md:col-span-7">
+                <SectionHeading
+                  eyebrow="Klimatyzacja"
+                  title={
+                    <>
+                      Doradztwo, sprzedaż i{" "}
+                      <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
+                        montaż klimatyzacji
+                      </span>
+                    </>
+                  }
+                  description="Kompleksowa obsługa: dobór urządzeń, dostawa i montaż, uruchomienie oraz serwis. Komfort i oszczędność energii bez kompromisów."
+                >
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <InfoCard
+                      icon={Wrench}
+                      title="Od doboru do uruchomienia"
+                      description="Dobieramy rozwiązania do potrzeb i warunków obiektu — z naciskiem na efektywność oraz kulturę pracy."
+                    />
+                    <InfoCard
+                      icon={BadgeCheck}
+                      title="Serwis i wsparcie"
+                      description="Utrzymanie, przeglądy i szybka reakcja — żeby system działał stabilnie w sezonie."
+                    />
+                  </div>
+                </SectionHeading>
+              </div>
+              <div className="md:col-span-5">
+                <Motion3DTilt tiltMax={5} liftAmount={8} className="h-full">
+                  <div className="h-full rounded-3xl border border-teal-200/50 bg-white/80 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
+                    <p className="text-sm text-muted-foreground">Doświadczenie</p>
+                    <div className="mt-4 grid gap-3">
+                      <div className="rounded-xl bg-teal-50/50 p-4 border border-teal-100/50">
+                        <p className="text-2xl font-semibold text-slate-800">10 lat</p>
+                        <p className="text-sm text-slate-500">produkcji kanałów wentylacyjnych</p>
+                      </div>
+                      <div className="rounded-xl bg-teal-50/50 p-4 border border-teal-100/50">
+                        <p className="text-2xl font-semibold text-slate-800">10 lat</p>
+                        <p className="text-sm text-slate-500">doradztwa i montażu klimatyzacji</p>
+                      </div>
+                    </div>
+                    <Button variant="hero" className="mt-6 w-full" asChild>
+                      <a href="#kontakt">Skontaktuj się</a>
+                    </Button>
+                  </div>
+                </Motion3DTilt>
               </div>
             </div>
-            <div className="md:col-span-5">
-              <div className="rounded-3xl border border-border/60 bg-card/30 p-6 shadow-card backdrop-blur">
-                <p className="text-sm text-muted-foreground">Doświadczenie</p>
-                <div className="mt-4 grid gap-3">
-                  <div className="rounded-xl bg-surface/70 p-4">
-                    <p className="text-2xl font-semibold">10 lat</p>
-                    <p className="text-sm text-muted-foreground">produkcji kanałów wentylacyjnych</p>
-                  </div>
-                  <div className="rounded-xl bg-surface/70 p-4">
-                    <p className="text-2xl font-semibold">10 lat</p>
-                    <p className="text-sm text-muted-foreground">doradztwa i montażu klimatyzacji</p>
-                  </div>
-                </div>
-                <Button variant="hero" className="mt-6 w-full" asChild>
-                  <a href="#kontakt">Skontaktuj się</a>
-                </Button>
-              </div>
-            </div>
-          </div>
+          </UnifiedPanel>
         </section>
 
         {/* WHY */}
         <section id="dlaczego" className="container py-14 md:py-20">
-          <SectionHeading
-            eyebrow="Dlaczego my"
-            title="Nacisk na detale: precyzja, termin, kompleksowość"
-            description="Współpracujemy z deweloperami i prywatnymi inwestorami — stawiamy na jasne ustalenia i przewidywalną realizację."
-          />
+          <UnifiedPanel>
+            <SectionHeading
+              eyebrow="Dlaczego my"
+              title={
+                <>
+                  Nacisk na detale:{" "}
+                  <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
+                    precyzja, termin, kompleksowość
+                  </span>
+                </>
+              }
+              description="Współpracujemy z deweloperami i prywatnymi inwestorami — stawiamy na jasne ustalenia i przewidywalną realizację."
+            />
 
-          <div className="mt-10 grid gap-4 md:grid-cols-2">
-            {[
-              {
-                title: "Precyzja wykonania",
-                desc: "Nowoczesny, zautomatyzowany park maszynowy.",
-              },
-              {
-                title: "Indywidualne podejście",
-                desc: "Produkcja pod konkretny projekt i warunki montażowe.",
-              },
-              {
-                title: "Terminowość",
-                desc: "Dotrzymujemy ustalonych harmonogramów.",
-              },
-              {
-                title: "Kompleksowość",
-                desc: "Produkcja, dostawa, montaż i serwis w jednym miejscu.",
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="rounded-2xl border border-border/60 bg-surface/60 p-6 shadow-card backdrop-blur"
-              >
-                <h3 className="text-lg font-semibold">{item.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
-          </div>
+            <div className="mt-10 grid gap-4 md:grid-cols-2">
+              {[
+                {
+                  title: "Precyzja wykonania",
+                  desc: "Nowoczesny, zautomatyzowany park maszynowy.",
+                },
+                {
+                  title: "Indywidualne podejście",
+                  desc: "Produkcja pod konkretny projekt i warunki montażowe.",
+                },
+                {
+                  title: "Terminowość",
+                  desc: "Dotrzymujemy ustalonych harmonogramów.",
+                },
+                {
+                  title: "Kompleksowość",
+                  desc: "Produkcja, dostawa, montaż i serwis w jednym miejscu.",
+                },
+              ].map((item) => (
+                <Motion3DTilt key={item.title} tiltMax={4} liftAmount={8}>
+                  <div
+                    className="h-full rounded-2xl border border-teal-200/50 bg-white/80 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60"
+                  >
+                    <h3 className="text-lg font-semibold text-slate-800">{item.title}</h3>
+                    <p className="mt-2 text-sm text-slate-500 leading-relaxed">{item.desc}</p>
+                  </div>
+                </Motion3DTilt>
+              ))}
+            </div>
+          </UnifiedPanel>
         </section>
 
         {/* GALLERY */}
         <section id="galeria" className="container py-14 md:py-20">
-          <SectionHeading
-            eyebrow="Galeria"
-            title="Realizacje i zaplecze produkcyjne"
-            description="Kilka ujęć z produkcji i elementów HVAC — jakość widać w detalach."
-          />
-          <div className="mt-10 grid gap-4 md:grid-cols-12">
-            <GalleryTile src={gallery09} alt="Kanały wentylacyjne – detal" className="md:col-span-7 md:row-span-2" />
-            <GalleryTile src={gallery06} alt="Produkcja HVAC – stanowisko" className="md:col-span-5" />
-            <GalleryTile src={gallery07} alt="Kształtki wentylacyjne – element" className="md:col-span-5" />
-            <GalleryTile src={gallery08} alt="Kanały i kształtki – montaż" className="md:col-span-4" />
-            <GalleryTile src={gallery05} alt="Produkcja kanałów – linia" className="md:col-span-8" />
-          </div>
-        </section>
-
-        {/* CONTACT */}
-        <section id="kontakt" className="relative overflow-hidden">
-          <div className="container py-14 md:py-20">
-            <div className="rounded-3xl border border-border/60 bg-surface/60 p-8 shadow-elevated backdrop-blur md:p-12">
-              <div className="grid gap-10 md:grid-cols-12 md:items-center">
-                <div className="md:col-span-7">
-                  <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Skontaktuj się z nami</h2>
-                  <p className="mt-3 text-muted-foreground leading-relaxed">
-                    Wyślij zapytanie lub zadzwoń — odpowiemy szybko i konkretnie.
-                  </p>
-                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                    <div className="rounded-2xl bg-card/40 p-5">
-                      <p className="text-sm text-muted-foreground">E-mail</p>
-                      <a className="mt-1 block font-medium hover:underline" href="mailto:biuro@ventepolska.pl">
-                        biuro@ventepolska.pl
-                      </a>
-                    </div>
-                    <div className="rounded-2xl bg-card/40 p-5">
-                      <p className="text-sm text-muted-foreground">Dział Wentylacji</p>
-                      <a className="mt-1 block font-medium hover:underline" href="tel:+48796201999">
-                        796 201 999
-                      </a>
-                    </div>
-                    <div className="rounded-2xl bg-card/40 p-5">
-                      <p className="text-sm text-muted-foreground">Dział Klimatyzacji</p>
-                      <a className="mt-1 block font-medium hover:underline" href="tel:+48509088215">
-                        509 088 215
-                      </a>
-                    </div>
-                    <div className="rounded-2xl bg-card/40 p-5">
-                      <p className="text-sm text-muted-foreground">Strona</p>
-                      <a className="mt-1 block font-medium hover:underline" href="https://ventepolska.pl/" target="_blank" rel="noreferrer">
-                        ventepolska.pl
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="md:col-span-5">
-                  <div className="rounded-2xl border border-border/60 bg-card/40 p-6 shadow-card">
-                    <p className="text-sm text-muted-foreground">Szybka wiadomość</p>
-                    <p className="mt-2 text-sm text-muted-foreground">
-                      Ten prototyp skupia się na warstwie wizualnej. Jeśli chcesz, dodamy formularz kontaktowy z wysyłką.
-                    </p>
-                    <div className="mt-5 grid gap-3">
-                      <Button variant="hero" className="w-full" asChild>
-                        <a href="mailto:biuro@ventepolska.pl?subject=Zapytanie%20Vente%20Polska">Napisz e-mail</a>
-                      </Button>
-                      <Button variant="glass" className="w-full" asChild>
-                        <a href="#oferta">Wróć do oferty</a>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
+          <UnifiedPanel>
+              <SectionHeading
+                eyebrow="Galeria"
+                title={
+                  <>
+                    <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
+                      Realizacje
+                    </span>{" "}
+                    i zaplecze produkcyjne
+                  </>
+                }
+                description="Kilka ujęć z produkcji i elementów HVAC — jakość widać w detalach."
+              />
+              <div className="mt-10 grid gap-4 md:grid-cols-12">
+                <GalleryTile src={gallery09} alt="Kanały wentylacyjne – detal" className="md:col-span-7 md:row-span-2" />
+                <GalleryTile src={gallery06} alt="Produkcja HVAC – stanowisko" className="md:col-span-5" />
+                <GalleryTile src={gallery07} alt="Kształtki wentylacyjne – element" className="md:col-span-5" />
+                <GalleryTile src={gallery08} alt="Kanały i kształtki – montaż" className="md:col-span-4" />
+                <GalleryTile src={gallery05} alt="Produkcja kanałów – linia" className="md:col-span-8" />
               </div>
-            </div>
+            </UnifiedPanel>
+          </section>
 
-            <footer className="mt-10 flex flex-col gap-2 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
-              <p>© {new Date().getFullYear()} Vente Polska. All rights reserved.</p>
-              <p className="text-muted-foreground/80">Futuristic UI concept • React + Tailwind</p>
-            </footer>
-          </div>
-        </section>
+          {/* CONTACT */}
+          <section id="kontakt" className="relative overflow-hidden">
+            <div className="container py-14 md:py-20">
+              <UnifiedPanel>
+                <div className="grid gap-10 md:grid-cols-12">
+                  <div className="md:col-span-7">
+                    <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
+                      <div className="group relative rounded-3xl border border-teal-200/50 bg-white/80 p-6 md:p-8 shadow-xl shadow-teal-500/10 backdrop-blur-md transition-all duration-300 hover:shadow-teal-500/20 hover:border-teal-300/60 w-full h-full">
+                        {/* Decorative side accent */}
+                        <div className="absolute left-0 top-8 h-12 w-1 rounded-r-full bg-teal-500/40" />
+
+                        <h2 className="text-3xl font-semibold tracking-tight md:text-4xl text-slate-800 leading-tight">
+                          <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
+                            Skontaktuj się
+                          </span>{" "}
+                          z nami
+                        </h2>
+                        <p className="mt-4 text-lg text-slate-600 leading-relaxed font-medium/80">
+                          Wyślij zapytanie lub zadzwoń — odpowiemy szybko i konkretnie.
+                        </p>
+                        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                          <div className="rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm">
+                            <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider">E-mail</p>
+                            <a className="mt-2 block text-lg font-semibold text-slate-800 hover:text-teal-600 transition-colors hover:underline" href="mailto:biuro@ventepolska.pl">
+                              biuro@ventepolska.pl
+                            </a>
+                          </div>
+                          <div className="rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm">
+                            <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider">Dział Wentylacji</p>
+                            <a className="mt-2 block text-lg font-semibold text-slate-800 hover:text-teal-600 transition-colors hover:underline" href="tel:+48796201999">
+                              796 201 999
+                            </a>
+                          </div>
+                          <div className="rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm">
+                            <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider">Dział Klimatyzacji</p>
+                            <a className="mt-2 block text-lg font-semibold text-slate-800 hover:text-teal-600 transition-colors hover:underline" href="tel:+48509088215">
+                              509 088 215
+                            </a>
+                          </div>
+                          <div className="rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm">
+                            <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider">Strona</p>
+                            <a className="mt-2 block text-lg font-semibold text-slate-800 hover:text-teal-600 transition-colors hover:underline" href="https://ventepolska.pl/" target="_blank" rel="noreferrer">
+                              ventepolska.pl
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </Motion3DTilt>
+                  </div>
+
+
+                  <div className="md:col-span-5">
+                    <Motion3DTilt tiltMax={4} liftAmount={8}>
+                      <div className="rounded-2xl border border-teal-200/50 bg-white/80 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
+                        <p className="text-sm text-muted-foreground">Szybka wiadomość</p>
+                        <p className="mt-2 text-sm text-slate-500 leading-relaxed">
+                          Ten prototyp skupia się na warstwie wizualnej. Jeśli chcesz, dodamy formularz kontaktowy z wysyłką.
+                        </p>
+                        <div className="mt-5 grid gap-3">
+                          <Button variant="hero" className="w-full" asChild>
+                            <a href="mailto:biuro@ventepolska.pl?subject=Zapytanie%20Vente%20Polska">Napisz e-mail</a>
+                          </Button>
+                          <Button variant="glass" className="w-full" asChild>
+                            <a href="#oferta">Wróć do oferty</a>
+                          </Button>
+                        </div>
+                      </div>
+                    </Motion3DTilt>
+                  </div>
+                </div>
+              </UnifiedPanel>
+            </div>
+          </section>
+
+          <footer className="mt-10 flex flex-col gap-2 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between px-6 pb-6 w-full max-w-[1400px] mx-auto">
+            <p>© {new Date().getFullYear()} Vente Polska. All rights reserved.</p>
+            <p className="text-muted-foreground/80">Futuristic UI concept • React + Tailwind</p>
+          </footer>
       </main>
     </div>
   );
