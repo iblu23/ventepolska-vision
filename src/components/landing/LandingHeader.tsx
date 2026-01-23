@@ -39,7 +39,7 @@ export function LandingHeader() {
             />
             <div className="leading-tight">
               <p className="text-xs md:text-sm font-semibold text-slate-800">Vente Polska</p>
-              <p className="text-xs md:text-xs text-muted-foreground hidden xs:block">HVAC • produkcja i montaż</p>
+              <p className="text-xs md:text-xs text-muted-foreground sm:block">HVAC • produkcja i montaż</p>
             </div>
           </a>
 
@@ -60,7 +60,7 @@ export function LandingHeader() {
                   
                   
                   {/* Panel background */}
-                  <div className="absolute inset-0 rounded-xl border border-teal-200/50 bg-white shadow-lg shadow-teal-500/5 transition-all duration-300 group-hover:border-teal-300/60 group-hover:shadow-teal-500/20"
+                  <div className="absolute inset-0 rounded-xl border border-teal-200/50 bg-white shadow-lg shadow-teal-500/5 transition-all duration-300 ease-out group-hover:border-teal-300/80 group-hover:shadow-2xl group-hover:shadow-teal-500/30 group-hover:-translate-y-2 group-hover:scale-[1.03]"
                     style={{
                       background: "linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(240,253,250,1) 100%)",
                       transform: 'translateZ(-20px)',
@@ -87,13 +87,13 @@ export function LandingHeader() {
                   }}
                 >
                   <span className="relative z-10 flex items-center bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent font-bold transition-all duration-300">
-                    <Phone className="mr-2 h-4 w-4 text-teal-600 transition-colors duration-300" />
+                    <Phone className="mr-2 h-4 w-4 text-teal-600 transition-all duration-2000 ease-in-out group-hover:animate-spin" />
                     {t('landing.hero.cta_quote')}
                   </span>
                   
                   
                   {/* Panel background */}
-                  <div className="absolute inset-0 rounded-xl border border-teal-200/50 bg-white shadow-lg shadow-teal-500/5 transition-all duration-300 group-hover:border-teal-300/60 group-hover:shadow-teal-500/20"
+                  <div className="absolute inset-0 rounded-xl border border-teal-200/50 bg-white shadow-lg shadow-teal-500/5 transition-all duration-300 ease-out group-hover:border-teal-300/80 group-hover:shadow-2xl group-hover:shadow-teal-500/30 group-hover:-translate-y-2 group-hover:scale-[1.03]"
                     style={{
                       background: "linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(240,253,250,1) 100%)",
                       transform: 'translateZ(-20px)',
@@ -168,14 +168,14 @@ export function LandingHeader() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-4 py-3 text-base font-medium bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent hover:bg-white hover:shadow-md hover:shadow-teal-500/10 transition-all duration-300 min-h-[44px] flex items-center"
+                className="rounded-lg px-4 py-3 text-base font-medium bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent hover:bg-white hover:shadow-2xl hover:shadow-teal-500/30 transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.03] min-h-[44px] flex items-center"
               >
                 {item.label}
               </a>
             ))}
             <Button variant="hero" className="mt-4 min-h-[48px] text-base px-6 py-3" asChild>
               <a href="#kontakt" onClick={() => setOpen(false)}>
-                <Phone className="mr-2 h-4 w-4" />
+                <Phone className="mr-2 h-4 w-4 transition-all duration-2000 ease-in-out group-hover:animate-spin" />
                 {t('landing.hero.cta_quote')}
               </a>
             </Button>

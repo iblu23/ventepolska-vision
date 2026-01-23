@@ -7,6 +7,7 @@ import { Motion3DTilt, ParallaxLayer } from "@/components/landing/Motion3DTilt";
 import { HeroCarousel } from "@/components/landing/HeroCarousel";
 import { HeroButton } from "@/components/landing/HeroButton";
 import { LanguageToggle } from "@/components/ui/LanguageToggle";
+import WindEffect from "@/components/landing/WindEffect";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect, useCallback, useMemo, memo } from "react";
 import heroImage from "@/assets/vente-hero.jpg";
@@ -121,9 +122,16 @@ FullscreenGallery.displayName = "FullscreenGallery";
 
 const Stat = memo(({ value, label }: { value: string; label: string }) => (
   <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
-    <div className="h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
-      <p className="text-xl md:text-2xl font-semibold tracking-tight text-slate-800">{value}</p>
-      <p className="mt-1 text-sm text-slate-500">{label}</p>
+    <div className="group h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
+      <div className="flex items-start gap-4">
+        <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+          <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📊</span>
+        </div>
+        <div className="flex-1">
+          <p className="text-xl md:text-2xl font-semibold tracking-tight text-slate-800 transition-all duration-300 group-hover:text-slate-900">{value}</p>
+          <p className="mt-1 text-sm text-slate-500 transition-all duration-300 group-hover:text-slate-600">{label}</p>
+        </div>
+      </div>
     </div>
   </Motion3DTilt>
 ));
@@ -132,16 +140,12 @@ Stat.displayName = "Stat";
 
 
 
-const InfoCard = memo(({
-  icon: Icon,
-  title,
-  description,
-}: {
+const InfoCard = memo(({ icon: Icon, title, description, className }: {
   icon: typeof Factory;
   title: string;
   description: string;
 }) => (
-  <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
+  <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
     <div className="flex items-start gap-4">
       <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
         <Icon className="h-5 w-5 transition-transform duration-2000 ease-in-out group-hover:animate-spin" />
@@ -315,7 +319,8 @@ export function LandingPage() {
   }, [isGalleryOpen, closeGallery, goToPrevious, goToNext]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-sky-50">
+      <WindEffect />
       <FullscreenGallery
         isOpen={isGalleryOpen}
         currentIndex={currentImageIndex}
@@ -340,8 +345,8 @@ export function LandingPage() {
                     {/* Badge - depth 1.6 (foreground) */}
                     <ParallaxLayer depth={1.6}>
                       <Motion3DTilt tiltMax={15} liftAmount={15} className="hidden md:block">
-                        <p className="group inline-flex items-center gap-2 rounded-full border border-teal-200/50 bg-white px-4 py-1.5 text-xs text-muted-foreground shadow-sm transition-all duration-300 hover:shadow-lg hover:shadow-teal-500/20 hover:border-teal-400/50 cursor-default">
-                          <BadgeCheck className="h-4 w-4 md:h-5 md:w-5 text-teal-600 transition-all duration-500 group-hover:scale-140 group-hover:rotate-[360deg] group-hover:text-teal-500" />
+                        <p className="group inline-flex items-center gap-2 rounded-full border border-teal-200/50 bg-white px-4 py-1.5 text-xs text-muted-foreground shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-1 hover:scale-105 cursor-default">
+                          <BadgeCheck className="h-4 w-4 md:h-5 md:w-5 text-teal-600 transition-all duration-2000 ease-in-out group-hover:animate-spin" />
                           <span className="group-hover:text-slate-800 transition-colors duration-300">
                             {t('landing.hero.badge')}
                           </span>
@@ -358,7 +363,7 @@ export function LandingPage() {
 
                     {/* Main Content Panel - depth 1.3 (mid) */}
                     <ParallaxLayer depth={1.3}>
-                      <div className="group relative mt-6 rounded-3xl border border-teal-200/50 bg-white p-6 md:p-8 shadow-xl shadow-teal-500/10 transition-all duration-300 hover:shadow-teal-500/20 hover:border-teal-300/60">
+                      <div className="group relative mt-6 rounded-3xl border border-teal-200/50 bg-white p-6 md:p-8 shadow-xl shadow-teal-500/10 transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
                         {/* Decorative side accent */}
                         <div className="absolute left-0 top-8 h-12 w-1 rounded-r-full bg-teal-500/40" />
 
@@ -454,7 +459,22 @@ export function LandingPage() {
               <div className="md:col-span-5">
                 <SectionHeading
                   className="h-full"
-                  eyebrow="O firmie"
+                  eyebrow={
+                    <span className={`inline-block ${aboutVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                      {Array.from("O firmie").map((char, index) => (
+                        <span
+                          key={index}
+                          className={`inline-block ${aboutVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                          style={{
+                            animationDelay: aboutVisible ? `${index * 0.05}s` : '0s',
+                            animationFillMode: 'both'
+                          }}
+                        >
+                          {char === ' ' ? '\u00A0' : char}
+                        </span>
+                      ))}
+                    </span>
+                  }
                   title={
                     <>
                       <span className={`inline-block ${aboutVisible ? 'animate-fade-in' : 'opacity-0'}`}>
@@ -522,7 +542,22 @@ export function LandingPage() {
           <div className="container py-6 md:py-4 md:py-5">
             <UnifiedPanel>
               <SectionHeading
-                eyebrow="Oferta"
+                eyebrow={
+                    <span className={`inline-block ${offerVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                      {Array.from("Oferta").map((char, index) => (
+                        <span
+                          key={index}
+                          className={`inline-block ${offerVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                          style={{
+                            animationDelay: offerVisible ? `${index * 0.05}s` : '0s',
+                            animationFillMode: 'both'
+                          }}
+                        >
+                          {char === ' ' ? '\u00A0' : char}
+                        </span>
+                      ))}
+                    </span>
+                  }
                 title={
                   <>
                     <span className={`inline-block ${offerVisible ? 'animate-fade-in' : 'opacity-0'}`}>
@@ -546,27 +581,48 @@ export function LandingPage() {
 
               <div className="mt-10 grid gap-4 md:grid-cols-3">
                 <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
-                  <div className="h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
-                    <h3 className="text-lg font-semibold text-slate-800">{t('landing.offer.rectangular_ducts')}</h3>
-                    <ul className="mt-3 space-y-2 text-sm text-slate-500">
-                      <li>{t('landing.offer.rectangular_ducts_list')}</li>
-                    </ul>
+                  <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
+                    <div className="flex items-start gap-4">
+                      <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                        <BadgeCheck className="h-5 w-5 transition-transform duration-2000 ease-in-out group-hover:animate-spin" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{t('landing.offer.rectangular_ducts')}</h3>
+                        <ul className="mt-3 space-y-2 text-sm text-slate-500 transition-all duration-300 group-hover:text-slate-600">
+                          <li>{t('landing.offer.rectangular_ducts_list')}</li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                 </Motion3DTilt>
                 <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
-                  <div className="h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
-                    <h3 className="text-lg font-semibold text-slate-800">{t('landing.offer.rectangular_fittings')}</h3>
-                    <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-                      <li>{t('landing.offer.rectangular_fittings_list')}</li>
-                    </ul>
+                  <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
+                    <div className="flex items-start gap-4">
+                      <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                        <Wrench className="h-5 w-5 transition-transform duration-2000 ease-in-out group-hover:animate-spin" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{t('landing.offer.rectangular_fittings')}</h3>
+                        <ul className="mt-3 space-y-2 text-sm text-slate-500 transition-all duration-300 group-hover:text-slate-600">
+                          <li>{t('landing.offer.rectangular_fittings_list')}</li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                 </Motion3DTilt>
                 <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
-                  <div className="h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
-                    <h3 className="text-lg font-semibold text-slate-800">{t('landing.offer.round_elements')}</h3>
-                    <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-                      <li>{t('landing.offer.round_elements_list')}</li>
-                    </ul>
+                  <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
+                    <div className="flex items-start gap-4">
+                      <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                        <Factory className="h-5 w-5 transition-transform duration-2000 ease-in-out group-hover:animate-spin" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{t('landing.offer.round_elements')}</h3>
+                        <ul className="mt-3 space-y-2 text-sm text-slate-500 transition-all duration-300 group-hover:text-slate-600">
+                          <li>{t('landing.offer.round_elements_list')}</li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                 </Motion3DTilt>
               </div>
@@ -580,7 +636,22 @@ export function LandingPage() {
             <div className="grid gap-10 md:grid-cols-12">
               <div className="md:col-span-7">
                 <SectionHeading
-                  eyebrow="Klimatyzacja"
+                  eyebrow={
+                    <span className={`inline-block ${acVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                      {Array.from("Klimatyzacja").map((char, index) => (
+                        <span
+                          key={index}
+                          className={`inline-block ${acVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                          style={{
+                            animationDelay: acVisible ? `${index * 0.05}s` : '0s',
+                            animationFillMode: 'both'
+                          }}
+                        >
+                          {char === ' ' ? '\u00A0' : char}
+                        </span>
+                      ))}
+                    </span>
+                  }
                   title={
                     <>
                       <span className={`inline-block ${acVisible ? 'animate-fade-in' : 'opacity-0'}`}>
@@ -657,7 +728,22 @@ export function LandingPage() {
         <section id="dlaczego" className="container py-6 md:py-4 md:py-5">
           <UnifiedPanel>
             <SectionHeading
-              eyebrow="Dlaczego my"
+              eyebrow={
+                    <span className={`inline-block ${whyVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                      {Array.from("Dlaczego my").map((char, index) => (
+                        <span
+                          key={index}
+                          className={`inline-block ${whyVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                          style={{
+                            animationDelay: whyVisible ? `${index * 0.05}s` : '0s',
+                            animationFillMode: 'both'
+                          }}
+                        >
+                          {char === ' ' ? '\u00A0' : char}
+                        </span>
+                      ))}
+                    </span>
+                  }
               title={
                 <>
                   <span className={`inline-block ${whyVisible ? 'animate-fade-in' : 'opacity-0'}`}>
@@ -713,11 +799,16 @@ export function LandingPage() {
                 },
               ].map((item) => (
                 <Motion3DTilt key={item.title} tiltMax={4} liftAmount={8}>
-                  <div
-                    className="h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60"
-                  >
-                    <h3 className="text-lg font-semibold text-slate-800">{item.title}</h3>
-                    <p className="mt-2 text-sm text-slate-500 leading-relaxed">{item.desc}</p>
+                  <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
+                    <div className="flex items-start gap-4">
+                      <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                        <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">✓</span>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{item.title}</h3>
+                        <p className="mt-2 text-sm text-slate-500 leading-relaxed transition-all duration-300 group-hover:text-slate-600">{item.desc}</p>
+                      </div>
+                    </div>
                   </div>
                 </Motion3DTilt>
               ))}
@@ -775,7 +866,7 @@ export function LandingPage() {
               <div className="grid gap-10 md:grid-cols-12">
                 <div className="md:col-span-7">
                   <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
-                    <div className="group relative rounded-3xl border border-teal-200/50 bg-white p-6 md:p-8 shadow-xl shadow-teal-500/10 transition-all duration-300 hover:shadow-teal-500/20 hover:border-teal-300/60 w-full h-full">
+                    <div className="group relative rounded-3xl border border-teal-200/50 bg-white p-6 md:p-8 shadow-xl shadow-teal-500/10 transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03] w-full h-full">
                       {/* Decorative side accent */}
                       <div className="absolute left-0 top-8 h-12 w-1 rounded-r-full bg-teal-500/40" />
 
@@ -813,29 +904,57 @@ export function LandingPage() {
                         {t('landing.contact.description')}
                       </p>
                       <div className="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2">
-                        <div className="rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm">
-                          <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider">{t('landing.contact.email_label')}</p>
-                          <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="mailto:biuro@ventepolska.pl">
-                            biuro@ventepolska.pl
-                          </a>
+                        <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
+                          <div className="flex items-start gap-4">
+                            <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                              <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📧</span>
+                            </div>
+                            <div className="flex-1">
+                              <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider transition-all duration-300 group-hover:text-teal-800">{t('landing.contact.email_label')}</p>
+                              <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="mailto:biuro@ventepolska.pl">
+                                biuro@ventepolska.pl
+                              </a>
+                            </div>
+                          </div>
                         </div>
-                        <div className="rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm">
-                          <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider">{t('landing.contact.ventilation_dept')}</p>
-                          <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="tel:+48796201999">
-                            796 201 999
-                          </a>
+                        <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
+                          <div className="flex items-start gap-4">
+                            <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                              <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📞</span>
+                            </div>
+                            <div className="flex-1">
+                              <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider transition-all duration-300 group-hover:text-teal-800">{t('landing.contact.ventilation_dept')}</p>
+                              <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="tel:+48796201999">
+                                796 201 999
+                              </a>
+                            </div>
+                          </div>
                         </div>
-                        <div className="rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm">
-                          <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider">{t('landing.contact.ac_dept')}</p>
-                          <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="tel:+48509088215">
-                            509 088 215
-                          </a>
+                        <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
+                          <div className="flex items-start gap-4">
+                            <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                              <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📱</span>
+                            </div>
+                            <div className="flex-1">
+                              <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider transition-all duration-300 group-hover:text-teal-800">{t('landing.contact.ac_dept')}</p>
+                              <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="tel:+48509088215">
+                                509 088 215
+                              </a>
+                            </div>
+                          </div>
                         </div>
-                        <div className="rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm">
-                          <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider">{t('landing.contact.website_label')}</p>
-                          <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="https://ventepolska.pl/" target="_blank" rel="noreferrer">
-                            ventepolska.pl
-                          </a>
+                        <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
+                          <div className="flex items-start gap-4">
+                            <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                              <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">🌐</span>
+                            </div>
+                            <div className="flex-1">
+                              <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider transition-all duration-300 group-hover:text-teal-800">{t('landing.contact.website_label')}</p>
+                              <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="https://ventepolska.pl/" target="_blank" rel="noreferrer">
+                                ventepolska.pl
+                              </a>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -845,18 +964,25 @@ export function LandingPage() {
 
                 <div className="md:col-span-5">
                   <Motion3DTilt tiltMax={4} liftAmount={8}>
-                    <div className="h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
-                      <p className="text-sm text-muted-foreground">{t('landing.contact.quick_message')}</p>
-                      <p className="mt-2 text-sm text-slate-500 leading-relaxed">
-                        {t('landing.contact.prototype_note')}
-                      </p>
-                      <div className="mt-5 grid gap-3">
-                        <Button variant="hero" className="w-full min-h-[48px] text-base px-6 py-4" asChild>
-                          <a href="mailto:biuro@ventepolska.pl?subject=Zapytanie%20Vente%20Polska">{t('landing.contact.write_email')}</a>
-                        </Button>
-                        <Button variant="glass" className="w-full" asChild>
-                          <a href="#oferta">{t('landing.contact.back_to_offer')}</a>
-                        </Button>
+                    <div className="group h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
+                      <div className="flex items-start gap-4">
+                        <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                          <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">💬</span>
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-sm text-muted-foreground transition-all duration-300 group-hover:text-slate-600">{t('landing.contact.quick_message')}</p>
+                          <p className="mt-2 text-sm text-slate-500 leading-relaxed transition-all duration-300 group-hover:text-slate-600">
+                            {t('landing.contact.prototype_note')}
+                          </p>
+                          <div className="mt-5 grid gap-3">
+                            <Button variant="hero" className="w-full min-h-[48px] text-base px-6 py-4 transition-all duration-300 group-hover:scale-105" asChild>
+                              <a href="mailto:biuro@ventepolska.pl?subject=Zapytanie%20Vente%20Polska">{t('landing.contact.write_email')}</a>
+                            </Button>
+                            <Button variant="glass" className="w-full transition-all duration-300 group-hover:scale-105" asChild>
+                              <a href="#oferta">{t('landing.contact.back_to_offer')}</a>
+                            </Button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </Motion3DTilt>
