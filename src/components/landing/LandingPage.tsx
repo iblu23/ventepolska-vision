@@ -304,7 +304,7 @@ export function LandingPage() {
 
                         <h1 className="text-3xl font-semibold tracking-tight md:text-5xl text-slate-800 leading-[1.15]">
                           Produkcja i montaż <br />
-                          <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
+                          <span className="bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">
                             kanałów oraz kształtek
                           </span> <br />
                           wentylacyjnych
@@ -322,7 +322,10 @@ export function LandingPage() {
                         <div className="relative group">
                           <Button variant="hero" size="lg" className="w-full relative z-10 min-h-[48px] text-base px-6 py-4" asChild>
                             <a href="#kontakt">
-                              Zapytaj o wycenę <ArrowRight className="ml-2 h-5 w-5" />
+                              <span className="bg-gradient-to-r from-teal-950 to-teal-800 bg-clip-text text-transparent font-bold">
+                                Zapytaj o wycenę
+                              </span>
+                              <ArrowRight className="ml-2 h-5 w-5 text-slate-600" />
                             </a>
                           </Button>
                           
@@ -385,7 +388,10 @@ export function LandingPage() {
                           <Motion3DTilt tiltMax={4} liftAmount={8} className="w-full">
                             <Button variant="hero" size="lg" className="w-full relative z-10 min-h-[48px] text-base px-6 py-4" asChild>
                               <a href="#oferta">
-                                Zobacz ofertę <ArrowRight className="ml-2 h-5 w-5" />
+                                <span className="bg-gradient-to-r from-teal-950 to-teal-800 bg-clip-text text-transparent font-bold">
+                                  Zobacz ofertę
+                                </span>
+                                <ArrowRight className="ml-2 h-5 w-5 text-slate-600" />
                               </a>
                             </Button>
                             
@@ -449,7 +455,10 @@ export function LandingPage() {
                           <Motion3DTilt tiltMax={4} liftAmount={8} className="w-full">
                             <Button variant="hero" size="lg" className="w-full relative z-10 min-h-[48px] text-base px-6 py-4" asChild>
                               <a href="#galeria">
-                                Galeria <ArrowRight className="ml-2 h-5 w-5" />
+                                <span className="bg-gradient-to-r from-teal-950 to-teal-800 bg-clip-text text-transparent font-bold">
+                                  Galeria
+                                </span>
+                                <ArrowRight className="ml-2 h-5 w-5 text-slate-600" />
                               </a>
                             </Button>
                             
@@ -543,7 +552,7 @@ export function LandingPage() {
                   title={
                     <>
                       Doświadczenie HVAC,{" "}
-                      <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
+                      <span className="bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">
                         automatyzacja i realna jakość
                       </span>
                     </>
@@ -586,7 +595,7 @@ export function LandingPage() {
                 eyebrow="Oferta"
                 title={
                   <>
-                    <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">
                       Kanały i kształtki
                     </span>
                     : prostokątne oraz okrągłe
@@ -641,7 +650,7 @@ export function LandingPage() {
                   title={
                     <>
                       Doradztwo, sprzedaż i{" "}
-                      <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
+                      <span className="bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">
                         montaż klimatyzacji
                       </span>
                     </>
@@ -677,7 +686,11 @@ export function LandingPage() {
                       </div>
                     </div>
                     <Button variant="hero" className="mt-6 w-full min-h-[48px] text-base px-6 py-4" asChild>
-                      <a href="#kontakt">Skontaktuj się</a>
+                      <a href="#kontakt">
+                        <span className="bg-gradient-to-r from-teal-950 to-teal-800 bg-clip-text text-transparent font-bold">
+                          Skontaktuj się
+                        </span>
+                      </a>
                     </Button>
                   </div>
                 </Motion3DTilt>
@@ -694,7 +707,7 @@ export function LandingPage() {
               title={
                 <>
                   Nacisk na detale:{" "}
-                  <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">
                     precyzja, termin, kompleksowość
                   </span>
                 </>
@@ -741,7 +754,7 @@ export function LandingPage() {
                 eyebrow="Galeria"
                 title={
                   <>
-                    <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">
                       Realizacje
                     </span>{" "}
                     i zaplecze produkcyjne
@@ -801,7 +814,7 @@ export function LandingPage() {
                         <div className="absolute left-0 top-8 h-12 w-1 rounded-r-full bg-teal-500/40" />
 
                         <h2 className="text-2xl md:text-4xl font-semibold tracking-tight text-slate-800 leading-tight">
-                          <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
+                          <span className="bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">
                             Skontaktuj się
                           </span>{" "}
                           z nami
@@ -812,25 +825,25 @@ export function LandingPage() {
                         <div className="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2">
                           <div className="rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm">
                             <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider">E-mail</p>
-                            <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="mailto:biuro@ventepolska.pl">
+                            <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="mailto:biuro@ventepolska.pl">
                               biuro@ventepolska.pl
                             </a>
                           </div>
                           <div className="rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm">
                             <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider">Dział Wentylacji</p>
-                            <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="tel:+48796201999">
+                            <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="tel:+48796201999">
                               796 201 999
                             </a>
                           </div>
                           <div className="rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm">
                             <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider">Dział Klimatyzacji</p>
-                            <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="tel:+48509088215">
+                            <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="tel:+48509088215">
                               509 088 215
                             </a>
                           </div>
                           <div className="rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm">
                             <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider">Strona</p>
-                            <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="https://ventepolska.pl/" target="_blank" rel="noreferrer">
+                            <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="https://ventepolska.pl/" target="_blank" rel="noreferrer">
                               ventepolska.pl
                             </a>
                           </div>
@@ -849,7 +862,11 @@ export function LandingPage() {
                         </p>
                         <div className="mt-5 grid gap-3">
                           <Button variant="hero" className="w-full min-h-[48px] text-base px-6 py-4" asChild>
-                            <a href="mailto:biuro@ventepolska.pl?subject=Zapytanie%20Vente%20Polska">Napisz e-mail</a>
+                            <a href="mailto:biuro@ventepolska.pl?subject=Zapytanie%20Vente%20Polska">
+                              <span className="bg-gradient-to-r from-teal-950 to-teal-800 bg-clip-text text-transparent font-bold">
+                                Napisz e-mail
+                              </span>
+                            </a>
                           </Button>
                           <Button variant="glass" className="w-full" asChild>
                             <a href="#oferta">Wróć do oferty</a>

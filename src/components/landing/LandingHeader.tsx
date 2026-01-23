@@ -51,7 +51,7 @@ export function LandingHeader() {
                     perspective: '1000px',
                   }}
                 >
-                  <span className="relative z-10 block bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent font-bold transition-all duration-300">
+                  <span className="relative z-10 block bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent font-bold transition-all duration-300">
                     {item.label}
                   </span>
                   
@@ -125,7 +125,7 @@ export function LandingHeader() {
                     perspective: '1000px',
                   }}
                 >
-                  <span className="relative z-10 flex items-center bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent font-bold transition-all duration-300">
+                  <span className="relative z-10 flex items-center bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent font-bold transition-all duration-300">
                     <Phone className="mr-2 h-4 w-4 text-teal-600 transition-colors duration-300" />
                     Zapytaj o wycenę
                   </span>
@@ -214,7 +214,7 @@ export function LandingHeader() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-4 py-3 text-base font-medium bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:bg-white/80 hover:shadow-md hover:shadow-teal-500/10 transition-all duration-300 min-h-[44px] flex items-center"
+                className="rounded-lg px-4 py-3 text-base font-medium bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent hover:bg-white/80 hover:shadow-md hover:shadow-teal-500/10 transition-all duration-300 min-h-[44px] flex items-center"
               >
                 {item.label}
               </a>
