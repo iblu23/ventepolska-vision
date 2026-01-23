@@ -8,7 +8,7 @@ import { SectionHeading } from "@/components/landing/SectionHeading";
 import { Motion3DTilt, ParallaxLayer } from "@/components/landing/Motion3DTilt";
 import { HeroCarousel } from "@/components/landing/HeroCarousel";
 import { HeroButton } from "@/components/landing/HeroButton";
-import { LanguageToggle } from "@/components/ui/LanguageToggle";
+
 import WindEffect from "@/components/landing/WindEffect";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect, useCallback, useMemo, memo, useRef } from "react";
@@ -487,7 +487,7 @@ export function LandingPage() {
                       {/* Decorative side accent */}
                       <div className="absolute left-0 top-8 h-12 w-1 rounded-r-full bg-teal-500/40" />
 
-                      <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold tracking-tight text-slate-800 leading-[1.2] sm:leading-[1.15]">
+                      <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold tracking-tight text-slate-800 leading-[1.2] sm:leading-[1.15] text-balance">
                         <span className={`inline-block ${heroVisible ? 'animate-fade-in' : 'opacity-0'}`}>
                           {Array.from("Produkcja i montaż").map((char, index) => (
                             <span
@@ -501,8 +501,8 @@ export function LandingPage() {
                               {char === ' ' ? '\u00A0' : char}
                             </span>
                           ))}
-                        </span> <br />
-                        <span className={`inline-block ${heroVisible ? 'animate-fade-in' : 'opacity-0'} bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent`}>
+                        </span>{' '}
+                        <span className={`inline-block ${heroVisible ? 'animate-fade-in' : 'opacity-0'}`}>
                           {Array.from("kanałów oraz kształtki").map((char, index) => (
                             <span
                               key={index}
@@ -515,14 +515,14 @@ export function LandingPage() {
                               {char === ' ' ? '\u00A0' : char}
                             </span>
                           ))}
-                        </span> <br />
+                        </span>{' '}
                         <span className={`inline-block ${heroVisible ? 'animate-fade-in' : 'opacity-0'}`}>
                           {Array.from("wentylacyjnych").map((char, index) => (
                             <span
                               key={index}
                               className={`inline-block ${heroVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
                               style={{
-                                animationDelay: heroVisible ? `${(index + 18) * 0.05}s` : '0s',
+                                animationDelay: heroVisible ? `${(index + 40) * 0.05}s` : '0s',
                                 animationFillMode: 'both'
                               }}
                             >
@@ -1007,9 +1007,10 @@ export function LandingPage() {
           <div className="container px-4 sm:px-6 py-4 sm:py-6 md:py-2 md:py-2 md:py-2.5">
             <UnifiedPanel>
               <div className="grid gap-10 md:grid-cols-12">
-                <div className="md:col-span-7">
-                  <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
-                    <div className="group relative rounded-3xl border border-teal-200/50 bg-white p-6 md:p-8 shadow-xl shadow-teal-500/10 transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03] w-full h-full">
+                <div className="md:col-span-7 flex flex-col gap-6">
+                  {/* Text Panel */}
+                  <Motion3DTilt tiltMax={4} liftAmount={8}>
+                    <div className="group relative rounded-3xl border border-teal-200/50 bg-white p-6 md:p-8 shadow-xl shadow-teal-500/10 transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
                       {/* Decorative side accent */}
                       <div className="absolute left-0 top-8 h-12 w-1 rounded-r-full bg-teal-500/40" />
 
@@ -1043,65 +1044,67 @@ export function LandingPage() {
                           ))}
                         </span>
                       </h2>
-                      <p className="mt-4 text-lg text-slate-600 leading-relaxed font-medium/80">
+                      <p className="mt-4 text-lg text-slate-600 leading-relaxed font-bold">
                         {t('landing.contact.description')}
                       </p>
-                      <div className="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2">
-                        <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
-                          <div className="flex items-start gap-2 md:gap-3">
-                            <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-                              <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📧</span>
-                            </div>
-                            <div className="flex-1">
-                              <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider transition-all duration-300 group-hover:text-teal-800">{t('landing.contact.email_label')}</p>
-                              <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="mailto:biuro@ventepolska.pl">
-                                biuro@ventepolska.pl
-                              </a>
-                            </div>
-                          </div>
+                    </div>
+                  </Motion3DTilt>
+
+                  {/* Contact Cards Grid */}
+                  <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
+                    <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
+                      <div className="flex items-start gap-2 md:gap-3">
+                        <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                          <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📧</span>
                         </div>
-                        <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
-                          <div className="flex items-start gap-2 md:gap-3">
-                            <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-                              <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📞</span>
-                            </div>
-                            <div className="flex-1">
-                              <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider transition-all duration-300 group-hover:text-teal-800">{t('landing.contact.ventilation_dept')}</p>
-                              <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="tel:+48796201999">
-                                796 201 999
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
-                          <div className="flex items-start gap-2 md:gap-3">
-                            <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-                              <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📱</span>
-                            </div>
-                            <div className="flex-1">
-                              <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider transition-all duration-300 group-hover:text-teal-800">{t('landing.contact.ac_dept')}</p>
-                              <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="tel:+48509088215">
-                                509 088 215
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
-                          <div className="flex items-start gap-2 md:gap-3">
-                            <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-                              <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">🌐</span>
-                            </div>
-                            <div className="flex-1">
-                              <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider transition-all duration-300 group-hover:text-teal-800">{t('landing.contact.website_label')}</p>
-                              <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="https://ventepolska.pl/" target="_blank" rel="noreferrer">
-                                ventepolska.pl
-                              </a>
-                            </div>
-                          </div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider transition-all duration-300 group-hover:text-teal-800">{t('landing.contact.email_label')}</p>
+                          <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="mailto:biuro@ventepolska.pl">
+                            biuro@ventepolska.pl
+                          </a>
                         </div>
                       </div>
                     </div>
-                  </Motion3DTilt>
+                    <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
+                      <div className="flex items-start gap-2 md:gap-3">
+                        <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                          <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📞</span>
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider transition-all duration-300 group-hover:text-teal-800">{t('landing.contact.ventilation_dept')}</p>
+                          <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="tel:+48796201999">
+                            796 201 999
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
+                      <div className="flex items-start gap-2 md:gap-3">
+                        <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                          <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📱</span>
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider transition-all duration-300 group-hover:text-teal-800">{t('landing.contact.ac_dept')}</p>
+                          <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="tel:+48509088215">
+                            509 088 215
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
+                      <div className="flex items-start gap-2 md:gap-3">
+                        <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                          <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">🌐</span>
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider transition-all duration-300 group-hover:text-teal-800">{t('landing.contact.website_label')}</p>
+                          <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="https://ventepolska.pl/" target="_blank" rel="noreferrer">
+                            ventepolska.pl
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
 

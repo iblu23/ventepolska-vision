@@ -3,13 +3,13 @@ import { cn } from "@/lib/utils";
 import { Menu, Phone } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Motion3DTilt } from "./Motion3DTilt";
-import { LanguageToggle } from "@/components/ui/LanguageToggle";
+
 import { useTranslation } from "react-i18next";
 
 export function LandingHeader() {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  
+
   const nav = useMemo(() => [
     { label: t('landing.sections.about'), href: "#o-firmie" },
     { label: t('landing.sections.services'), href: "#oferta" },
@@ -57,8 +57,8 @@ export function LandingHeader() {
                   <span className="relative z-10 block bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent font-bold transition-all duration-300">
                     {item.label}
                   </span>
-                  
-                  
+
+
                   {/* Panel background */}
                   <div className="absolute inset-0 rounded-xl border border-teal-200/50 bg-white shadow-lg shadow-teal-500/5 transition-all duration-300 ease-out group-hover:border-teal-300/80 group-hover:shadow-2xl group-hover:shadow-teal-500/30 group-hover:-translate-y-2 group-hover:scale-[1.03]"
                     style={{
@@ -66,7 +66,7 @@ export function LandingHeader() {
                       transform: 'translateZ(-20px)',
                     }}
                   />
-                  
+
                   {/* Hover glow effect */}
                   <div className="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-300 ease-out group-hover:border-teal-500/60 group-hover:shadow-[0_0_30px_rgba(20,184,166,0.6),0_0_60px_rgba(20,184,166,0.3)] md:group-hover:shadow-[0_0_40px_rgba(20,184,166,0.8),0_0_80px_rgba(20,184,166,0.4)] md:group-hover:transform-gpu md:group-hover:-translate-y-2 md:group-hover:scale-[1.03] pointer-events-none"
                     style={{
@@ -74,14 +74,14 @@ export function LandingHeader() {
                       transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                     }}
                   />
-                  
+
                   {/* Active click state */}
                   <div className="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-150 active:border-teal-500/80 active:shadow-[0_0_40px_rgba(20,184,166,0.8),0_0_80px_rgba(20,184,166,0.4)] active:transform-gpu pointer-events-none"
                     style={{
                       transform: 'translateZ(-35px) translateZ(0px)',
                     }}
                   />
-                  
+
                   {/* Volumetric edge glow */}
                   <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
                     <div className="absolute inset-0 rounded-xl border-2 border-teal-500/40 shadow-[0_0_20px_rgba(20,184,166,0.8),inset_0_0_20px_rgba(20,184,166,0.2)]"
@@ -90,7 +90,7 @@ export function LandingHeader() {
                       }}
                     />
                   </div>
-                  
+
                   {/* Glass reflection ripple */}
                   <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none">
                     <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-transparent via-white/20 to-transparent transform scale-0 group-hover:scale-150 transition-transform duration-700"
@@ -99,12 +99,12 @@ export function LandingHeader() {
                       }}
                     />
                   </div>
-                  
+
                   {/* Lens flare */}
                   <div className="absolute inset-0 rounded-xl overflow-hidden opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
                     <div className="absolute top-1/2 left-1/2 w-8 h-8 -translate-x-1/2 -translate-y-1/2 bg-gradient-radial from-teal-300/40 via-teal-200/20 to-transparent animate-pulse" />
                   </div>
-                  
+
                   {/* Circuit patterns */}
                   <div className="absolute inset-0 rounded-xl opacity-10 transition-opacity duration-300 pointer-events-none">
                     <div className="absolute inset-0 rounded-xl"
@@ -133,8 +133,8 @@ export function LandingHeader() {
                     <Phone className="mr-2 h-4 w-4 text-teal-600 transition-all duration-2000 ease-in-out group-hover:animate-spin" />
                     {t('landing.hero.cta_quote')}
                   </span>
-                  
-                  
+
+
                   {/* Panel background */}
                   <div className="absolute inset-0 rounded-xl border border-teal-200/50 bg-white shadow-lg shadow-teal-500/5 transition-all duration-300 ease-out group-hover:border-teal-300/80 group-hover:shadow-2xl group-hover:shadow-teal-500/30 group-hover:-translate-y-2 group-hover:scale-[1.03]"
                     style={{
@@ -142,14 +142,14 @@ export function LandingHeader() {
                       transform: 'translateZ(-20px)',
                     }}
                   />
-                  
+
                   {/* Active click state */}
                   <div className="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-150 active:border-teal-500/80 active:shadow-[0_0_40px_rgba(20,184,166,0.8),0_0_80px_rgba(20,184,166,0.4)] active:transform-gpu"
                     style={{
                       transform: 'translateZ(-35px) translateZ(0px)',
                     }}
                   />
-                  
+
                   {/* Volumetric edge glow */}
                   <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <div className="absolute inset-0 rounded-xl border-2 border-teal-500/40 shadow-[0_0_20px_rgba(20,184,166,0.8),inset_0_0_20px_rgba(20,184,166,0.2)]"
@@ -158,7 +158,7 @@ export function LandingHeader() {
                       }}
                     />
                   </div>
-                  
+
                   {/* Glass reflection ripple */}
                   <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                     <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-transparent via-white/20 to-transparent transform scale-0 group-hover:scale-150 transition-transform duration-700"
@@ -167,12 +167,12 @@ export function LandingHeader() {
                       }}
                     />
                   </div>
-                  
+
                   {/* Lens flare */}
                   <div className="absolute inset-0 rounded-xl overflow-hidden opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <div className="absolute top-1/2 left-1/2 w-8 h-8 -translate-x-1/2 -translate-y-1/2 bg-gradient-radial from-teal-300/40 via-teal-200/20 to-transparent animate-pulse" />
                   </div>
-                  
+
                   {/* Circuit patterns */}
                   <div className="absolute inset-0 rounded-xl opacity-10 transition-opacity duration-300">
                     <div className="absolute inset-0 rounded-xl"
