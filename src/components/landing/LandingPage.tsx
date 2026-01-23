@@ -227,7 +227,7 @@ const unifiedPanelStyle = {
 const UnifiedPanel = memo(({ children, className }: { children: React.ReactNode; className?: string }) => (
   <Motion3DTilt className={cn("h-full", className)}>
     <div
-      className="relative overflow-hidden rounded-3xl border border-teal-200/40 bg-white p-8 shadow-lg shadow-teal-500/5 md:p-12"
+      className="relative overflow-hidden rounded-3xl border border-teal-200/40 bg-white p-4 shadow-lg shadow-teal-500/5 md:p-6"
       style={unifiedPanelStyle}
     >
       {children}
@@ -457,11 +457,11 @@ export function LandingPage() {
       <main>
         {/* HERO */}
         <section id="hero" className="relative overflow-hidden">
-          <div className="container relative z-10 py-6 px-4 sm:px-6 md:py-8 lg:py-8">
+          <div className="container relative z-10 py-3 px-4 sm:px-6 md:py-4 lg:py-4">
             <div className="grid items-center gap-8 md:gap-6 lg:gap-8 md:grid-cols-12">
               <div className="md:col-span-6 animate-fade-in">
                 {/* Panel with solid background */}
-                <div className="h-full rounded-2xl bg-white p-4 sm:p-5 md:p-6 lg:p-8">
+                <div className="h-full rounded-2xl bg-white p-2 sm:p-2.5 md:p-3 lg:p-4">
                   {/* Badge - depth 1.6 (foreground) */}
                   <ParallaxLayer depth={1.6}>
                     <Motion3DTilt tiltMax={15} liftAmount={15} className="hidden md:block">
@@ -483,11 +483,11 @@ export function LandingPage() {
 
                   {/* Main Content Panel - depth 1.3 (mid) */}
                   <ParallaxLayer depth={1.3}>
-                    <div className="group relative mt-6 rounded-3xl border border-teal-200/50 bg-white/95 p-6 md:p-8 shadow-xl shadow-teal-500/10 transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
+                    <div className="group relative mt-3 rounded-3xl border border-teal-200/50 bg-white/95 p-6 md:p-8 shadow-xl shadow-teal-500/10 transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
                       {/* Decorative side accent */}
                       <div className="absolute left-0 top-8 h-12 w-1 rounded-r-full bg-teal-500/40" />
 
-                      <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold tracking-tight text-slate-800 leading-[1.2] sm:leading-[1.15] text-balance">
+                      <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold tracking-tight text-slate-800 leading-[1.2] sm:leading-[1.15] text-balance">
                         <span className={`inline-block ${heroVisible ? 'animate-fade-in' : 'opacity-0'}`}>
                           {Array.from("Produkcja i montaż").map((char, index) => (
                             <span
@@ -540,16 +540,16 @@ export function LandingPage() {
 
                   {/* Content Grid - Stat cards left, CTA buttons right */}
                   <ParallaxLayer depth={1.6}>
-                    <div className="mt-4 sm:mt-6 grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                    <div className="mt-2 sm:mt-3 grid grid-cols-1 md:grid-cols-2 gap-1.5 sm:gap-2 md:gap-3">
                       {/* Left column - Stat cards */}
-                      <div className="grid grid-cols-1 gap-4">
+                      <div className="grid grid-cols-1 gap-2">
                         <Stat value="100x100" label={t('landing.stats.min_dimension')} icon="📏" />
                         <Stat value="1500" label={t('landing.stats.max_length')} icon="📐" />
                         <Stat value="0.5-1.5" label={t('landing.stats.sheet_thickness')} icon="📄" />
                       </div>
 
                       {/* Right column - CTA buttons */}
-                      <div className="grid grid-cols-1 gap-4">
+                      <div className="grid grid-cols-1 gap-2">
                         {HERO_CTAS.map(({ id, icon, href, labelKey }) => (
                           <Motion3DTilt
                             key={id}
@@ -592,9 +592,9 @@ export function LandingPage() {
         </section>
 
         {/* ABOUT / EXPERIENCE - Unified Panel */}
-        <section id="o-firmie" className="container px-4 sm:px-6 py-4 sm:py-6 md:py-2 md:py-1.5 md:py-2">
+        <section id="o-firmie" className="container px-4 sm:px-6 py-2 sm:py-3 md:py-1">
           <UnifiedPanel>
-            <div className="grid gap-10 md:grid-cols-12">
+            <div className="grid gap-5 md:grid-cols-12">
               <div className="md:col-span-5">
                 <SectionHeading
                   className="h-full"
@@ -649,7 +649,7 @@ export function LandingPage() {
                   description={t('landing.about.description')}
                 />
               </div>
-              <div className="md:col-span-7 grid gap-3">
+              <div className="md:col-span-7 grid gap-1.5">
                 <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
                   <InfoCard
                     icon="🏭"
@@ -678,7 +678,7 @@ export function LandingPage() {
 
         {/* OFFER */}
         <section id="oferta" className="relative">
-          <div className="container px-4 sm:px-6 py-4 sm:py-6 md:py-2 md:py-2 md:py-2.5">
+          <div className="container px-4 sm:px-6 py-2 sm:py-3 md:py-1">
             <UnifiedPanel>
               <SectionHeading
                 eyebrow={
@@ -718,7 +718,7 @@ export function LandingPage() {
                 description={t('landing.offer.description')}
               />
 
-              <div className="mt-8 grid gap-3 md:grid-cols-3 sm:grid-cols-2">
+              <div className="mt-4 grid gap-3 md:grid-cols-3 sm:grid-cols-2">
                 <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
                   <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-4 md:p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
                     <div className="flex items-start gap-2 md:gap-3">
@@ -770,7 +770,7 @@ export function LandingPage() {
         </section>
 
         {/* AC */}
-        <section id="klimatyzacja" className="container px-4 sm:px-6 py-4 sm:py-6 md:py-2 md:py-2 md:py-2.5">
+        <section id="klimatyzacja" className="container px-4 sm:px-6 py-2 sm:py-3 md:py-1">
           <UnifiedPanel>
             <div className="grid gap-10 md:grid-cols-12">
               <div className="md:col-span-7">
@@ -864,7 +864,7 @@ export function LandingPage() {
         </section>
 
         {/* WHY */}
-        <section id="dlaczego" className="container px-4 sm:px-6 py-4 sm:py-6 md:py-2 md:py-2 md:py-2.5">
+        <section id="dlaczego" className="container px-4 sm:px-6 py-2 sm:py-3 md:py-1">
           <UnifiedPanel>
             <SectionHeading
               eyebrow={
@@ -918,7 +918,7 @@ export function LandingPage() {
               description={t('landing.why_us.description')}
             />
 
-            <div className="mt-10 grid gap-2 md:gap-3 md:grid-cols-2">
+            <div className="mt-5 grid gap-2 md:gap-3 md:grid-cols-2">
               {[
                 {
                   title: t('landing.why_us.precision'),
@@ -960,7 +960,7 @@ export function LandingPage() {
         </section>
 
         {/* GALLERY */}
-        <section id="galeria" className="container px-4 sm:px-6 py-4 sm:py-6 md:py-2 md:py-2 md:py-2.5">
+        <section id="galeria" className="container px-4 sm:px-6 py-2 sm:py-3 md:py-1">
           <UnifiedPanel>
             <div className="grid gap-3 sm:gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-12">
               <GalleryTile
@@ -1004,7 +1004,7 @@ export function LandingPage() {
 
         {/* CONTACT */}
         <section id="kontakt" className="relative overflow-hidden">
-          <div className="container px-4 sm:px-6 py-4 sm:py-6 md:py-2 md:py-2 md:py-2.5">
+          <div className="container px-4 sm:px-6 py-2 sm:py-3 md:py-1">
             <UnifiedPanel>
               <div className="grid gap-10 md:grid-cols-12">
                 <div className="md:col-span-7 flex flex-col gap-6">

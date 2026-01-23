@@ -54,9 +54,9 @@
       "rectangular_ducts": "Kanały prostokątne",
       "rectangular_fittings": "Kształtki prostokątne",
       "round_elements": "Elementy okrągłe",
-      "rectangular_ducts_list": "• standard i pod wymiar\n• wzory przetłoczeń: trapez, Z\n• stal ocynkowana / nierdzewna",
-      "rectangular_fittings_list": "• łuki symetryczne, kolana\n• redukcje, trójniki i czwórniki\n• dyfuzory i elementy na zamówienie",
-      "round_elements_list": "• rury spiralne SPIRO\n• kolana i kształtki okrągłe\n• sprawne terminy realizacji"
+      "rectangular_ducts_list": "standard i pod wymiar, wzory przetłoczeń: trapez, Z, stal ocynkowana / nierdzewna",
+      "rectangular_fittings_list": "łuki symetryczne, kolana, redukcje, trójniki i czwórniki, dyfuzory i elementy na zamówienie",
+      "round_elements_list": "rury spiralne SPIRO, kolana i kształtki okrągłe, sprawne terminy realizacji"
     },
     "air_conditioning": {
       "eyebrow": "Klimatyzacja",
@@ -100,7 +100,7 @@
       "website_label": "Strona"
     },
     "footer": {
-      "copyright": "© {year} Vente Polska. Wszelkie prawa zastrzeżone.",
+      "copyright": "©2026 Vente Polska. Wszelkie prawa zastrzeżone.",
       "tech": "Futurystyczny koncepcja UI • React + Tailwind"
     }
   }
