@@ -276,7 +276,7 @@ export function LandingPage() {
         {/* HERO */}
         <section className="relative overflow-hidden">
           <GlowGridBackdrop />
-          <div className="container relative py-14 md:py-20">
+          <div className="container relative py-4 md:py-5">
             <div className="grid items-center gap-10 md:grid-cols-12">
               <div className="md:col-span-6 animate-fade-in">
                 <Motion3DTilt tiltMax={5} liftAmount={12} className="h-full">
@@ -533,7 +533,7 @@ export function LandingPage() {
         </section>
 
         {/* ABOUT / EXPERIENCE - Unified Panel */}
-        <section id="o-firmie" className="container py-14 md:py-20">
+        <section id="o-firmie" className="container py-4 md:py-5">
           <UnifiedPanel>
             <div className="grid gap-10 md:grid-cols-12">
               <div className="md:col-span-5">
@@ -580,7 +580,7 @@ export function LandingPage() {
 
         {/* OFFER */}
         <section id="oferta" className="relative">
-          <div className="container py-14 md:py-20">
+          <div className="container py-4 md:py-5">
             <UnifiedPanel>
               <SectionHeading
                 eyebrow="Oferta"
@@ -632,7 +632,7 @@ export function LandingPage() {
         </section>
 
         {/* AC */}
-        <section id="klimatyzacja" className="container py-14 md:py-20">
+        <section id="klimatyzacja" className="container py-4 md:py-5">
           <UnifiedPanel>
             <div className="grid gap-10 md:grid-cols-12">
               <div className="md:col-span-7">
@@ -687,7 +687,7 @@ export function LandingPage() {
         </section>
 
         {/* WHY */}
-        <section id="dlaczego" className="container py-14 md:py-20">
+        <section id="dlaczego" className="container py-4 md:py-5">
           <UnifiedPanel>
             <SectionHeading
               eyebrow="Dlaczego my"
@@ -735,7 +735,7 @@ export function LandingPage() {
         </section>
 
         {/* GALLERY */}
-        <section id="galeria" className="container py-14 md:py-20">
+        <section id="galeria" className="container py-4 md:py-5">
           <UnifiedPanel>
               <SectionHeading
                 eyebrow="Galeria"
@@ -791,7 +791,7 @@ export function LandingPage() {
 
           {/* CONTACT */}
           <section id="kontakt" className="relative overflow-hidden">
-            <div className="container py-14 md:py-20">
+            <div className="container py-4 md:py-5">
               <UnifiedPanel>
                 <div className="grid gap-10 md:grid-cols-12">
                   <div className="md:col-span-7">
