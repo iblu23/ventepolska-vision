@@ -99,7 +99,7 @@ const WindEffect = () => {
 
     // Create wind particles
     const particles = [];
-    const particleCount = 15;
+    const particleCount = window.innerWidth < 768 ? 8 : 15; // Reduce particles on mobile
     
     for (let i = 0; i < particleCount; i++) {
       particles.push(new WindParticle());

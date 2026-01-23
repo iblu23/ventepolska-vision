@@ -168,7 +168,7 @@ export function LandingHeader() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-4 py-3 text-base font-medium bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent hover:bg-white hover:shadow-2xl hover:shadow-teal-500/30 transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.03] min-h-[44px] flex items-center"
+                className="rounded-lg px-4 py-3 text-base font-medium bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent hover:bg-white hover:shadow-xl hover:shadow-teal-500/20 transition-all duration-300 ease-out md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-2 md:hover:scale-[1.03] min-h-[44px] flex items-center"
               >
                 {item.label}
               </a>

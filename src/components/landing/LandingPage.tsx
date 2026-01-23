@@ -122,7 +122,7 @@ FullscreenGallery.displayName = "FullscreenGallery";
 
 const Stat = memo(({ value, label }: { value: string; label: string }) => (
   <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
-    <div className="group h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
+    <div className="group h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
       <div className="flex items-start gap-4">
         <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
           <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📊</span>
@@ -145,7 +145,7 @@ const InfoCard = memo(({ icon: Icon, title, description, className }: {
   title: string;
   description: string;
 }) => (
-  <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
+  <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
     <div className="flex items-start gap-4">
       <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
         <Icon className="h-5 w-5 transition-transform duration-2000 ease-in-out group-hover:animate-spin" />
@@ -866,7 +866,7 @@ export function LandingPage() {
               <div className="grid gap-10 md:grid-cols-12">
                 <div className="md:col-span-7">
                   <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
-                    <div className="group relative rounded-3xl border border-teal-200/50 bg-white p-6 md:p-8 shadow-xl shadow-teal-500/10 transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03] w-full h-full">
+                    <div className="group relative rounded-3xl border border-teal-200/50 bg-white p-6 md:p-8 shadow-xl shadow-teal-500/10 transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03] w-full h-full">
                       {/* Decorative side accent */}
                       <div className="absolute left-0 top-8 h-12 w-1 rounded-r-full bg-teal-500/40" />
 
@@ -964,7 +964,7 @@ export function LandingPage() {
 
                 <div className="md:col-span-5">
                   <Motion3DTilt tiltMax={4} liftAmount={8}>
-                    <div className="group h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
+                    <div className="group h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
                       <div className="flex items-start gap-4">
                         <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
                           <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">💬</span>

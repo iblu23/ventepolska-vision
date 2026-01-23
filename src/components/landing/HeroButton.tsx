@@ -75,7 +75,7 @@ export const HeroButton = memo(({ href, children, withTilt = false }: HeroButton
 
             {/* Hover effects */}
             <div
-                className="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-300 ease-out group-hover:border-teal-500/60 group-hover:shadow-[0_0_40px_rgba(20,184,166,0.8),0_0_80px_rgba(20,184,166,0.4)] group-hover:transform-gpu group-hover:-translate-y-2 group-hover:scale-[1.03] pointer-events-none"
+                className="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-300 ease-out group-hover:border-teal-500/60 group-hover:shadow-[0_0_30px_rgba(20,184,166,0.6),0_0_60px_rgba(20,184,166,0.3)] md:group-hover:shadow-[0_0_40px_rgba(20,184,166,0.8),0_0_80px_rgba(20,184,166,0.4)] md:group-hover:transform-gpu md:group-hover:-translate-y-2 md:group-hover:scale-[1.03] pointer-events-none"
                 style={hoverEffectStyle}
             />
 
