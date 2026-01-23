@@ -76,9 +76,9 @@ const WindEffect = () => {
           this.x, waveY, 
           this.x + this.length, waveY
         );
-        gradient.addColorStop(0, `rgba(135, 206, 235, 0)`);
-        gradient.addColorStop(0.5, `rgba(135, 206, 235, ${this.opacity})`);
-        gradient.addColorStop(1, `rgba(135, 206, 235, 0)`);
+        gradient.addColorStop(0, `rgba(20, 184, 166, 0)`);
+        gradient.addColorStop(0.5, `rgba(20, 184, 166, ${this.opacity})`);
+        gradient.addColorStop(1, `rgba(20, 184, 166, 0)`);
 
         ctx.strokeStyle = gradient;
         ctx.lineWidth = this.thickness;
