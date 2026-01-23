@@ -532,7 +532,7 @@ export function LandingPage() {
                         </span>
                       </h1>
                       <p className="mt-4 sm:mt-6 max-w-full text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed font-bold">
-                        Precyzyjne elementy HVAC pod Twój projekt — od doradztwa, przez produkcję, po terminową
+                        Precyzyjne elementy HVAC pod Twój projekt - od doradztwa, przez produkcję, po terminową
                         realizację i montaż. Wydajność, trwałość i jakość, która się broni w praktyce.
                       </p>
                     </div>
