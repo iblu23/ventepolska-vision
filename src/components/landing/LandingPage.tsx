@@ -235,9 +235,24 @@ export function LandingPage() {
   const [contactVisible, setContactVisible] = useState(false);
   const [sparks, setSparks] = useState<Array<{ id: number; x: number; y: number }>>([]);
   const sparkIdRef = useRef(0);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Global click handler for sparks
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768 || 'ontouchstart' in window);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Global click handler for sparks - optimized for mobile
   const handleGlobalClick = useCallback((e: MouseEvent) => {
+    // Reduce spark frequency on mobile for performance
+    if (isMobile && Math.random() > 0.5) return; // 50% chance to show spark on mobile
+    
     const newSpark = {
       id: sparkIdRef.current++,
       x: e.clientX,
@@ -246,19 +261,40 @@ export function LandingPage() {
     
     setSparks(prev => [...prev, newSpark]);
     
-    // Remove spark after animation
+    // Shorter animation on mobile for better performance
+    const animationDuration = isMobile ? 400 : 600;
     setTimeout(() => {
       setSparks(prev => prev.filter(spark => spark.id !== newSpark.id));
-    }, 600);
-  }, []);
+    }, animationDuration);
+  }, [isMobile]);
 
-  // Add global click listener
+  // Add global click listener with touch support
   useEffect(() => {
-    document.addEventListener('click', handleGlobalClick);
-    return () => {
-      document.removeEventListener('click', handleGlobalClick);
+    const handleClick = (e: MouseEvent) => handleGlobalClick(e);
+    const handleTouch = (e: TouchEvent) => {
+      if (e.touches.length === 1) {
+        const touch = e.touches[0];
+        const mouseEvent = new MouseEvent('click', {
+          clientX: touch.clientX,
+          clientY: touch.clientY,
+          bubbles: true
+        });
+        handleGlobalClick(mouseEvent);
+      }
     };
-  }, [handleGlobalClick]);
+
+    document.addEventListener('click', handleClick);
+    if (isMobile) {
+      document.addEventListener('touchstart', handleTouch, { passive: true });
+    }
+    
+    return () => {
+      document.removeEventListener('click', handleClick);
+      if (isMobile) {
+        document.removeEventListener('touchstart', handleTouch);
+      }
+    };
+  }, [handleGlobalClick, isMobile]);
 
   // Intersection observer for scroll-triggered animations
   useEffect(() => {
@@ -355,7 +391,7 @@ export function LandingPage() {
   return (
     <div className="min-h-screen bg-sky-50">
       <WindEffect />
-      {/* Global ClickSpark Container */}
+      {/* Global ClickSpark Container - Mobile Optimized */}
       {sparks.map(spark => (
         <div
           key={spark.id}
@@ -369,23 +405,30 @@ export function LandingPage() {
             zIndex: 9999
           }}
         >
-          {[...Array(8)].map((_, i) => (
-            <div
-              key={i}
-              className="spark-line"
-              style={{
-                position: 'absolute',
-                width: '2px',
-                height: '20px',
-                background: 'linear-gradient(to bottom, #14b8a6, #0d9488, #5eead4)',
-                left: '50%',
-                top: '50%',
-                transformOrigin: 'center bottom',
-                transform: `translateX(-50%) rotate(${i * 45}deg)`,
-                animation: 'spark-expand 0.6s ease-out forwards'
-              }}
-            />
-          ))}
+          {[...Array(isMobile ? 6 : 8)].map((_, i) => {
+            const rotation = isMobile ? 60 : 45;
+            const animationDuration = isMobile ? '0.4s' : '0.6s';
+            const lineWidth = isMobile ? '1.5px' : '2px';
+            const lineHeight = isMobile ? '15px' : '20px';
+            
+            return (
+              <div
+                key={i}
+                className="spark-line"
+                style={{
+                  position: 'absolute',
+                  width: lineWidth,
+                  height: lineHeight,
+                  background: 'linear-gradient(to bottom, #14b8a6, #0d9488, #5eead4)',
+                  left: '50%',
+                  top: '50%',
+                  transformOrigin: 'center bottom',
+                  transform: `translateX(-50%) rotate(${i * rotation}deg)`,
+                  animation: `spark-expand ${animationDuration} ease-out forwards`
+                }}
+              />
+            );
+          })}
         </div>
       ))}
       <FullscreenGallery

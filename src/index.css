@@ -223,4 +223,22 @@ All colors MUST be HSL.
     border-radius: 1px;
     box-shadow: 0 0 6px rgba(20, 184, 166, 0.6);
   }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .click-spark {
+      will-change: transform, opacity;
+    }
+    
+    .spark-line {
+      will-change: transform, height, opacity;
+    }
+    
+    /* Reduce motion on mobile for better performance */
+    @media (prefers-reduced-motion: reduce) {
+      .spark-line {
+        animation: none !important;
+      }
+    }
+  }
 }
