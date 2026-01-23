@@ -14,7 +14,7 @@ function SplashCursor({
   SPLAT_FORCE = 6000,
   SHADING = true,
   COLOR_UPDATE_SPEED = 10,
-  BACK_COLOR = { r: 0.5, g: 0, b: 0 },
+  BACK_COLOR = { r: 0, g: 0.1, b: 0 },
   TRANSPARENT = true
 }) {
   const canvasRef = useRef(null);
@@ -881,7 +881,11 @@ function SplashCursor({
     }
 
     function generateColor() {
-      let c = HSVtoRGB(Math.random(), 1.0, 1.0);
+      // Generate shades of green (hue range: 0.25 to 0.4 for green colors)
+      let greenHue = 0.25 + Math.random() * 0.15; // Green hue range
+      let saturation = 0.6 + Math.random() * 0.4; // High saturation for vibrant greens
+      let value = 0.5 + Math.random() * 0.5; // Brightness variation
+      let c = HSVtoRGB(greenHue, saturation, value);
       c.r *= 0.15;
       c.g *= 0.15;
       c.b *= 0.15;

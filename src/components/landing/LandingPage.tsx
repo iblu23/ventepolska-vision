@@ -7,7 +7,6 @@ import { Motion3DTilt, ParallaxLayer } from "@/components/landing/Motion3DTilt";
 import { HeroCarousel } from "@/components/landing/HeroCarousel";
 import { HeroButton } from "@/components/landing/HeroButton";
 import { LanguageToggle } from "@/components/ui/LanguageToggle";
-import SplashCursor from "@/components/SplashCursor";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect, useCallback, useMemo, memo } from "react";
 import heroImage from "@/assets/vente-hero.jpg";
@@ -142,14 +141,14 @@ const InfoCard = memo(({
   title: string;
   description: string;
 }) => (
-  <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
+  <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
     <div className="flex items-start gap-4">
-      <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600">
-        <Icon className="h-5 w-5" />
+      <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+        <Icon className="h-5 w-5 transition-transform duration-2000 ease-in-out group-hover:animate-spin" />
       </div>
-      <div>
-        <h3 className="text-lg font-semibold text-slate-800">{title}</h3>
-        <p className="mt-1 text-sm text-slate-500 leading-relaxed">{description}</p>
+      <div className="flex-1">
+        <h3 className="text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{title}</h3>
+        <p className="mt-1 text-sm text-slate-500 leading-relaxed transition-all duration-300 group-hover:text-slate-600">{description}</p>
       </div>
     </div>
   </div>
@@ -317,7 +316,6 @@ export function LandingPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <SplashCursor />
       <FullscreenGallery
         isOpen={isGalleryOpen}
         currentIndex={currentImageIndex}
