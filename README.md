@@ -1,73 +1,144 @@
-# Welcome to your Lovable project
+# Vente Polska - HVAC Production & Installation
 
-## Project info
+Modern, responsive website for Vente Polska - a leading HVAC (Heating, Ventilation, Air Conditioning) company specializing in production and installation services.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 🌟 Features
 
-## How can I edit this code?
+- **Hyper-realistic 3D Navigation**: Advanced glassmorphism effects with hover animations
+- **Responsive Design**: Optimized for all devices and screen sizes
+- **Modern Tech Stack**: React + TypeScript + Tailwind CSS
+- **Interactive Components**: Motion3DTilt effects and smooth transitions
+- **Professional Branding**: Custom Vente Polska logo and favicon
 
-There are several ways of editing your application.
+## 🚀 Tech Stack
 
-**Use Lovable**
+- **Frontend**: React 18 + TypeScript
+- **Styling**: Tailwind CSS with custom glassmorphism effects
+- **Build Tool**: Vite
+- **Icons**: Lucide React
+- **Animations**: Custom CSS3 transforms and transitions
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 📦 Installation
 
-Changes made via Lovable will be committed automatically to this repo.
+```bash
+# Install dependencies
+npm install
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-**Edit a file directly in GitHub**
+## 🎨 Design Features
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### 3D Glassmorphism Navigation
+- 25px hover extrusion with volumetric edge glow
+- 35px active-click extrusion with shockwave effects
+- Glass reflection ripples and lens flares
+- Circuit pattern overlays for depth
 
-**Use GitHub Codespaces**
+### Header Section
+- Enlarged header with 2x bigger logo
+- Unified button styling across navigation
+- Contact button with phone icon
+- Motion3DTilt interactive effects
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Visual Effects
+- Teal gradient color scheme (#14b8a6 to #0d9488)
+- Semi-transparent glass panels
+- Smooth GPU-accelerated animations
+- Depth of field and perspective effects
 
-## What technologies are used for this project?
+## 🌐 Deployment
 
-This project is built with:
+### Vercel (Recommended)
+```bash
+# Connect to Vercel and deploy
+npx vercel
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Netlify
+```bash
+# Build and deploy to Netlify
+npm run build
+# Upload dist/ folder to Netlify
+```
 
-## How can I deploy this project?
+### Static Hosting
+```bash
+# Build and serve static files
+npm run build
+# Serve dist/ folder on any static host
+```
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## 📁 Project Structure
 
-## Can I connect a custom domain to my Lovable project?
+```
+src/
+├── components/
+│   ├── landing/
+│   │   ├── LandingHeader.tsx      # Navigation header
+│   │   ├── LandingPage.tsx       # Main landing page
+│   │   ├── Motion3DTilt.tsx      # 3D tilt effect component
+│   │   └── ...
+│   └── ui/
+│       └── button.tsx             # Custom button components
+├── assets/                        # Images and static assets
+└── main.tsx                       # App entry point
+```
 
-Yes, you can!
+## 🎯 Key Components
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### LandingHeader.tsx
+- Sticky navigation with glassmorphism effects
+- Responsive mobile menu
+- Contact button with phone integration
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+### Motion3DTilt.tsx
+- Custom 3D tilt effect component
+- GPU-accelerated transforms
+- Configurable tilt intensity and lift amount
+
+### Button Components
+- Multiple variants (glass, hero, outline)
+- Consistent 3D effects across all buttons
+- Hover and active state animations
+
+## 🔧 Customization
+
+### Colors
+- Primary Teal: `#14b8a6`
+- Secondary Teal: `#0d9488`
+- Background: Semi-transparent glass effects
+
+### Effects
+- Adjust `tiltMax` and `liftAmount` in Motion3DTilt
+- Modify gradient colors for different themes
+- Customize animation durations and easing
+
+## 📱 Responsive Breakpoints
+
+- Mobile: < 768px
+- Tablet: 768px - 1024px
+- Desktop: > 1024px
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## 📄 License
+
+This project is proprietary to Vente Polska.
+
+---
+
+**Vente Polska** - HVAC Production & Installation Excellence
