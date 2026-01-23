@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, X, ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { GlowGridBackdrop } from "@/components/landing/GlowGridBackdrop";
 import { MeshGradient, FloatingOrbs } from "@/components/landing/ModernBackgrounds";
 import { SectionHeading } from "@/components/landing/SectionHeading";
@@ -841,21 +841,42 @@ export function LandingPage() {
               </div>
               <div className="md:col-span-5">
                 <Motion3DTilt tiltMax={5} liftAmount={8} className="h-full">
-                  <div className="h-full rounded-3xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
-                    <p className="text-sm text-muted-foreground">Doświadczenie</p>
-                    <div className="mt-4 grid gap-3">
-                      <div className="rounded-xl bg-teal-50/50 p-4 border border-teal-100/50">
-                        <p className="text-xl md:text-2xl font-semibold text-slate-800">10 lat</p>
-                        <p className="text-sm text-slate-500">produkcji kanałów wentylacyjnych</p>
-                      </div>
-                      <div className="rounded-xl bg-teal-50/50 p-4 border border-teal-100/50">
-                        <p className="text-xl md:text-2xl font-semibold text-slate-800">10 lat</p>
-                        <p className="text-sm text-slate-500">doradztwa i montażu klimatyzacji</p>
-                      </div>
+                  <div className="flex flex-col h-full rounded-3xl border border-teal-200/50 bg-white p-4 sm:p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
+                    <p className="text-xl md:text-2xl lg:text-3xl font-semibold tracking-tight leading-tight">
+                      <span className={`inline-block ${acVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                        {Array.from("Doświadczenie").map((char, index) => (
+                          <span
+                            key={index}
+                            className={`inline-block ${acVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                            style={{
+                              animationDelay: acVisible ? `${(index + 30) * 0.05}s` : '0s',
+                              animationFillMode: 'both'
+                            }}
+                          >
+                            {char}
+                          </span>
+                        ))}
+                      </span>
+                    </p>
+                    <div className="mt-4 sm:mt-8 flex-1 grid gap-3">
+                      <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
+                        <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-4 sm:p-5 md:p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
+                          <div className="flex items-start gap-3 sm:gap-4">
+                            <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                              <span className="text-lg sm:text-xl font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">⭐</span>
+                            </div>
+                            <p className="text-base sm:text-lg font-semibold bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent transition-all duration-300">10 lat doświadczenia w produkcji kanałów wentylacyjnych oraz 10 lat w doradztwie i montażu klimatyzacji.
+                              Projektowanie, wykonanie instalacji oraz fachowy montaż zgodny z normami.</p>
+                          </div>
+                        </div>
+                      </Motion3DTilt>
+
                     </div>
-                    <HeroButton href="#kontakt">
-                      Skontaktuj się
-                    </HeroButton>
+                    <div className="mt-4 sm:mt-8">
+                      <HeroButton href="#kontakt">
+                        Skontaktuj się
+                      </HeroButton>
+                    </div>
                   </div>
                 </Motion3DTilt>
               </div>
