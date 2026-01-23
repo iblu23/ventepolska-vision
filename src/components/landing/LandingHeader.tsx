@@ -45,7 +45,7 @@ export function LandingHeader() {
               <div key={item.href} className="relative group">
                 <a
                   href={item.href}
-                  className="relative block px-6 py-3 text-lg font-medium transition-all duration-300 transform-gpu"
+                  className="relative block px-4 py-2 text-base font-medium transition-all duration-300 transform-gpu"
                   style={{
                     transformStyle: 'preserve-3d',
                     perspective: '1000px',
@@ -119,7 +119,7 @@ export function LandingHeader() {
               <Motion3DTilt tiltMax={4} liftAmount={8} className="w-full">
                 <a
                   href="#kontakt"
-                  className="relative block px-6 py-3 text-lg font-medium transition-all duration-300 transform-gpu"
+                  className="relative block px-4 py-2 text-base font-medium transition-all duration-300 transform-gpu"
                   style={{
                     transformStyle: 'preserve-3d',
                     perspective: '1000px',
