@@ -294,14 +294,21 @@ export function LandingPage() {
                   >
                     {/* Badge - depth 1.6 (foreground) */}
                     <ParallaxLayer depth={1.6}>
-                      <Motion3DTilt tiltMax={15} liftAmount={15}>
+                      <Motion3DTilt tiltMax={15} liftAmount={15} className="hidden md:block">
                         <p className="group inline-flex items-center gap-2 rounded-full border border-teal-200/50 bg-white/80 px-4 py-1.5 text-xs text-muted-foreground shadow-sm backdrop-blur transition-all duration-300 hover:shadow-lg hover:shadow-teal-500/20 hover:border-teal-400/50 cursor-default">
-                          <BadgeCheck className="h-5 w-5 text-teal-600 transition-all duration-500 group-hover:scale-140 group-hover:rotate-[360deg] group-hover:text-teal-500" />
+                          <BadgeCheck className="h-4 w-4 md:h-5 md:w-5 text-teal-600 transition-all duration-500 group-hover:scale-140 group-hover:rotate-[360deg] group-hover:text-teal-500" />
                           <span className="group-hover:text-slate-800 transition-colors duration-300">
                             Produkcja zgodna z normami UE • precyzja • szczelność
                           </span>
                         </p>
                       </Motion3DTilt>
+                      {/* Mobile version without heavy 3D tilt */}
+                      <p className="md:hidden group inline-flex items-center gap-2 rounded-full border border-teal-200/50 bg-white/80 px-4 py-1.5 text-xs text-muted-foreground shadow-sm backdrop-blur transition-all duration-300 active:shadow-lg active:shadow-teal-500/20 active:border-teal-400/50 cursor-default">
+                        <BadgeCheck className="h-4 w-4 text-teal-600 transition-all duration-500 group-active:scale-125 group-active:rotate-[360deg] group-active:text-teal-500" />
+                        <span className="group-active:text-slate-800 transition-colors duration-300">
+                          Produkcja zgodna z normami UE • precyzja • szczelność
+                        </span>
+                      </p>
                     </ParallaxLayer>
 
                     {/* Main Content Panel - depth 1.3 (mid) */}
