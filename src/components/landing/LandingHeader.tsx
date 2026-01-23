@@ -3,18 +3,21 @@ import { cn } from "@/lib/utils";
 import { Menu, Phone } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Motion3DTilt } from "./Motion3DTilt";
-
-const nav = [
-  { label: "O firmie", href: "#o-firmie" },
-  { label: "Oferta", href: "#oferta" },
-  { label: "Klimatyzacja", href: "#klimatyzacja" },
-  { label: "Dlaczego my", href: "#dlaczego" },
-  { label: "Galeria", href: "#galeria" },
-  { label: "Kontakt", href: "#kontakt" },
-];
+import { LanguageToggle } from "@/components/ui/LanguageToggle";
+import { useTranslation } from "react-i18next";
 
 export function LandingHeader() {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+  
+  const nav = useMemo(() => [
+    { label: t('landing.sections.about'), href: "#o-firmie" },
+    { label: t('landing.sections.services'), href: "#oferta" },
+    { label: t('landing.sections.air_conditioning'), href: "#klimatyzacja" },
+    { label: t('landing.sections.why_us'), href: "#dlaczego" },
+    { label: t('landing.hero.cta_gallery'), href: "#galeria" },
+    { label: t('landing.sections.contact'), href: "#kontakt" },
+  ], [t]);
   const isDesktop = useMemo(() => {
     if (typeof window === "undefined") return true;
     return window.matchMedia?.("(min-width: 768px)")?.matches ?? true;
@@ -36,7 +39,7 @@ export function LandingHeader() {
             />
             <div className="leading-tight">
               <p className="text-sm font-semibold text-slate-800">Vente Polska</p>
-              <p className="text-xs text-muted-foreground">HVAC • produkcja i montaż</p>
+              <p className="text-xs text-muted-foreground">{t('landing.header.tagline')}</p>
             </div>
           </a>
 
@@ -115,6 +118,7 @@ export function LandingHeader() {
           </nav>
 
           <div className="flex items-center gap-2">
+            <LanguageToggle />
             <div className="relative group hidden md:inline-flex">
               <Motion3DTilt tiltMax={4} liftAmount={8} className="w-full">
                 <a
@@ -127,7 +131,7 @@ export function LandingHeader() {
                 >
                   <span className="relative z-10 flex items-center bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent font-bold transition-all duration-300">
                     <Phone className="mr-2 h-4 w-4 text-teal-600 transition-colors duration-300" />
-                    Zapytaj o wycenę
+                    {t('landing.hero.cta_quote')}
                   </span>
                   
                   {/* Glass panel background */}
@@ -222,7 +226,7 @@ export function LandingHeader() {
             <Button variant="hero" className="mt-4 min-h-[48px] text-base px-6 py-3" asChild>
               <a href="#kontakt" onClick={() => setOpen(false)}>
                 <Phone className="mr-2 h-4 w-4" />
-                Zapytaj o wycenę
+                {t('landing.hero.cta_quote')}
               </a>
             </Button>
           </div>
