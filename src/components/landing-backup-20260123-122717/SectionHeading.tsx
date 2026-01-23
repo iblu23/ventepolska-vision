@@ -12,7 +12,7 @@ type SectionHeadingProps = {
 export function SectionHeading({ eyebrow, title, description, className, children }: SectionHeadingProps) {
   return (
     <Motion3DTilt className={cn("h-full", className)}>
-      <div className="group relative h-full rounded-3xl border border-teal-200/50 bg-white p-4 md:p-6 lg:p-8 shadow-xl shadow-teal-500/10 transition-all duration-300 hover:shadow-teal-500/20 hover:border-teal-300/60 font-inherit">
+      <div className="group relative h-full rounded-3xl border border-teal-200/50 bg-white/80 p-4 md:p-6 lg:p-8 shadow-xl shadow-teal-500/10 backdrop-blur-md transition-all duration-300 hover:shadow-teal-500/20 hover:border-teal-300/60 font-inherit">
         {/* Decorative side accent */}
         <div className="absolute left-0 top-8 h-12 w-1 rounded-r-full bg-teal-500/40" />
 

@@ -72,6 +72,11 @@ export const HeroButton = memo(({ href, children, withTilt = false }: HeroButton
                 </a>
             </Button>
 
+            {/* Glass panel background */}
+            <div
+                className="absolute inset-0 rounded-xl border border-teal-200/50 bg-white/70 shadow-lg shadow-teal-500/5 backdrop-blur-sm transition-all duration-300 group-hover:border-teal-300/60 group-hover:shadow-teal-500/20 pointer-events-none"
+                style={glassBackgroundStyle}
+            />
 
             {/* Hover effects */}
             <div

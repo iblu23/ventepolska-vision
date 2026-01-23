@@ -29,7 +29,7 @@ export function LandingHeader() {
 
   return (
     <header className="sticky top-0 z-50">
-      <div className="border-b border-border/60 bg-background/80">
+      <div className="border-b border-border/60 bg-background">
         <div className="container flex h-16 md:h-20 lg:h-24 items-center justify-between gap-2 md:gap-4">
           <a href="#" className="group flex items-center gap-3">
             <img
@@ -39,11 +39,11 @@ export function LandingHeader() {
             />
             <div className="leading-tight">
               <p className="text-xs md:text-sm font-semibold text-slate-800">Vente Polska</p>
-              <p className="text-xs md:text-xs text-muted-foreground hidden xs:block">HVAC • produkcja i montaż</p>
+              <p className="text-xs md:text-xs text-muted-foreground">HVAC • produkcja i montaż</p>
             </div>
           </a>
 
-          <nav className="hidden items-center gap-2 lg:gap-6 md:flex">
+          <nav className="hidden items-center gap-3 lg:gap-6 md:flex">
             {nav.map((item) => (
               <div key={item.href} className="relative group">
                 <a
@@ -58,6 +58,8 @@ export function LandingHeader() {
                     {item.label}
                   </span>
                   
+                  {/* Solid panel background */}
+                  <div className="absolute inset-0 rounded-xl border border-teal-200/50 bg-white shadow-lg shadow-teal-500/5 transition-all duration-300 group-hover:border-teal-300/60 group-hover:shadow-teal-500/20" />
                   
                   {/* Hover effects */}
                   <div className="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-300 group-hover:border-teal-500/60 group-hover:shadow-[0_0_30px_rgba(20,184,166,0.6),0_0_60px_rgba(20,184,166,0.3)] group-hover:transform-gpu"
@@ -83,15 +85,7 @@ export function LandingHeader() {
                     />
                   </div>
                   
-                  {/* Glass reflection ripple */}
-                  <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-transparent via-white/20 to-transparent transform scale-0 group-hover:scale-150 transition-transform duration-700"
-                      style={{
-                        transformOrigin: 'center',
-                      }}
-                    />
-                  </div>
-                  
+                                    
                   {/* Lens flare */}
                   <div className="absolute inset-0 rounded-xl overflow-hidden opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <div className="absolute top-1/2 left-1/2 w-8 h-8 -translate-x-1/2 -translate-y-1/2 bg-gradient-radial from-teal-300/40 via-teal-200/20 to-transparent animate-pulse" />
@@ -110,7 +104,7 @@ export function LandingHeader() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <div className="relative group hidden lg:inline-flex">
               <Motion3DTilt tiltMax={4} liftAmount={8} className="w-full">
                 <a
@@ -126,6 +120,8 @@ export function LandingHeader() {
                     {t('landing.hero.cta_quote')}
                   </span>
                   
+                  {/* Solid panel background */}
+                  <div className="absolute inset-0 rounded-xl border border-teal-200/50 bg-white shadow-lg shadow-teal-500/5 transition-all duration-300 group-hover:border-teal-300/60 group-hover:shadow-teal-500/20" />
                   
                   {/* Hover effects */}
                   <div className="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-300 group-hover:border-teal-500/60 group-hover:shadow-[0_0_30px_rgba(20,184,166,0.6),0_0_60px_rgba(20,184,166,0.3)] group-hover:transform-gpu"
@@ -151,15 +147,7 @@ export function LandingHeader() {
                     />
                   </div>
                   
-                  {/* Glass reflection ripple */}
-                  <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-transparent via-white/20 to-transparent transform scale-0 group-hover:scale-150 transition-transform duration-700"
-                      style={{
-                        transformOrigin: 'center',
-                      }}
-                    />
-                  </div>
-                  
+                                    
                   {/* Lens flare */}
                   <div className="absolute inset-0 rounded-xl overflow-hidden opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <div className="absolute top-1/2 left-1/2 w-8 h-8 -translate-x-1/2 -translate-y-1/2 bg-gradient-radial from-teal-300/40 via-teal-200/20 to-transparent animate-pulse" />
@@ -177,7 +165,7 @@ export function LandingHeader() {
               </Motion3DTilt>
             </div>
             <Button
-              variant="glass"
+              variant="outline"
               size="icon"
               className="md:hidden"
               aria-label={open ? "Zamknij menu" : "Otwórz menu"}
@@ -191,7 +179,7 @@ export function LandingHeader() {
 
       <div
         className={cn(
-          "md:hidden overflow-hidden border-b border-border/60 bg-background/90",
+          "md:hidden overflow-hidden border-b border-border/60 bg-background",
           open ? "max-h-screen" : "max-h-0",
           "transition-[max-height] duration-300 ease-out",
         )}

@@ -12,7 +12,7 @@ const buttonVariants = cva(
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
         hero: "bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-elevated hover:opacity-95",
         glass:
-          "bg-surface/70 text-surface-foreground border border-border/60 backdrop-blur-md shadow-card hover:bg-surface/90",
+          "bg-surface text-surface-foreground border border-border/60 shadow-card hover:bg-surface",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",

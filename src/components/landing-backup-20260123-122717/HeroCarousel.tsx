@@ -54,7 +54,7 @@ export function HeroCarousel({ className }: { className?: string }) {
                     variant="ghost"
                     size="icon"
                     onClick={prevSlide}
-                    className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/30 text-white pointer-events-auto transition-transform hover:scale-110 active:scale-95"
+                    className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md border border-white/30 text-white pointer-events-auto transition-transform hover:scale-110 active:scale-95"
                 >
                     <ChevronLeft className="h-6 w-6" />
                 </Button>
@@ -63,7 +63,7 @@ export function HeroCarousel({ className }: { className?: string }) {
                     variant="ghost"
                     size="icon"
                     onClick={nextSlide}
-                    className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/30 text-white pointer-events-auto transition-transform hover:scale-110 active:scale-95"
+                    className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md border border-white/30 text-white pointer-events-auto transition-transform hover:scale-110 active:scale-95"
                 >
                     <ChevronRight className="h-6 w-6" />
                 </Button>

@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ArrowRight, BadgeCheck, Clock, Factory, ShieldCheck, Wrench, X, ChevronLeft, ChevronRight } from "lucide-react";
-import { GlowGridBackdrop } from "@/components/landing/GlowGridBackdrop";
 import { SectionHeading } from "@/components/landing/SectionHeading";
 import { Motion3DTilt, ParallaxLayer } from "@/components/landing/Motion3DTilt";
 import { HeroCarousel } from "@/components/landing/HeroCarousel";
@@ -50,7 +49,7 @@ const FullscreenGallery = memo(({
       {/* Close button */}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 z-10 rounded-full bg-white/10 p-4 text-white transition-colors hover:bg-white/20 md:p-3"
+        className="absolute top-4 right-4 z-10 rounded-full bg-white p-4 text-black transition-colors hover:bg-gray-100 md:p-3"
         aria-label="Close gallery"
       >
         <X className="h-6 w-6 md:h-5 md:w-5" />
@@ -59,7 +58,7 @@ const FullscreenGallery = memo(({
       {/* Previous button */}
       <button
         onClick={onPrevious}
-        className="absolute left-4 z-10 rounded-full bg-white/10 p-3 text-white transition-colors hover:bg-white/20 md:p-2"
+        className="absolute left-4 z-10 rounded-full bg-white p-3 text-black transition-colors hover:bg-gray-100 md:p-2"
         aria-label="Previous image"
       >
         <ChevronLeft className="h-6 w-6 md:h-5 md:w-5" />
@@ -68,14 +67,14 @@ const FullscreenGallery = memo(({
       {/* Next button */}
       <button
         onClick={onNext}
-        className="absolute right-4 z-10 rounded-full bg-white/10 p-4 text-white transition-colors hover:bg-white/20 md:p-3"
+        className="absolute right-4 z-10 rounded-full bg-white p-4 text-black transition-colors hover:bg-gray-100 md:p-3"
         aria-label="Next image"
       >
         <ChevronRight className="h-6 w-6 md:h-5 md:w-5" />
       </button>
 
       {/* Image counter */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 rounded-full bg-white/10 px-3 py-1 text-sm text-white">
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 rounded-full bg-white px-3 py-1 text-sm text-black">
         {currentIndex + 1} / {galleryImages.length}
       </div>
 
@@ -122,8 +121,8 @@ FullscreenGallery.displayName = "FullscreenGallery";
 const Stat = memo(({ value, label }: { value: string; label: string }) => (
   <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
     <div className="h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
-      <p className="text-xl md:text-2xl font-semibold tracking-tight text-slate-800">{value}</p>
-      <p className="mt-1 text-sm text-slate-500">{label}</p>
+      <p className="text-xl md:text-2xl font-semibold tracking-tight bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">{value}</p>
+      <p className="mt-1 text-sm font-bold text-slate-500">{label}</p>
     </div>
   </Motion3DTilt>
 ));
@@ -192,15 +191,10 @@ const GalleryTile = memo(({
 
 GalleryTile.displayName = "GalleryTile";
 
-// Unified Panel style - moved to constant to prevent recreation on every render
-const unifiedPanelStyle = {
-  background: "linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(240, 253, 250, 0.7) 100%)"
-};
 const UnifiedPanel = memo(({ children, className }: { children: React.ReactNode; className?: string }) => (
   <Motion3DTilt className={cn("h-full", className)}>
     <div
       className="relative overflow-hidden rounded-3xl border border-teal-200/40 bg-white p-8 shadow-lg shadow-teal-500/5 md:p-12"
-      style={unifiedPanelStyle}
     >
       {children}
     </div>
@@ -326,17 +320,12 @@ export function LandingPage() {
       <main>
         {/* HERO */}
         <section id="hero" className="relative overflow-hidden">
-          <GlowGridBackdrop />
           <div className="container relative py-4 md:py-6 lg:py-8">
             <div className="grid items-center gap-10 md:grid-cols-12">
               <div className="md:col-span-6 animate-fade-in">
                 <Motion3DTilt tiltMax={5} liftAmount={12} className="h-full">
                   {/* Panel with matte glass + aqua rim border */}
-                  <div className="h-full rounded-2xl border border-teal-200/40 bg-white p-6 md:p-8 shadow-lg shadow-teal-500/5"
-                    style={{
-                      background: "linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(240,253,250,0.7) 100%)",
-                    }}
-                  >
+                  <div className="h-full rounded-2xl border border-teal-200/40 bg-white p-6 md:p-8 shadow-lg shadow-teal-500/5">
                     {/* Badge - depth 1.6 (foreground) */}
                     <ParallaxLayer depth={1.6}>
                       <Motion3DTilt tiltMax={15} liftAmount={15} className="hidden md:block">
@@ -490,94 +479,30 @@ export function LandingPage() {
                   description={t('landing.about.description')}
                 />
               </div>
-              <div className="md:col-span-7 grid gap-4">
-                <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
-                  <InfoCard
-                    icon={Factory}
-                    title={t('landing.about.production_line')}
-                    description={t('landing.about.production_line_desc')}
-                  />
-                </Motion3DTilt>
-                <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
-                  <InfoCard
-                    icon={ShieldCheck}
-                    title={t('landing.about.durability')}
-                    description={t('landing.about.durability_desc')}
-                  />
-                </Motion3DTilt>
-                <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
-                  <InfoCard
-                    icon={Clock}
-                    title={t('landing.about.timeliness')}
-                    description={t('landing.about.timeliness_desc')}
-                  />
-                </Motion3DTilt>
+              <div className="md:col-span-7">
+                <SectionHeading
+                  eyebrow="Oferta"
+                  title={
+                    <>
+                      <span className={`inline-block ${offerVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                        {Array.from("Kanały i kształtki: prostokątne oraz okrągłe").map((char, index) => (
+                          <span
+                            key={index}
+                            className={`inline-block ${offerVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                            style={{
+                              animationDelay: offerVisible ? `${index * 0.05}s` : '0s',
+                              animationFillMode: 'both'
+                            }}
+                          >
+                            {char === ' ' ? '\u00A0' : char}
+                          </span>
+                        ))}
+                      </span>
+                    </>
+                  }
+                  description={t('landing.offer.description')}
+                />
               </div>
-            </div>
-          </UnifiedPanel>
-        </section>
-
-        {/* OFFER */}
-        <section id="oferta" className="relative">
-          <div className="container py-6 md:py-4 md:py-5">
-            <UnifiedPanel>
-              <SectionHeading
-                eyebrow="Oferta"
-                title={
-                  <>
-                    <span className={`inline-block ${offerVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-                      {Array.from("Kanały i kształtki: prostokątne oraz okrągłe").map((char, index) => (
-                        <span
-                          key={index}
-                          className={`inline-block ${offerVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
-                          style={{
-                            animationDelay: offerVisible ? `${index * 0.05}s` : '0s',
-                            animationFillMode: 'both'
-                          }}
-                        >
-                          {char === ' ' ? '\u00A0' : char}
-                        </span>
-                      ))}
-                    </span>
-                  </>
-                }
-                description={t('landing.offer.description')}
-              />
-
-              <div className="mt-10 grid gap-4 md:grid-cols-3">
-                <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
-                  <div className="h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
-                    <h3 className="text-lg font-semibold text-slate-800">{t('landing.offer.rectangular_ducts')}</h3>
-                    <ul className="mt-3 space-y-2 text-sm text-slate-500">
-                      <li>{t('landing.offer.rectangular_ducts_list')}</li>
-                    </ul>
-                  </div>
-                </Motion3DTilt>
-                <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
-                  <div className="h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
-                    <h3 className="text-lg font-semibold text-slate-800">{t('landing.offer.rectangular_fittings')}</h3>
-                    <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-                      <li>{t('landing.offer.rectangular_fittings_list')}</li>
-                    </ul>
-                  </div>
-                </Motion3DTilt>
-                <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
-                  <div className="h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
-                    <h3 className="text-lg font-semibold text-slate-800">{t('landing.offer.round_elements')}</h3>
-                    <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-                      <li>{t('landing.offer.round_elements_list')}</li>
-                    </ul>
-                  </div>
-                </Motion3DTilt>
-              </div>
-            </UnifiedPanel>
-          </div>
-        </section>
-
-        {/* AC */}
-        <section id="klimatyzacja" className="container py-6 md:py-4 md:py-5">
-          <UnifiedPanel>
-            <div className="grid gap-10 md:grid-cols-12">
               <div className="md:col-span-7">
                 <SectionHeading
                   eyebrow="Klimatyzacja"
@@ -614,156 +539,46 @@ export function LandingPage() {
                     </>
                   }
                   description={t('landing.air_conditioning.description')}
-                >
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <InfoCard
-                      icon={Wrench}
-                      title={t('landing.air_conditioning.from_selection_to_startup')}
-                      description={t('landing.air_conditioning.from_selection_to_startup_desc')}
-                    />
-                    <InfoCard
-                      icon={BadgeCheck}
-                      title={t('landing.air_conditioning.service_and_support')}
-                      description={t('landing.air_conditioning.service_and_support_desc')}
-                    />
-                  </div>
-                </SectionHeading>
+                />
               </div>
-              <div className="md:col-span-5">
-                <Motion3DTilt tiltMax={5} liftAmount={8} className="h-full">
-                  <div className="h-full rounded-3xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
-                    <p className="text-sm text-muted-foreground">Doświadczenie</p>
-                    <div className="mt-4 grid gap-3">
-                      <div className="rounded-xl bg-teal-50/50 p-4 border border-teal-100/50">
-                        <p className="text-xl md:text-2xl font-semibold text-slate-800">10 lat</p>
-                        <p className="text-sm text-slate-500">produkcji kanałów wentylacyjnych</p>
-                      </div>
-                      <div className="rounded-xl bg-teal-50/50 p-4 border border-teal-100/50">
-                        <p className="text-xl md:text-2xl font-semibold text-slate-800">10 lat</p>
-                        <p className="text-sm text-slate-500">doradztwa i montażu klimatyzacji</p>
-                      </div>
-                    </div>
-                    <HeroButton href="#kontakt">
-                      Skontaktuj się
-                    </HeroButton>
-                  </div>
-                </Motion3DTilt>
+              <div className="md:col-span-7">
+                <SectionHeading
+                  eyebrow="Dlaczego my"
+                  title={
+                    <>
+                      <span className={`inline-block ${whyVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                        {Array.from("Nacisk na detale:").map((char, index) => (
+                          <span
+                            key={index}
+                            className={`inline-block ${whyVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                            style={{
+                              animationDelay: whyVisible ? `${index * 0.05}s` : '0s',
+                              animationFillMode: 'both'
+                            }}
+                          >
+                            {char === ' ' ? '\u00A0' : char}
+                          </span>
+                        ))}
+                      </span>{' '}
+                      <span className={`inline-block ${whyVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                        {Array.from("precyzja, termin, kompleksowość").map((char, index) => (
+                          <span
+                            key={index}
+                            className={`inline-block ${whyVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                            style={{
+                              animationDelay: whyVisible ? `${(index + 18) * 0.05}s` : '0s',
+                              animationFillMode: 'both'
+                            }}
+                          >
+                            {char === ' ' ? '\u00A0' : char}
+                          </span>
+                        ))}
+                      </span>
+                    </>
+                  }
+                  description={t('landing.why_us.description')}
+                />
               </div>
-            </div>
-          </UnifiedPanel>
-        </section>
-
-        {/* WHY */}
-        <section id="dlaczego" className="container py-6 md:py-4 md:py-5">
-          <UnifiedPanel>
-            <SectionHeading
-              eyebrow="Dlaczego my"
-              title={
-                <>
-                  <span className={`inline-block ${whyVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-                    {Array.from("Nacisk na detale:").map((char, index) => (
-                      <span
-                        key={index}
-                        className={`inline-block ${whyVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
-                        style={{
-                          animationDelay: whyVisible ? `${index * 0.05}s` : '0s',
-                          animationFillMode: 'both'
-                        }}
-                      >
-                        {char === ' ' ? '\u00A0' : char}
-                      </span>
-                    ))}
-                  </span>{' '}
-                  <span className={`inline-block ${whyVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-                    {Array.from("precyzja, termin, kompleksowość").map((char, index) => (
-                      <span
-                        key={index}
-                        className={`inline-block ${whyVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
-                        style={{
-                          animationDelay: whyVisible ? `${(index + 18) * 0.05}s` : '0s',
-                          animationFillMode: 'both'
-                        }}
-                      >
-                        {char === ' ' ? '\u00A0' : char}
-                      </span>
-                    ))}
-                  </span>
-                </>
-              }
-              description={t('landing.why_us.description')}
-            />
-
-            <div className="mt-10 grid gap-4 md:grid-cols-2">
-              {[
-                {
-                  title: t('landing.why_us.precision'),
-                  desc: t('landing.why_us.precision_desc'),
-                },
-                {
-                  title: t('landing.why_us.individual_approach'),
-                  desc: t('landing.why_us.individual_approach_desc'),
-                },
-                {
-                  title: t('landing.why_us.timeliness_wu'),
-                  desc: t('landing.why_us.timeliness_wu_desc'),
-                },
-                {
-                  title: t('landing.why_us.comprehensiveness'),
-                  desc: t('landing.why_us.comprehensiveness_desc'),
-                },
-              ].map((item) => (
-                <Motion3DTilt key={item.title} tiltMax={4} liftAmount={8}>
-                  <div
-                    className="h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60"
-                  >
-                    <h3 className="text-lg font-semibold text-slate-800">{item.title}</h3>
-                    <p className="mt-2 text-sm text-slate-500 leading-relaxed">{item.desc}</p>
-                  </div>
-                </Motion3DTilt>
-              ))}
-            </div>
-          </UnifiedPanel>
-        </section>
-
-        {/* GALLERY */}
-        <section id="galeria" className="container py-6 md:py-4 md:py-5">
-          <UnifiedPanel>
-            <div className="grid gap-4 grid-cols-1 md:grid-cols-12">
-              <GalleryTile
-                src={gallery09}
-                alt="Kanały wentylacyjne – detal"
-                className="md:col-span-7 md:row-span-2"
-                onClick={() => openGallery(0)}
-                index={0}
-              />
-              <GalleryTile
-                src={gallery06}
-                alt="Produkcja HVAC – stanowisko"
-                className="md:col-span-5"
-                onClick={() => openGallery(1)}
-                index={1}
-              />
-              <GalleryTile
-                src={gallery07}
-                alt="Kształtki wentylacyjne – element"
-                className="md:col-span-5"
-                onClick={() => openGallery(2)}
-                index={2}
-              />
-              <GalleryTile
-                src={gallery08}
-                alt="Kanały i kształtki – montaż"
-                className="md:col-span-4"
-                onClick={() => openGallery(3)}
-                index={3}
-              />
-              <GalleryTile
-                src={gallery05}
-                alt="Produkcja kanałów – linia"
-                className="md:col-span-8"
-                onClick={() => openGallery(4)}
-                index={4}
-              />
             </div>
           </UnifiedPanel>
         </section>
@@ -845,7 +660,7 @@ export function LandingPage() {
 
                 <div className="md:col-span-5">
                   <Motion3DTilt tiltMax={4} liftAmount={8}>
-                    <div className="rounded-2xl border border-teal-200/50 bg-white/80 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
+                    <div className="rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
                       <p className="text-sm text-muted-foreground">{t('landing.contact.quick_message')}</p>
                       <p className="mt-2 text-sm text-slate-500 leading-relaxed">
                         {t('landing.contact.prototype_note')}
