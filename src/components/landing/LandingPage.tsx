@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ArrowRight, BadgeCheck, Clock, Factory, ShieldCheck, Wrench, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, BadgeCheck, Clock, Factory, ShieldCheck, Wrench, X, ChevronLeft, ChevronRight, Move3D, Ruler, Layers, Target, Zap, Settings, Compass, Focus, User, Users, Hand, Heart, Star, Award, Crown, Combine, Package, Box, Grid, Puzzle, Network, GitBranch, Square, Container, PackageOpen, Minimize2, Maximize2, Circle } from "lucide-react";
 import { GlowGridBackdrop } from "@/components/landing/GlowGridBackdrop";
 import { SectionHeading } from "@/components/landing/SectionHeading";
 import { Motion3DTilt, ParallaxLayer } from "@/components/landing/Motion3DTilt";
@@ -120,12 +120,16 @@ const FullscreenGallery = memo(({
 
 FullscreenGallery.displayName = "FullscreenGallery";
 
-const Stat = memo(({ value, label }: { value: string; label: string }) => (
+const Stat = memo(({ value, label, icon: Icon }: { value: string; label: string; icon?: typeof Move3D }) => (
   <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
     <div className="group h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
       <div className="flex items-start gap-4">
         <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-          <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📊</span>
+          {Icon ? (
+            <Icon className="h-5 w-5 transition-transform duration-2000 ease-in-out group-hover:animate-spin" />
+          ) : (
+            <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📊</span>
+          )}
         </div>
         <div className="flex-1">
           <p className="text-xl md:text-2xl font-semibold tracking-tight text-slate-800 transition-all duration-300 group-hover:text-slate-900">{value}</p>
@@ -140,10 +144,14 @@ Stat.displayName = "Stat";
 
 
 
+// Define a generic icon type
+type IconType = React.ComponentType<{ className?: string }>;
+
 const InfoCard = memo(({ icon: Icon, title, description, className }: {
-  icon: typeof Factory;
+  icon: IconType;
   title: string;
   description: string;
+  className?: string;
 }) => (
   <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
     <div className="flex items-start gap-4">
@@ -436,9 +444,9 @@ export function LandingPage() {
                     {/* Stat cards - depth 1.6 (foreground) */}
                     <ParallaxLayer depth={1.6}>
                       <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3">
-                        <Stat value="100x100" label={t('landing.stats.min_dimension')} />
-                        <Stat value="1500" label={t('landing.stats.max_length')} />
-                        <Stat value="0.5-1.5" label={t('landing.stats.sheet_thickness')} />
+                        <Stat value="100x100" label={t('landing.stats.min_dimension')} icon={Move3D} />
+                        <Stat value="1500" label={t('landing.stats.max_length')} icon={Ruler} />
+                        <Stat value="0.5-1.5" label={t('landing.stats.sheet_thickness')} icon={Layers} />
                       </div>
                     </ParallaxLayer>
                   </div>
@@ -584,7 +592,7 @@ export function LandingPage() {
                   <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
                     <div className="flex items-start gap-4">
                       <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-                        <BadgeCheck className="h-5 w-5 transition-transform duration-2000 ease-in-out group-hover:animate-spin" />
+                        <Square className="h-5 w-5 text-teal-600 transition-transform duration-2000 ease-in-out group-hover:animate-spin group-hover:scale-125" />
                       </div>
                       <div className="flex-1">
                         <h3 className="text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{t('landing.offer.rectangular_ducts')}</h3>
@@ -599,7 +607,7 @@ export function LandingPage() {
                   <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
                     <div className="flex items-start gap-4">
                       <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-                        <Wrench className="h-5 w-5 transition-transform duration-2000 ease-in-out group-hover:animate-spin" />
+                        <Box className="h-5 w-5 text-teal-600 transition-transform duration-2000 ease-in-out group-hover:animate-spin group-hover:scale-125" />
                       </div>
                       <div className="flex-1">
                         <h3 className="text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{t('landing.offer.rectangular_fittings')}</h3>
@@ -614,7 +622,7 @@ export function LandingPage() {
                   <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
                     <div className="flex items-start gap-4">
                       <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-                        <Factory className="h-5 w-5 transition-transform duration-2000 ease-in-out group-hover:animate-spin" />
+                        <Circle className="h-5 w-5 text-teal-600 transition-transform duration-2000 ease-in-out group-hover:animate-spin group-hover:scale-125" />
                       </div>
                       <div className="flex-1">
                         <h3 className="text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{t('landing.offer.round_elements')}</h3>
@@ -784,25 +792,33 @@ export function LandingPage() {
                 {
                   title: t('landing.why_us.precision'),
                   desc: t('landing.why_us.precision_desc'),
+                  icon: Ruler,
                 },
                 {
                   title: t('landing.why_us.individual_approach'),
                   desc: t('landing.why_us.individual_approach_desc'),
+                  icon: User,
                 },
                 {
                   title: t('landing.why_us.timeliness_wu'),
                   desc: t('landing.why_us.timeliness_wu_desc'),
+                  icon: Clock,
                 },
                 {
                   title: t('landing.why_us.comprehensiveness'),
                   desc: t('landing.why_us.comprehensiveness_desc'),
+                  icon: Layers,
                 },
               ].map((item) => (
                 <Motion3DTilt key={item.title} tiltMax={4} liftAmount={8}>
                   <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
                     <div className="flex items-start gap-4">
                       <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-                        <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">✓</span>
+                        {item.icon ? (
+                          <item.icon className="h-5 w-5 text-teal-600 transition-transform duration-2000 ease-in-out group-hover:animate-spin" />
+                        ) : (
+                          <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">✓</span>
+                        )}
                       </div>
                       <div className="flex-1">
                         <h3 className="text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{item.title}</h3>
