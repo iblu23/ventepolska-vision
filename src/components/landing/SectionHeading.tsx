@@ -25,7 +25,7 @@ export function SectionHeading({ eyebrow, title, description, className, childre
           {title}
         </h2>
         {description ? (
-          <p className="mt-4 max-w-2xl text-lg text-slate-600 leading-relaxed font-medium/80">
+          <p className="mt-4 max-w-full text-lg text-slate-600 leading-relaxed font-bold">
             {description}
           </p>
         ) : null}

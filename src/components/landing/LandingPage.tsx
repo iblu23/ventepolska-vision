@@ -65,7 +65,7 @@ const FullscreenGallery = memo(({
   onNext: () => void;
 }) => {
   const { t } = useTranslation();
-  
+
   if (!isOpen) return null;
 
   const currentImage = galleryImages[currentIndex];
@@ -152,8 +152,8 @@ const Stat = memo(({ value, label, icon }: { value: string; label: string; icon?
           <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">{icon || "📊"}</span>
         </div>
         <div className="flex-1">
-          <p className="text-xl md:text-2xl font-semibold tracking-tight text-slate-800 transition-all duration-300 group-hover:text-slate-900">{value}</p>
-          <p className="mt-1 text-sm text-slate-500 transition-all duration-300 group-hover:text-slate-600">{label}</p>
+          <p className="text-xl md:text-2xl font-semibold tracking-tight bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent transition-all duration-300">{value}</p>
+          <p className="mt-1 text-sm font-bold text-slate-500 transition-all duration-300 group-hover:text-slate-600">{label}</p>
         </div>
       </div>
     </div>
@@ -179,8 +179,8 @@ const InfoCard = memo(({ icon, title, description, className }: {
         <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">{icon}</span>
       </div>
       <div className="flex-1">
-        <h3 className="text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{title}</h3>
-        <p className="mt-1 text-sm text-slate-500 leading-relaxed transition-all duration-300 group-hover:text-slate-600">{description}</p>
+        <h3 className="text-lg font-semibold bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent transition-all duration-300">{title}</h3>
+        <p className="mt-1 text-sm font-bold text-slate-500 leading-relaxed transition-all duration-300 group-hover:text-slate-600">{description}</p>
       </div>
     </div>
   </div>
@@ -258,7 +258,7 @@ export function LandingPage() {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768 || 'ontouchstart' in window);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -268,15 +268,15 @@ export function LandingPage() {
   const handleGlobalClick = useCallback((e: MouseEvent) => {
     // Reduce spark frequency on mobile for performance
     if (isMobile && Math.random() > 0.5) return; // 50% chance to show spark on mobile
-    
+
     const newSpark = {
       id: sparkIdRef.current++,
       x: e.clientX,
       y: e.clientY
     };
-    
+
     setSparks(prev => [...prev, newSpark]);
-    
+
     // Shorter animation on mobile for better performance
     const animationDuration = isMobile ? 400 : 600;
     setTimeout(() => {
@@ -303,7 +303,7 @@ export function LandingPage() {
     if (isMobile) {
       document.addEventListener('touchstart', handleTouch, { passive: true });
     }
-    
+
     return () => {
       document.removeEventListener('click', handleClick);
       if (isMobile) {
@@ -315,7 +315,7 @@ export function LandingPage() {
   // Intersection observer for scroll-triggered animations
   useEffect(() => {
     const observers = new Map();
-    
+
     const setupObserver = (id: string, setState: (visible: boolean) => void) => {
       const element = document.getElementById(id);
       if (element) {
@@ -426,7 +426,7 @@ export function LandingPage() {
             const animationDuration = isMobile ? '0.4s' : '0.6s';
             const lineWidth = isMobile ? '1.5px' : '2px';
             const lineHeight = isMobile ? '15px' : '20px';
-            
+
             return (
               <div
                 key={i}
@@ -462,126 +462,126 @@ export function LandingPage() {
               <div className="md:col-span-6 animate-fade-in">
                 {/* Panel with solid background */}
                 <div className="h-full rounded-2xl bg-white p-4 sm:p-5 md:p-6 lg:p-8">
-                    {/* Badge - depth 1.6 (foreground) */}
-                    <ParallaxLayer depth={1.6}>
-                      <Motion3DTilt tiltMax={15} liftAmount={15} className="hidden md:block">
-                        <p className="group inline-flex items-center gap-2 rounded-full border border-teal-200/50 bg-white/95 px-4 py-1.5 text-xs text-muted-foreground shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-1 hover:scale-105 cursor-default">
-                          <span className="text-lg font-semibold text-teal-600 transition-all duration-2000 ease-in-out group-hover:animate-spin">✅</span>
-                          <span className="group-hover:text-slate-800 transition-colors duration-300">
-                            {t('landing.hero.badge')}
-                          </span>
-                        </p>
-                      </Motion3DTilt>
-                      {/* Mobile version without heavy 3D tilt */}
-                      <p className="md:hidden group inline-flex items-center gap-2 rounded-full border border-teal-200/50 bg-white/95 px-4 py-1.5 text-xs text-muted-foreground shadow-sm transition-all duration-300 active:shadow-lg active:shadow-teal-500/20 active:border-teal-400/50 cursor-default">
-                        <span className="text-lg font-semibold text-teal-600 transition-all duration-500 group-active:scale-125 group-active:rotate-[360deg] group-active:text-teal-500">✅</span>
-                        <span className="group-active:text-slate-800 transition-colors duration-300">
+                  {/* Badge - depth 1.6 (foreground) */}
+                  <ParallaxLayer depth={1.6}>
+                    <Motion3DTilt tiltMax={15} liftAmount={15} className="hidden md:block">
+                      <p className="group inline-flex items-center gap-2 rounded-full border border-teal-200/50 bg-white/95 px-4 py-1.5 text-xs text-muted-foreground shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-1 hover:scale-105 cursor-default">
+                        <span className="text-lg font-semibold text-teal-600 transition-all duration-2000 ease-in-out group-hover:animate-spin">✅</span>
+                        <span className="font-bold group-hover:text-slate-800 transition-colors duration-300">
                           {t('landing.hero.badge')}
                         </span>
                       </p>
-                    </ParallaxLayer>
+                    </Motion3DTilt>
+                    {/* Mobile version without heavy 3D tilt */}
+                    <p className="md:hidden group inline-flex items-center gap-2 rounded-full border border-teal-200/50 bg-white/95 px-4 py-1.5 text-xs text-muted-foreground shadow-sm transition-all duration-300 active:shadow-lg active:shadow-teal-500/20 active:border-teal-400/50 cursor-default">
+                      <span className="text-lg font-semibold text-teal-600 transition-all duration-500 group-active:scale-125 group-active:rotate-[360deg] group-active:text-teal-500">✅</span>
+                      <span className="font-bold group-active:text-slate-800 transition-colors duration-300">
+                        {t('landing.hero.badge')}
+                      </span>
+                    </p>
+                  </ParallaxLayer>
 
-                    {/* Main Content Panel - depth 1.3 (mid) */}
-                    <ParallaxLayer depth={1.3}>
-                      <div className="group relative mt-6 rounded-3xl border border-teal-200/50 bg-white/95 p-6 md:p-8 shadow-xl shadow-teal-500/10 transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
-                        {/* Decorative side accent */}
-                        <div className="absolute left-0 top-8 h-12 w-1 rounded-r-full bg-teal-500/40" />
+                  {/* Main Content Panel - depth 1.3 (mid) */}
+                  <ParallaxLayer depth={1.3}>
+                    <div className="group relative mt-6 rounded-3xl border border-teal-200/50 bg-white/95 p-6 md:p-8 shadow-xl shadow-teal-500/10 transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
+                      {/* Decorative side accent */}
+                      <div className="absolute left-0 top-8 h-12 w-1 rounded-r-full bg-teal-500/40" />
 
-                        <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold tracking-tight text-slate-800 leading-[1.2] sm:leading-[1.15]">
-                          <span className={`inline-block ${heroVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-                            {Array.from("Produkcja i montaż").map((char, index) => (
-                              <span
-                                key={index}
-                                className={`inline-block ${heroVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
-                                style={{
-                                  animationDelay: heroVisible ? `${index * 0.05}s` : '0s',
-                                  animationFillMode: 'both'
-                                }}
-                              >
-                                {char === ' ' ? '\u00A0' : char}
-                              </span>
-                            ))}
-                          </span> <br />
-                          <span className={`inline-block ${heroVisible ? 'animate-fade-in' : 'opacity-0'} bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent`}>
-                            {Array.from("kanałów oraz kształtki").map((char, index) => (
-                              <span
-                                key={index}
-                                className={`inline-block ${heroVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
-                                style={{
-                                  animationDelay: heroVisible ? `${(index + 18) * 0.05}s` : '0s',
-                                  animationFillMode: 'both'
-                                }}
-                              >
-                                {char === ' ' ? '\u00A0' : char}
-                              </span>
-                            ))}
-                          </span> <br />
-                          <span className={`inline-block ${heroVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-                            {Array.from("wentylacyjnych").map((char, index) => (
-                              <span
-                                key={index}
-                                className={`inline-block ${heroVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
-                                style={{
-                                  animationDelay: heroVisible ? `${(index + 18) * 0.05}s` : '0s',
-                                  animationFillMode: 'both'
-                                }}
-                              >
-                                {char}
-                              </span>
-                            ))}
-                          </span>
-                        </h1>
-                        <p className="mt-4 sm:mt-6 max-w-full text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed font-medium/80">
-                          Precyzyjne elementy HVAC pod Twój projekt — od doradztwa, przez produkcję, po terminową
-                          realizację i montaż. Wydajność, trwałość i jakość, która się broni w praktyce.
-                        </p>
-                      </div>
-                    </ParallaxLayer>
-
-                    {/* Content Grid - Stat cards left, CTA buttons right */}
-                    <ParallaxLayer depth={1.6}>
-                      <div className="mt-4 sm:mt-6 grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-                        {/* Left column - Stat cards */}
-                        <div className="grid grid-cols-1 gap-4">
-                          <Stat value="100x100" label={t('landing.stats.min_dimension')} icon="📏" />
-                          <Stat value="1500" label={t('landing.stats.max_length')} icon="📐" />
-                          <Stat value="0.5-1.5" label={t('landing.stats.sheet_thickness')} icon="📄" />
-                        </div>
-                        
-                        {/* Right column - CTA buttons */}
-                        <div className="grid grid-cols-1 gap-4">
-                          {HERO_CTAS.map(({ id, icon, href, labelKey }) => (
-                            <Motion3DTilt
-                              key={id}
-                              tiltMax={4}
-                              liftAmount={8}
-                              className="w-full"
+                      <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold tracking-tight text-slate-800 leading-[1.2] sm:leading-[1.15]">
+                        <span className={`inline-block ${heroVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                          {Array.from("Produkcja i montaż").map((char, index) => (
+                            <span
+                              key={index}
+                              className={`inline-block ${heroVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                              style={{
+                                animationDelay: heroVisible ? `${index * 0.05}s` : '0s',
+                                animationFillMode: 'both'
+                              }}
                             >
-                              <div className="group rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
-                                <div className="flex items-stretch gap-4">
-                                  {/* ICON */}
-                                  <div className="flex min-h-[56px] w-[56px] items-center justify-center shrink-0 rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-                                    <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">
-                                      {icon}
-                                    </span>
-                                  </div>
+                              {char === ' ' ? '\u00A0' : char}
+                            </span>
+                          ))}
+                        </span> <br />
+                        <span className={`inline-block ${heroVisible ? 'animate-fade-in' : 'opacity-0'} bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent`}>
+                          {Array.from("kanałów oraz kształtki").map((char, index) => (
+                            <span
+                              key={index}
+                              className={`inline-block ${heroVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                              style={{
+                                animationDelay: heroVisible ? `${(index + 18) * 0.05}s` : '0s',
+                                animationFillMode: 'both'
+                              }}
+                            >
+                              {char === ' ' ? '\u00A0' : char}
+                            </span>
+                          ))}
+                        </span> <br />
+                        <span className={`inline-block ${heroVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                          {Array.from("wentylacyjnych").map((char, index) => (
+                            <span
+                              key={index}
+                              className={`inline-block ${heroVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                              style={{
+                                animationDelay: heroVisible ? `${(index + 18) * 0.05}s` : '0s',
+                                animationFillMode: 'both'
+                              }}
+                            >
+                              {char}
+                            </span>
+                          ))}
+                        </span>
+                      </h1>
+                      <p className="mt-4 sm:mt-6 max-w-full text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed font-bold">
+                        Precyzyjne elementy HVAC pod Twój projekt — od doradztwa, przez produkcję, po terminową
+                        realizację i montaż. Wydajność, trwałość i jakość, która się broni w praktyce.
+                      </p>
+                    </div>
+                  </ParallaxLayer>
 
-                                  {/* BUTTON */}
-                                  <div className="flex-1 flex items-stretch min-w-0">
-                                    <div className="flex w-full min-h-[56px] min-w-0 [&>*]:flex [&>*]:w-full [&>*]:max-w-full [&>*]:items-center">
-                                      <HeroButton href={href}>
-                                        {t(labelKey)}
-                                      </HeroButton>
-                                    </div>
+                  {/* Content Grid - Stat cards left, CTA buttons right */}
+                  <ParallaxLayer depth={1.6}>
+                    <div className="mt-4 sm:mt-6 grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                      {/* Left column - Stat cards */}
+                      <div className="grid grid-cols-1 gap-4">
+                        <Stat value="100x100" label={t('landing.stats.min_dimension')} icon="📏" />
+                        <Stat value="1500" label={t('landing.stats.max_length')} icon="📐" />
+                        <Stat value="0.5-1.5" label={t('landing.stats.sheet_thickness')} icon="📄" />
+                      </div>
+
+                      {/* Right column - CTA buttons */}
+                      <div className="grid grid-cols-1 gap-4">
+                        {HERO_CTAS.map(({ id, icon, href, labelKey }) => (
+                          <Motion3DTilt
+                            key={id}
+                            tiltMax={4}
+                            liftAmount={8}
+                            className="w-full"
+                          >
+                            <div className="group rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
+                              <div className="flex items-stretch gap-4">
+                                {/* ICON */}
+                                <div className="flex min-h-[56px] w-[56px] items-center justify-center shrink-0 rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                                  <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">
+                                    {icon}
+                                  </span>
+                                </div>
+
+                                {/* BUTTON */}
+                                <div className="flex-1 flex items-stretch min-w-0">
+                                  <div className="flex w-full min-h-[56px] min-w-0 [&>*]:flex [&>*]:w-full [&>*]:max-w-full [&>*]:items-center">
+                                    <HeroButton href={href}>
+                                      {t(labelKey)}
+                                    </HeroButton>
                                   </div>
                                 </div>
                               </div>
-                            </Motion3DTilt>
-                          ))}
-                        </div>
+                            </div>
+                          </Motion3DTilt>
+                        ))}
                       </div>
-                    </ParallaxLayer>
-                  </div>
+                    </div>
+                  </ParallaxLayer>
+                </div>
               </div>
 
               <div className="md:col-span-6 h-full min-h-[400px] sm:min-h-[450px] md:min-h-0">
@@ -682,21 +682,21 @@ export function LandingPage() {
             <UnifiedPanel>
               <SectionHeading
                 eyebrow={
-                    <span className={`inline-block ${offerVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-                      {Array.from("Oferta").map((char, index) => (
-                        <span
-                          key={index}
-                          className={`inline-block ${offerVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
-                          style={{
-                            animationDelay: offerVisible ? `${index * 0.05}s` : '0s',
-                            animationFillMode: 'both'
-                          }}
-                        >
-                          {char === ' ' ? '\u00A0' : char}
-                        </span>
-                      ))}
-                    </span>
-                  }
+                  <span className={`inline-block ${offerVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                    {Array.from("Oferta").map((char, index) => (
+                      <span
+                        key={index}
+                        className={`inline-block ${offerVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                        style={{
+                          animationDelay: offerVisible ? `${index * 0.05}s` : '0s',
+                          animationFillMode: 'both'
+                        }}
+                      >
+                        {char === ' ' ? '\u00A0' : char}
+                      </span>
+                    ))}
+                  </span>
+                }
                 title={
                   <>
                     <span className={`inline-block ${offerVisible ? 'animate-fade-in' : 'opacity-0'}`}>
@@ -726,8 +726,8 @@ export function LandingPage() {
                         <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">⬜</span>
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-base md:text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{t('landing.offer.rectangular_ducts')}</h3>
-                        <ul className="mt-2 md:mt-3 space-y-1 md:space-y-2 text-xs md:text-sm text-slate-500 transition-all duration-300 group-hover:text-slate-600">
+                        <h3 className="text-base md:text-lg font-semibold bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent transition-all duration-300">{t('landing.offer.rectangular_ducts')}</h3>
+                        <ul className="mt-2 md:mt-3 space-y-1 md:space-y-2 text-xs md:text-sm font-bold text-slate-500 transition-all duration-300 group-hover:text-slate-600">
                           <li>{t('landing.offer.rectangular_ducts_list')}</li>
                         </ul>
                       </div>
@@ -741,8 +741,8 @@ export function LandingPage() {
                         <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📦</span>
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-base md:text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{t('landing.offer.rectangular_fittings')}</h3>
-                        <ul className="mt-2 md:mt-3 space-y-1 md:space-y-2 text-xs md:text-sm text-slate-500 transition-all duration-300 group-hover:text-slate-600">
+                        <h3 className="text-base md:text-lg font-semibold bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent transition-all duration-300">{t('landing.offer.rectangular_fittings')}</h3>
+                        <ul className="mt-2 md:mt-3 space-y-1 md:space-y-2 text-xs md:text-sm font-bold text-slate-500 transition-all duration-300 group-hover:text-slate-600">
                           <li>{t('landing.offer.rectangular_fittings_list')}</li>
                         </ul>
                       </div>
@@ -756,8 +756,8 @@ export function LandingPage() {
                         <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">⭕</span>
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-base md:text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{t('landing.offer.round_elements')}</h3>
-                        <ul className="mt-2 md:mt-3 space-y-1 md:space-y-2 text-xs md:text-sm text-slate-500 transition-all duration-300 group-hover:text-slate-600">
+                        <h3 className="text-base md:text-lg font-semibold bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent transition-all duration-300">{t('landing.offer.round_elements')}</h3>
+                        <ul className="mt-2 md:mt-3 space-y-1 md:space-y-2 text-xs md:text-sm font-bold text-slate-500 transition-all duration-300 group-hover:text-slate-600">
                           <li>{t('landing.offer.round_elements_list')}</li>
                         </ul>
                       </div>
@@ -868,21 +868,21 @@ export function LandingPage() {
           <UnifiedPanel>
             <SectionHeading
               eyebrow={
-                    <span className={`inline-block ${whyVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-                      {Array.from("Dlaczego my").map((char, index) => (
-                        <span
-                          key={index}
-                          className={`inline-block ${whyVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
-                          style={{
-                            animationDelay: whyVisible ? `${index * 0.05}s` : '0s',
-                            animationFillMode: 'both'
-                          }}
-                        >
-                          {char === ' ' ? '\u00A0' : char}
-                        </span>
-                      ))}
+                <span className={`inline-block ${whyVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                  {Array.from("Dlaczego my").map((char, index) => (
+                    <span
+                      key={index}
+                      className={`inline-block ${whyVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                      style={{
+                        animationDelay: whyVisible ? `${index * 0.05}s` : '0s',
+                        animationFillMode: 'both'
+                      }}
+                    >
+                      {char === ' ' ? '\u00A0' : char}
                     </span>
-                  }
+                  ))}
+                </span>
+              }
               title={
                 <>
                   <span className={`inline-block ${whyVisible ? 'animate-fade-in' : 'opacity-0'}`}>
@@ -948,8 +948,8 @@ export function LandingPage() {
                         <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">{item.icon}</span>
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{item.title}</h3>
-                        <p className="mt-2 text-sm text-slate-500 leading-relaxed transition-all duration-300 group-hover:text-slate-600">{item.desc}</p>
+                        <h3 className="text-lg font-semibold bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent transition-all duration-300">{item.title}</h3>
+                        <p className="mt-2 text-sm font-bold text-slate-500 leading-relaxed transition-all duration-300 group-hover:text-slate-600">{item.desc}</p>
                       </div>
                     </div>
                   </div>
