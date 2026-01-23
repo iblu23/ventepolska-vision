@@ -3,31 +3,10 @@ import { Motion3DTilt } from "@/components/landing/Motion3DTilt";
 import { ArrowRight } from "lucide-react";
 import { memo } from "react";
 
-// Shared glassmorphism effect styles
-const glassBackgroundStyle = {
-    background: "linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(240,253,250,0.7) 100%)",
+// Shared solid background styles
+const solidBackgroundStyle = {
+    background: "white",
     transform: 'translateZ(-20px)',
-};
-
-const hoverEffectStyle = {
-    transform: 'translateZ(-25px) translateZ(0px)',
-    transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-};
-
-const activeEffectStyle = {
-    transform: 'translateZ(-35px) translateZ(0px)',
-};
-
-const blurFilterStyle = {
-    filter: 'blur(2px)',
-};
-
-const rippleOriginStyle = {
-    transformOrigin: 'center',
-};
-
-const patternStyle = {
-    backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(20,184,166,0.1) 2px, rgba(20,184,166,0.1) 4px)`,
 };
 
 interface HeroButtonProps {
@@ -76,43 +55,22 @@ export const HeroButton = memo(({ href, children, withTilt = false }: HeroButton
             {/* Hover effects */}
             <div
                 className="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-300 ease-out group-hover:border-teal-500/60 group-hover:shadow-[0_0_30px_rgba(20,184,166,0.6),0_0_60px_rgba(20,184,166,0.3)] md:group-hover:shadow-[0_0_40px_rgba(20,184,166,0.8),0_0_80px_rgba(20,184,166,0.4)] md:group-hover:transform-gpu md:group-hover:-translate-y-2 md:group-hover:scale-[1.03] pointer-events-none"
-                style={hoverEffectStyle}
+                style={solidBackgroundStyle}
             />
 
             {/* Active click state */}
             <div
                 className="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-150 active:border-teal-500/80 active:shadow-[0_0_40px_rgba(20,184,166,0.8),0_0_80px_rgba(20,184,166,0.4)] active:transform-gpu pointer-events-none"
-                style={activeEffectStyle}
+                style={solidBackgroundStyle}
             />
 
-            {/* Volumetric edge glow */}
+            {/* Simple edge glow */}
             <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
-                <div
-                    className="absolute inset-0 rounded-xl border-2 border-teal-500/40 shadow-[0_0_20px_rgba(20,184,166,0.8),inset_0_0_20px_rgba(20,184,166,0.2)]"
-                    style={blurFilterStyle}
-                />
+              <div
+                className="absolute inset-0 rounded-xl border-2 border-teal-500/40 shadow-[0_0_20px_rgba(20,184,166,0.8)]"
+              />
             </div>
 
-            {/* Glass reflection ripple */}
-            <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none">
-                <div
-                    className="absolute inset-0 rounded-xl bg-gradient-to-tr from-transparent via-white/20 to-transparent transform scale-0 group-hover:scale-150 transition-transform duration-700"
-                    style={rippleOriginStyle}
-                />
-            </div>
-
-            {/* Lens flare */}
-            <div className="absolute inset-0 rounded-xl overflow-hidden opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
-                <div className="absolute top-1/2 left-1/2 w-8 h-8 -translate-x-1/2 -translate-y-1/2 bg-gradient-radial from-teal-300/40 via-teal-200/20 to-transparent animate-pulse" />
-            </div>
-
-            {/* Circuit patterns */}
-            <div className="absolute inset-0 rounded-xl opacity-10 transition-opacity duration-300 pointer-events-none">
-                <div
-                    className="absolute inset-0 rounded-xl"
-                    style={patternStyle}
-                />
-            </div>
         </div>
     );
 

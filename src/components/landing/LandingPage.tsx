@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
@@ -191,19 +192,15 @@ const GalleryTile = memo(({
         loading="lazy"
         className="h-full w-full object-cover transition-transform duration-500 will-change-transform group-hover:scale-[1.04]"
       />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
-
-      {/* Hover overlay */}
-      <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />
     </div>
   </Motion3DTilt>
 ));
 
 GalleryTile.displayName = "GalleryTile";
 
-// Unified Panel style - moved to constant to prevent recreation on every render
+// Unified Panel style - simplified solid background
 const unifiedPanelStyle = {
-  background: "linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(240, 253, 250, 1) 100%)"
+  background: "white"
 };
 const UnifiedPanel = memo(({ children, className }: { children: React.ReactNode; className?: string }) => (
   <Motion3DTilt className={cn("h-full", className)}>
@@ -441,17 +438,12 @@ export function LandingPage() {
           <div className="container relative z-10 py-6 px-4 sm:px-6 md:py-8 lg:py-8">
             <div className="grid items-center gap-8 md:gap-6 lg:gap-8 md:grid-cols-12">
               <div className="md:col-span-6 animate-fade-in">
-                <Motion3DTilt tiltMax={5} liftAmount={12} className="h-full">
-                  {/* Panel with matte glass + aqua rim border */}
-                  <div className="h-full rounded-2xl border border-teal-200/40 bg-white p-4 sm:p-5 md:p-6 lg:p-8 shadow-lg shadow-teal-500/5"
-                    style={{
-                      background: "linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(240,253,250,0.7) 100%)",
-                    }}
-                  >
+                {/* Panel with solid background */}
+                <div className="h-full rounded-2xl bg-white p-4 sm:p-5 md:p-6 lg:p-8">
                     {/* Badge - depth 1.6 (foreground) */}
                     <ParallaxLayer depth={1.6}>
                       <Motion3DTilt tiltMax={15} liftAmount={15} className="hidden md:block">
-                        <p className="group inline-flex items-center gap-2 rounded-full border border-teal-200/50 bg-white px-4 py-1.5 text-xs text-muted-foreground shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-1 hover:scale-105 cursor-default">
+                        <p className="group inline-flex items-center gap-2 rounded-full border border-teal-200/50 bg-white/95 px-4 py-1.5 text-xs text-muted-foreground shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-1 hover:scale-105 cursor-default">
                           <span className="text-lg font-semibold text-teal-600 transition-all duration-2000 ease-in-out group-hover:animate-spin">✅</span>
                           <span className="group-hover:text-slate-800 transition-colors duration-300">
                             {t('landing.hero.badge')}
@@ -459,7 +451,7 @@ export function LandingPage() {
                         </p>
                       </Motion3DTilt>
                       {/* Mobile version without heavy 3D tilt */}
-                      <p className="md:hidden group inline-flex items-center gap-2 rounded-full border border-teal-200/50 bg-white px-4 py-1.5 text-xs text-muted-foreground shadow-sm transition-all duration-300 active:shadow-lg active:shadow-teal-500/20 active:border-teal-400/50 cursor-default">
+                      <p className="md:hidden group inline-flex items-center gap-2 rounded-full border border-teal-200/50 bg-white/95 px-4 py-1.5 text-xs text-muted-foreground shadow-sm transition-all duration-300 active:shadow-lg active:shadow-teal-500/20 active:border-teal-400/50 cursor-default">
                         <span className="text-lg font-semibold text-teal-600 transition-all duration-500 group-active:scale-125 group-active:rotate-[360deg] group-active:text-teal-500">✅</span>
                         <span className="group-active:text-slate-800 transition-colors duration-300">
                           {t('landing.hero.badge')}
@@ -469,7 +461,7 @@ export function LandingPage() {
 
                     {/* Main Content Panel - depth 1.3 (mid) */}
                     <ParallaxLayer depth={1.3}>
-                      <div className="group relative mt-6 rounded-3xl border border-teal-200/50 bg-white p-6 md:p-8 shadow-xl shadow-teal-500/10 transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
+                      <div className="group relative mt-6 rounded-3xl border border-teal-200/50 bg-white/95 p-6 md:p-8 shadow-xl shadow-teal-500/10 transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
                         {/* Decorative side accent */}
                         <div className="absolute left-0 top-8 h-12 w-1 rounded-r-full bg-teal-500/40" />
 
@@ -564,7 +556,7 @@ export function LandingPage() {
                               </div>
                             </div>
                           </Motion3DTilt>
-                          <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
+                          <div className="h-full">
                             <div className="group h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
                               <div className="flex items-start gap-4">
                                 <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
@@ -577,12 +569,11 @@ export function LandingPage() {
                                 </div>
                               </div>
                             </div>
-                          </Motion3DTilt>
                         </div>
+                      </div>
                       </div>
                     </ParallaxLayer>
                   </div>
-                </Motion3DTilt>
               </div>
 
               <div className="md:col-span-6 h-full min-h-[400px] sm:min-h-[450px] md:min-h-0">

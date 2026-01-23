@@ -43,8 +43,6 @@ export function HeroCarousel({ className }: { className?: string }) {
                         alt={img.alt}
                         className="h-full w-full object-cover"
                     />
-                    {/* Subtle overlay for consistent text contrast if text were over it, though here it's just image */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-50" />
                 </div>
             ))}
 
