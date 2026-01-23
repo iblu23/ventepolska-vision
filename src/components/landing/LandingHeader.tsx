@@ -47,7 +47,7 @@ export function LandingHeader() {
                     perspective: '1000px',
                   }}
                 >
-                  <span className="relative z-10 block text-slate-700 transition-all duration-300 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-teal-600 group-hover:to-teal-400 group-hover:bg-clip-text group-hover:font-bold">
+                  <span className="relative z-10 block bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent font-bold transition-all duration-300">
                     {item.label}
                   </span>
                   
