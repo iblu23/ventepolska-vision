@@ -457,9 +457,33 @@ export function LandingPage() {
                   eyebrow="O firmie"
                   title={
                     <>
-                      Doświadczenie HVAC,{" "}
-                      <span className="bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">
-                        automatyzacja i realna jakość
+                      <span className={`inline-block ${aboutVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                        {Array.from("Doświadczenie HVAC,").map((char, index) => (
+                          <span
+                            key={index}
+                            className={`inline-block ${aboutVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                            style={{
+                              animationDelay: aboutVisible ? `${index * 0.05}s` : '0s',
+                              animationFillMode: 'both'
+                            }}
+                          >
+                            {char === ' ' ? '\u00A0' : char}
+                          </span>
+                        ))}
+                      </span>{' '}
+                      <span className={`inline-block ${aboutVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                        {Array.from("automatyzacja i realna jakość").map((char, index) => (
+                          <span
+                            key={index}
+                            className={`inline-block ${aboutVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                            style={{
+                              animationDelay: aboutVisible ? `${(index + 20) * 0.05}s` : '0s',
+                              animationFillMode: 'both'
+                            }}
+                          >
+                            {char === ' ' ? '\u00A0' : char}
+                          </span>
+                        ))}
                       </span>
                     </>
                   }
@@ -501,8 +525,19 @@ export function LandingPage() {
                 eyebrow="Oferta"
                 title={
                   <>
-                    <span className="bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">
-                      Kanały i kształtki
+                    <span className={`inline-block ${offerVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                      {Array.from("Kanały i kształtki: prostokątne oraz okrągłe").map((char, index) => (
+                        <span
+                          key={index}
+                          className={`inline-block ${offerVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                          style={{
+                            animationDelay: offerVisible ? `${index * 0.05}s` : '0s',
+                            animationFillMode: 'both'
+                          }}
+                        >
+                          {char === ' ' ? '\u00A0' : char}
+                        </span>
+                      ))}
                     </span>
                   </>
                 }
@@ -540,7 +575,7 @@ export function LandingPage() {
         </section>
 
         {/* AC */}
-        <section id="klimatyzacja" className="container py-6 md:py-4 md:py-5 max-w-[1920px]">
+        <section id="klimatyzacja" className="container py-6 md:py-4 md:py-5">
           <UnifiedPanel>
             <div className="grid gap-10 md:grid-cols-12">
               <div className="md:col-span-7">
@@ -548,9 +583,33 @@ export function LandingPage() {
                   eyebrow="Klimatyzacja"
                   title={
                     <>
-                      Doradztwo, sprzedaż i{" "}
-                      <span className="bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">
-                        montaż klimatyzacji
+                      <span className={`inline-block ${acVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                        {Array.from("Doradztwo, sprzedaż i").map((char, index) => (
+                          <span
+                            key={index}
+                            className={`inline-block ${acVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                            style={{
+                              animationDelay: acVisible ? `${index * 0.05}s` : '0s',
+                              animationFillMode: 'both'
+                            }}
+                          >
+                            {char === ' ' ? '\u00A0' : char}
+                          </span>
+                        ))}
+                      </span>{' '}
+                      <span className={`inline-block ${acVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                        {Array.from("montaż klimatyzacji").map((char, index) => (
+                          <span
+                            key={index}
+                            className={`inline-block ${acVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                            style={{
+                              animationDelay: acVisible ? `${(index + 23) * 0.05}s` : '0s',
+                              animationFillMode: 'both'
+                            }}
+                          >
+                            {char === ' ' ? '\u00A0' : char}
+                          </span>
+                        ))}
                       </span>
                     </>
                   }
@@ -595,15 +654,39 @@ export function LandingPage() {
         </section>
 
         {/* WHY */}
-        <section id="dlaczego" className="container py-6 md:py-4 md:py-5 max-w-[1920px]">
+        <section id="dlaczego" className="container py-6 md:py-4 md:py-5">
           <UnifiedPanel>
             <SectionHeading
               eyebrow="Dlaczego my"
               title={
                 <>
-                  Nacisk na detale:{" "}
-                  <span className="bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">
-                    precyzja, termin, kompleksowość
+                  <span className={`inline-block ${whyVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                    {Array.from("Nacisk na detale:").map((char, index) => (
+                      <span
+                        key={index}
+                        className={`inline-block ${whyVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                        style={{
+                          animationDelay: whyVisible ? `${index * 0.05}s` : '0s',
+                          animationFillMode: 'both'
+                        }}
+                      >
+                        {char === ' ' ? '\u00A0' : char}
+                      </span>
+                    ))}
+                  </span>{' '}
+                  <span className={`inline-block ${whyVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                    {Array.from("precyzja, termin, kompleksowość").map((char, index) => (
+                      <span
+                        key={index}
+                        className={`inline-block ${whyVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                        style={{
+                          animationDelay: whyVisible ? `${(index + 18) * 0.05}s` : '0s',
+                          animationFillMode: 'both'
+                        }}
+                      >
+                        {char === ' ' ? '\u00A0' : char}
+                      </span>
+                    ))}
                   </span>
                 </>
               }
@@ -643,21 +726,9 @@ export function LandingPage() {
         </section>
 
         {/* GALLERY */}
-        <section id="galeria" className="container py-6 md:py-4 md:py-5 max-w-[1920px]">
+        <section id="galeria" className="container py-6 md:py-4 md:py-5">
           <UnifiedPanel>
-            <SectionHeading
-              eyebrow="Galeria"
-              title={
-                <>
-                  <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
-                    Realizacje
-                  </span>{" "}
-                  i zaplecze produkcyjne
-                </>
-              }
-              description="Kilka ujęć z produkcji i elementów HVAC — jakość widać w detalach."
-            />
-            <div className="mt-10 grid gap-4 grid-cols-1 md:grid-cols-12">
+            <div className="grid gap-4 grid-cols-1 md:grid-cols-12">
               <GalleryTile
                 src={gallery09}
                 alt="Kanały wentylacyjne – detal"
@@ -709,10 +780,34 @@ export function LandingPage() {
                       <div className="absolute left-0 top-8 h-12 w-1 rounded-r-full bg-teal-500/40" />
 
                       <h2 className="text-2xl md:text-4xl font-semibold tracking-tight text-slate-800 leading-tight">
-                        <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
-                          Skontaktuj się
-                        </span>{" "}
-                        z nami
+                        <span className={`inline-block ${contactVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                          {Array.from("Skontaktuj się").map((char, index) => (
+                            <span
+                              key={index}
+                              className={`inline-block ${contactVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                              style={{
+                                animationDelay: contactVisible ? `${index * 0.05}s` : '0s',
+                                animationFillMode: 'both'
+                              }}
+                            >
+                              {char === ' ' ? '\u00A0' : char}
+                            </span>
+                          ))}
+                        </span>{' '}
+                        <span className={`inline-block ${contactVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                          {Array.from("z nami").map((char, index) => (
+                            <span
+                              key={index}
+                              className={`inline-block ${contactVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                              style={{
+                                animationDelay: contactVisible ? `${(index + 15) * 0.05}s` : '0s',
+                                animationFillMode: 'both'
+                              }}
+                            >
+                              {char === ' ' ? '\u00A0' : char}
+                            </span>
+                          ))}
+                        </span>
                       </h2>
                       <p className="mt-4 text-lg text-slate-600 leading-relaxed font-medium/80">
                         {t('landing.contact.description')}
