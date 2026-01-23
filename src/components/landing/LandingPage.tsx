@@ -28,6 +28,28 @@ const galleryImages = [
   { src: gallery09, alt: "Gallery Image 5" },
 ];
 
+// Hero CTA configuration
+const HERO_CTAS = [
+  {
+    id: 'quote',
+    icon: '💬',
+    href: '#kontakt',
+    labelKey: 'landing.hero.cta_quote',
+  },
+  {
+    id: 'offer',
+    icon: '📋',
+    href: '#oferta',
+    labelKey: 'landing.hero.cta_offer',
+  },
+  {
+    id: 'gallery',
+    icon: '🖼️',
+    href: '#galeria',
+    labelKey: 'landing.hero.cta_gallery',
+  },
+];
+
 // Memoized to prevent unnecessary re-renders
 const FullscreenGallery = memo(({
   isOpen,
@@ -528,49 +550,35 @@ export function LandingPage() {
                         
                         {/* Right column - CTA buttons */}
                         <div className="grid grid-cols-1 gap-4">
-                          <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
-                            <div className="group h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
-                              <div className="flex items-start gap-4">
-                                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-                                  <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">💬</span>
-                                </div>
-                                <div className="flex-1">
-                                  <HeroButton href="#kontakt">
-                                    {t('landing.hero.cta_quote')}
-                                  </HeroButton>
-                                </div>
-                              </div>
-                            </div>
-                          </Motion3DTilt>
-                          <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
-                            <div className="group h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
-                              <div className="flex items-start gap-4">
-                                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-                                  <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📋</span>
-                                </div>
-                                <div className="flex-1">
-                                  <HeroButton href="#oferta" withTilt>
-                                    {t('landing.hero.cta_offer')}
-                                  </HeroButton>
-                                </div>
-                              </div>
-                            </div>
-                          </Motion3DTilt>
-                          <div className="h-full">
-                            <div className="group h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
-                              <div className="flex items-start gap-4">
-                                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-                                  <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">🖼️</span>
-                                </div>
-                                <div className="flex-1">
-                                  <HeroButton href="#galeria" withTilt>
-                                    {t('landing.hero.cta_gallery')}
-                                  </HeroButton>
+                          {HERO_CTAS.map(({ id, icon, href, labelKey }) => (
+                            <Motion3DTilt
+                              key={id}
+                              tiltMax={4}
+                              liftAmount={8}
+                              className="w-full"
+                            >
+                              <div className="group rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
+                                <div className="flex items-stretch gap-4">
+                                  {/* ICON */}
+                                  <div className="flex min-h-[56px] w-[56px] items-center justify-center shrink-0 rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                                    <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">
+                                      {icon}
+                                    </span>
+                                  </div>
+
+                                  {/* BUTTON */}
+                                  <div className="flex-1 flex items-stretch min-w-0">
+                                    <div className="flex w-full min-h-[56px] min-w-0 [&>*]:flex [&>*]:w-full [&>*]:max-w-full [&>*]:items-center">
+                                      <HeroButton href={href}>
+                                        {t(labelKey)}
+                                      </HeroButton>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
+                            </Motion3DTilt>
+                          ))}
                         </div>
-                      </div>
                       </div>
                     </ParallaxLayer>
                   </div>

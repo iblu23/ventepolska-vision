@@ -19,7 +19,7 @@ interface HeroButtonProps {
 export const HeroButton = memo(({ href, children, withTilt = false }: HeroButtonProps) => {
     const buttonContent = (
         <div className="relative group">
-            <Button variant="hero" size="lg" className="w-full relative z-10 min-h-[52px] sm:min-h-[56px] text-base sm:text-lg px-4 sm:px-6 py-3 sm:py-4 touch-manipulation" asChild>
+            <Button variant="hero" size="lg" className="flex w-full items-center justify-between gap-2 px-6 py-4 relative z-10 min-h-[52px] sm:min-h-[56px] text-base sm:text-lg touch-manipulation" asChild>
                 <a href={href} className="flex items-center justify-center font-bold" style={{ perspective: '1000px' }}>
                     <span className="text-white transition-all duration-300 drop-shadow-[0_0_8px_rgba(255,255,255,0.4)] group-hover:drop-shadow-[0_0_12px_rgba(20,184,166,0.8)] group-active:drop-shadow-[0_0_12px_rgba(20,184,166,0.8)]">
                         {children}
