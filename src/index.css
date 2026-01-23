@@ -148,4 +148,55 @@ All colors MUST be HSL.
   .shadow-card {
     box-shadow: var(--shadow-card);
   }
+
+  /* Responsive performance optimizations */
+  @media (max-width: 768px) {
+    .motion-reduce {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+    }
+    
+    .preserve-3d-mobile {
+      transform-style: flat;
+    }
+  }
+
+  /* Touch-friendly tap targets */
+  @media (pointer: coarse) {
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+
+  /* Custom breakpoints for better control */
+  @media (max-width: 480px) {
+    .xs\:hidden {
+      display: none;
+    }
+    .xs\:block {
+      display: block;
+    }
+    .xs\:text-xs {
+      font-size: 0.75rem;
+      line-height: 1rem;
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    .sm\:hidden {
+      display: none;
+    }
+    .sm\:block {
+      display: block;
+    }
+  }
+
+  /* Reduce motion on mobile for performance */
+  @media (prefers-reduced-motion: reduce), (max-width: 768px) {
+    .will-change-transform {
+      will-change: auto;
+    }
+  }
 }

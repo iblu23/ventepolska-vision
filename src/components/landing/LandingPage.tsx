@@ -50,28 +50,28 @@ const FullscreenGallery = memo(({
       {/* Close button */}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 z-10 rounded-full bg-white/10 p-3 text-white transition-colors hover:bg-white/20 md:p-2"
-        aria-label={t('landing.gallery.close')}
+        className="absolute top-4 right-4 z-10 rounded-full bg-white/10 p-4 text-white transition-colors hover:bg-white/20 md:p-3"
+        aria-label="Close gallery"
       >
-        <X className="h-6 w-6 md:h-6 md:w-6" />
+        <X className="h-6 w-6 md:h-5 md:w-5" />
       </button>
 
       {/* Previous button */}
       <button
         onClick={onPrevious}
         className="absolute left-4 z-10 rounded-full bg-white/10 p-3 text-white transition-colors hover:bg-white/20 md:p-2"
-        aria-label={t('landing.gallery.previous')}
+        aria-label="Previous image"
       >
-        <ChevronLeft className="h-6 w-6 md:h-6 md:w-6" />
+        <ChevronLeft className="h-6 w-6 md:h-5 md:w-5" />
       </button>
 
       {/* Next button */}
       <button
         onClick={onNext}
-        className="absolute right-4 z-10 rounded-full bg-white/10 p-3 text-white transition-colors hover:bg-white/20 md:p-2"
-        aria-label={t('landing.gallery.next')}
+        className="absolute right-4 z-10 rounded-full bg-white/10 p-4 text-white transition-colors hover:bg-white/20 md:p-3"
+        aria-label="Next image"
       >
-        <ChevronRight className="h-6 w-6 md:h-6 md:w-6" />
+        <ChevronRight className="h-6 w-6 md:h-5 md:w-5" />
       </button>
 
       {/* Image counter */}
@@ -89,7 +89,7 @@ const FullscreenGallery = memo(({
       </div>
 
       {/* Thumbnail strip */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1 md:gap-2 rounded-lg bg-black/50 p-2">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1 md:gap-2 rounded-lg bg-black/50 p-2 max-w-[90vw] overflow-x-auto">
         {galleryImages.map((image, index) => (
           <button
             key={index}
@@ -99,7 +99,7 @@ const FullscreenGallery = memo(({
               window.dispatchEvent(event);
             }}
             className={cn(
-              "h-10 w-10 md:h-12 md:w-12 overflow-hidden rounded border-2 transition-all",
+              "h-12 w-12 md:h-12 md:w-12 min-w-[48px] overflow-hidden rounded border-2 transition-all flex-shrink-0",
               index === currentIndex
                 ? "border-teal-400 opacity-100"
                 : "border-transparent opacity-60 hover:opacity-80"
@@ -215,6 +215,46 @@ export function LandingPage() {
   const { t } = useTranslation();
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [heroVisible, setHeroVisible] = useState(false);
+  const [aboutVisible, setAboutVisible] = useState(false);
+  const [offerVisible, setOfferVisible] = useState(false);
+  const [acVisible, setAcVisible] = useState(false);
+  const [whyVisible, setWhyVisible] = useState(false);
+  const [contactVisible, setContactVisible] = useState(false);
+
+  // Intersection observer for scroll-triggered animations
+  useEffect(() => {
+    const observers = new Map();
+    
+    const setupObserver = (id: string, setState: (visible: boolean) => void) => {
+      const element = document.getElementById(id);
+      if (element) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                setState(true);
+              }
+            });
+          },
+          { threshold: 0.3 }
+        );
+        observer.observe(element);
+        observers.set(id, observer);
+      }
+    };
+
+    setupObserver('hero', setHeroVisible);
+    setupObserver('o-firmie', setAboutVisible);
+    setupObserver('oferta', setOfferVisible);
+    setupObserver('klimatyzacja', setAcVisible);
+    setupObserver('dlaczego', setWhyVisible);
+    setupObserver('kontakt', setContactVisible);
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+    };
+  }, []);
 
   // Memoize event handlers to prevent unnecessary re-renders
   const openGallery = useCallback((index: number) => {
@@ -285,9 +325,9 @@ export function LandingPage() {
       />
       <main>
         {/* HERO */}
-        <section className="relative overflow-hidden">
+        <section id="hero" className="relative overflow-hidden">
           <GlowGridBackdrop />
-          <div className="container relative py-6 md:py-4 md:py-5 max-w-[1920px]">
+          <div className="container relative py-4 md:py-6 lg:py-8">
             <div className="grid items-center gap-10 md:grid-cols-12">
               <div className="md:col-span-6 animate-fade-in">
                 <Motion3DTilt tiltMax={5} liftAmount={12} className="h-full">
@@ -322,15 +362,53 @@ export function LandingPage() {
                         {/* Decorative side accent */}
                         <div className="absolute left-0 top-8 h-12 w-1 rounded-r-full bg-teal-500/40" />
 
-                        <h1 className="text-3xl font-semibold tracking-tight md:text-5xl text-slate-800 leading-[1.15]">
-                          {t('landing.hero.title')} <br />
-                          <span className="bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">
-                            {t('landing.hero.title_highlight')}
+                        <h1 className="text-xl md:text-2xl lg:text-4xl font-semibold tracking-tight text-slate-800 leading-[1.15]">
+                          <span className={`inline-block ${heroVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                            {Array.from("Produkcja i montaż").map((char, index) => (
+                              <span
+                                key={index}
+                                className={`inline-block ${heroVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                                style={{
+                                  animationDelay: heroVisible ? `${index * 0.05}s` : '0s',
+                                  animationFillMode: 'both'
+                                }}
+                              >
+                                {char === ' ' ? '\u00A0' : char}
+                              </span>
+                            ))}
                           </span> <br />
-                          {t('landing.hero.title_suffix')}
+                          <span className={`inline-block ${heroVisible ? 'animate-fade-in' : 'opacity-0'} bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent`}>
+                            {Array.from("kanałów oraz kształtki").map((char, index) => (
+                              <span
+                                key={index}
+                                className={`inline-block ${heroVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                                style={{
+                                  animationDelay: heroVisible ? `${(index + 18) * 0.05}s` : '0s',
+                                  animationFillMode: 'both'
+                                }}
+                              >
+                                {char === ' ' ? '\u00A0' : char}
+                              </span>
+                            ))}
+                          </span> <br />
+                          <span className={`inline-block ${heroVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+                            {Array.from("wentylacyjnych").map((char, index) => (
+                              <span
+                                key={index}
+                                className={`inline-block ${heroVisible ? 'animate-fade-in bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent' : 'opacity-0'}`}
+                                style={{
+                                  animationDelay: heroVisible ? `${(index + 18) * 0.05}s` : '0s',
+                                  animationFillMode: 'both'
+                                }}
+                              >
+                                {char}
+                              </span>
+                            ))}
+                          </span>
                         </h1>
-                        <p className="mt-6 max-w-xl text-lg text-slate-600 leading-relaxed font-medium/80">
-                          {t('landing.hero.description')}
+                        <p className="mt-6 max-w-xl text-base md:text-lg text-slate-600 leading-relaxed font-medium/80">
+                          Precyzyjne elementy HVAC pod Twój projekt — od doradztwa, przez produkcję, po terminową
+                          realizację i montaż. Wydajność, trwałość i jakość, która się broni w praktyce.
                         </p>
                       </div>
                     </ParallaxLayer>
@@ -348,8 +426,6 @@ export function LandingPage() {
                           {t('landing.hero.cta_gallery')}
                         </HeroButton>
                       </div>
-
-
                     </ParallaxLayer>
 
                     {/* Stat cards - depth 1.6 (foreground) */}
@@ -372,16 +448,19 @@ export function LandingPage() {
         </section>
 
         {/* ABOUT / EXPERIENCE - Unified Panel */}
-        <section id="o-firmie" className="container py-6 md:py-4 md:py-5 max-w-[1920px]">
+        <section id="o-firmie" className="container py-6 md:py-4 md:py-5">
           <UnifiedPanel>
             <div className="grid gap-10 md:grid-cols-12">
               <div className="md:col-span-5">
                 <SectionHeading
                   className="h-full"
-                  eyebrow={t('landing.about.eyebrow')}
+                  eyebrow="O firmie"
                   title={
                     <>
-                      {t('landing.about.title')}
+                      Doświadczenie HVAC,{" "}
+                      <span className="bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">
+                        automatyzacja i realna jakość
+                      </span>
                     </>
                   }
                   description={t('landing.about.description')}
@@ -416,14 +495,14 @@ export function LandingPage() {
 
         {/* OFFER */}
         <section id="oferta" className="relative">
-          <div className="container py-6 md:py-4 md:py-5 max-w-[1920px]">
+          <div className="container py-6 md:py-4 md:py-5">
             <UnifiedPanel>
               <SectionHeading
-                eyebrow={t('landing.offer.eyebrow')}
+                eyebrow="Oferta"
                 title={
                   <>
                     <span className="bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">
-                      {t('landing.offer.title')}
+                      Kanały i kształtki
                     </span>
                   </>
                 }
@@ -466,10 +545,13 @@ export function LandingPage() {
             <div className="grid gap-10 md:grid-cols-12">
               <div className="md:col-span-7">
                 <SectionHeading
-                  eyebrow={t('landing.air_conditioning.eyebrow')}
+                  eyebrow="Klimatyzacja"
                   title={
                     <>
-                      {t('landing.air_conditioning.title')}
+                      Doradztwo, sprzedaż i{" "}
+                      <span className="bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">
+                        montaż klimatyzacji
+                      </span>
                     </>
                   }
                   description={t('landing.air_conditioning.description')}
@@ -491,19 +573,19 @@ export function LandingPage() {
               <div className="md:col-span-5">
                 <Motion3DTilt tiltMax={5} liftAmount={8} className="h-full">
                   <div className="h-full rounded-3xl border border-teal-200/50 bg-white/80 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
-                    <p className="text-sm text-muted-foreground">{t('landing.air_conditioning.experience')}</p>
+                    <p className="text-sm text-muted-foreground">Doświadczenie</p>
                     <div className="mt-4 grid gap-3">
                       <div className="rounded-xl bg-teal-50/50 p-4 border border-teal-100/50">
-                        <p className="text-xl md:text-2xl font-semibold text-slate-800">{t('landing.air_conditioning.10years_production')}</p>
-                        <p className="text-sm text-slate-500">{t('landing.air_conditioning.10years_production_desc')}</p>
+                        <p className="text-xl md:text-2xl font-semibold text-slate-800">10 lat</p>
+                        <p className="text-sm text-slate-500">produkcji kanałów wentylacyjnych</p>
                       </div>
                       <div className="rounded-xl bg-teal-50/50 p-4 border border-teal-100/50">
-                        <p className="text-xl md:text-2xl font-semibold text-slate-800">{t('landing.air_conditioning.10years_ac')}</p>
-                        <p className="text-sm text-slate-500">{t('landing.air_conditioning.10years_ac_desc')}</p>
+                        <p className="text-xl md:text-2xl font-semibold text-slate-800">10 lat</p>
+                        <p className="text-sm text-slate-500">doradztwa i montażu klimatyzacji</p>
                       </div>
                     </div>
                     <HeroButton href="#kontakt">
-                      {t('landing.air_conditioning.contact_us')}
+                      Skontaktuj się
                     </HeroButton>
                   </div>
                 </Motion3DTilt>
@@ -516,10 +598,13 @@ export function LandingPage() {
         <section id="dlaczego" className="container py-6 md:py-4 md:py-5 max-w-[1920px]">
           <UnifiedPanel>
             <SectionHeading
-              eyebrow={t('landing.why_us.eyebrow')}
+              eyebrow="Dlaczego my"
               title={
                 <>
-                  {t('landing.why_us.title')}
+                  Nacisk na detale:{" "}
+                  <span className="bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">
+                    precyzja, termin, kompleksowość
+                  </span>
                 </>
               }
               description={t('landing.why_us.description')}
@@ -561,15 +646,16 @@ export function LandingPage() {
         <section id="galeria" className="container py-6 md:py-4 md:py-5 max-w-[1920px]">
           <UnifiedPanel>
             <SectionHeading
-              eyebrow={t('landing.gallery.eyebrow')}
+              eyebrow="Galeria"
               title={
                 <>
                   <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
-                    {t('landing.gallery.title')}
-                  </span>
+                    Realizacje
+                  </span>{" "}
+                  i zaplecze produkcyjne
                 </>
               }
-              description={t('landing.gallery.description')}
+              description="Kilka ujęć z produkcji i elementów HVAC — jakość widać w detalach."
             />
             <div className="mt-10 grid gap-4 grid-cols-1 md:grid-cols-12">
               <GalleryTile
@@ -613,7 +699,7 @@ export function LandingPage() {
 
         {/* CONTACT */}
         <section id="kontakt" className="relative overflow-hidden">
-          <div className="container py-6 md:py-4 md:py-5 max-w-[1920px]">
+          <div className="container py-6 md:py-4 md:py-5">
             <UnifiedPanel>
               <div className="grid gap-10 md:grid-cols-12">
                 <div className="md:col-span-7">
@@ -624,9 +710,9 @@ export function LandingPage() {
 
                       <h2 className="text-2xl md:text-4xl font-semibold tracking-tight text-slate-800 leading-tight">
                         <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
-                          {t('landing.contact.title_main')}
+                          Skontaktuj się
                         </span>{" "}
-                        {t('landing.contact.title_suffix')}
+                        z nami
                       </h2>
                       <p className="mt-4 text-lg text-slate-600 leading-relaxed font-medium/80">
                         {t('landing.contact.description')}

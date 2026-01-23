@@ -30,25 +30,25 @@ export function LandingHeader() {
   return (
     <header className="sticky top-0 z-50">
       <div className="border-b border-border/60 bg-background/70 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-24 items-center justify-between gap-4">
+        <div className="container flex h-16 md:h-20 lg:h-24 items-center justify-between gap-2 md:gap-4">
           <a href="#" className="group flex items-center gap-3">
             <img
               src="/logo-brand.png"
               alt="Vente Polska Logo"
-              className="h-20 w-auto object-contain transition-transform group-hover:scale-105"
+              className="h-12 w-auto md:h-16 lg:h-20 object-contain transition-transform group-hover:scale-105"
             />
             <div className="leading-tight">
-              <p className="text-sm font-semibold text-slate-800">Vente Polska</p>
-              <p className="text-xs text-muted-foreground">{t('landing.header.tagline')}</p>
+              <p className="text-xs md:text-sm font-semibold text-slate-800">Vente Polska</p>
+              <p className="text-xs md:text-xs text-muted-foreground hidden xs:block">HVAC • produkcja i montaż</p>
             </div>
           </a>
 
-          <nav className="hidden items-center gap-6 md:flex">
+          <nav className="hidden items-center gap-2 lg:gap-6 md:flex">
             {nav.map((item) => (
               <div key={item.href} className="relative group">
                 <a
                   href={item.href}
-                  className="relative block px-4 py-2 text-base font-medium transition-all duration-300 transform-gpu"
+                  className="relative block px-2 md:px-4 py-2 text-sm md:text-base font-medium transition-all duration-300 transform-gpu"
                   style={{
                     transformStyle: 'preserve-3d',
                     perspective: '1000px',
@@ -118,12 +118,11 @@ export function LandingHeader() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <LanguageToggle />
-            <div className="relative group hidden md:inline-flex">
+            <div className="relative group hidden lg:inline-flex">
               <Motion3DTilt tiltMax={4} liftAmount={8} className="w-full">
                 <a
                   href="#kontakt"
-                  className="relative block px-4 py-2 text-base font-medium transition-all duration-300 transform-gpu"
+                  className="relative block px-2 md:px-4 py-2 text-sm md:text-base font-medium transition-all duration-300 transform-gpu"
                   style={{
                     transformStyle: 'preserve-3d',
                     perspective: '1000px',
@@ -207,7 +206,7 @@ export function LandingHeader() {
       <div
         className={cn(
           "md:hidden overflow-hidden border-b border-border/60 bg-background/80 backdrop-blur",
-          open ? "max-h-96" : "max-h-0",
+          open ? "max-h-screen" : "max-h-0",
           "transition-[max-height] duration-300 ease-out",
         )}
       >
