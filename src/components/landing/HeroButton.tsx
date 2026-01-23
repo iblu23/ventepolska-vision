@@ -41,12 +41,26 @@ export const HeroButton = memo(({ href, children, withTilt = false }: HeroButton
     const buttonContent = (
         <div className="relative group">
             <Button variant="hero" size="lg" className="w-full relative z-10 min-h-[48px] text-base px-6 py-4" asChild>
-                <a href={href} className="flex items-center justify-center font-bold">
+                <a href={href} className="flex items-center justify-center font-bold" style={{ perspective: '1000px' }}>
                     <span className="text-white transition-all duration-300 drop-shadow-[0_0_8px_rgba(255,255,255,0.4)] group-hover:drop-shadow-[0_0_12px_rgba(20,184,166,0.8)]">
                         {children}
                     </span>
-                    <div className="ml-2 flex items-center transition-all duration-300 group-hover:translate-x-1.5 group-hover:scale-110">
-                        <ArrowRight className="h-5 w-5 shrink-0 stroke-[2.5px] text-white transition-all duration-500 drop-shadow-[0_0_8px_rgba(255,255,255,0.4)] group-hover:drop-shadow-[0_0_12px_rgba(20,184,166,0.8)]" />
+                    <div
+                        className="cta-arrow-container ml-3 flex items-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:translate-x-2 group-hover:scale-110"
+                        style={{
+                            transformStyle: 'preserve-3d',
+                            transform: 'rotateY(0deg) rotateZ(0deg) translateZ(0px)'
+                        }}
+                    >
+                        <ArrowRight
+                            className="h-6 w-6 shrink-0 stroke-[3px] text-white transition-all duration-500 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] group-hover:drop-shadow-[0_0_15px_rgba(20,184,166,0.9)]"
+                        />
+                        <style dangerouslySetInnerHTML={{
+                            __html: `
+                            .group:hover .cta-arrow-container {
+                                transform: rotateY(0deg) rotateZ(-5deg) translateZ(20px) !important;
+                            }
+                        `}} />
                     </div>
                 </a>
             </Button>
