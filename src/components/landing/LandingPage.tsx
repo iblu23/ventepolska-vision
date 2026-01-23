@@ -44,28 +44,28 @@ function FullscreenGallery({
       {/* Close button */}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 z-10 rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
+        className="absolute top-4 right-4 z-10 rounded-full bg-white/10 p-3 text-white transition-colors hover:bg-white/20 md:p-2"
         aria-label="Close gallery"
       >
-        <X className="h-6 w-6" />
+        <X className="h-6 w-6 md:h-6 md:w-6" />
       </button>
 
       {/* Previous button */}
       <button
         onClick={onPrevious}
-        className="absolute left-4 z-10 rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
+        className="absolute left-4 z-10 rounded-full bg-white/10 p-3 text-white transition-colors hover:bg-white/20 md:p-2"
         aria-label="Previous image"
       >
-        <ChevronLeft className="h-6 w-6" />
+        <ChevronLeft className="h-6 w-6 md:h-6 md:w-6" />
       </button>
 
       {/* Next button */}
       <button
         onClick={onNext}
-        className="absolute right-4 z-10 rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
+        className="absolute right-4 z-10 rounded-full bg-white/10 p-3 text-white transition-colors hover:bg-white/20 md:p-2"
         aria-label="Next image"
       >
-        <ChevronRight className="h-6 w-6" />
+        <ChevronRight className="h-6 w-6 md:h-6 md:w-6" />
       </button>
 
       {/* Image counter */}
@@ -83,7 +83,7 @@ function FullscreenGallery({
       </div>
 
       {/* Thumbnail strip */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 rounded-lg bg-black/50 p-2">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1 md:gap-2 rounded-lg bg-black/50 p-2">
         {galleryImages.map((image, index) => (
           <button
             key={index}
@@ -93,7 +93,7 @@ function FullscreenGallery({
               window.dispatchEvent(event);
             }}
             className={cn(
-              "h-12 w-12 overflow-hidden rounded border-2 transition-all",
+              "h-10 w-10 md:h-12 md:w-12 overflow-hidden rounded border-2 transition-all",
               index === currentIndex
                 ? "border-teal-400 opacity-100"
                 : "border-transparent opacity-60 hover:opacity-80"
@@ -115,7 +115,7 @@ function Stat({ value, label }: { value: string; label: string }) {
   return (
     <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
       <div className="h-full rounded-xl border border-teal-200/50 bg-white/80 p-4 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
-        <p className="text-2xl font-semibold tracking-tight text-slate-800">{value}</p>
+        <p className="text-xl md:text-2xl font-semibold tracking-tight text-slate-800">{value}</p>
         <p className="mt-1 text-sm text-slate-500">{label}</p>
       </div>
     </Motion3DTilt>
@@ -276,7 +276,7 @@ export function LandingPage() {
         {/* HERO */}
         <section className="relative overflow-hidden">
           <GlowGridBackdrop />
-          <div className="container relative py-4 md:py-5">
+          <div className="container relative py-6 md:py-4 md:py-5">
             <div className="grid items-center gap-10 md:grid-cols-12">
               <div className="md:col-span-6 animate-fade-in">
                 <Motion3DTilt tiltMax={5} liftAmount={12} className="h-full">
@@ -302,7 +302,7 @@ export function LandingPage() {
                         {/* Decorative side accent */}
                         <div className="absolute left-0 top-8 h-12 w-1 rounded-r-full bg-teal-500/40" />
 
-                        <h1 className="text-4xl font-semibold tracking-tight md:text-5xl text-slate-800 leading-[1.15]">
+                        <h1 className="text-3xl font-semibold tracking-tight md:text-5xl text-slate-800 leading-[1.15]">
                           Produkcja i montaż <br />
                           <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
                             kanałów oraz kształtek
@@ -318,9 +318,9 @@ export function LandingPage() {
 
                     {/* CTA Buttons - depth 1.6 (foreground) */}
                     <ParallaxLayer depth={1.6}>
-                      <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3">
+                      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 md:grid-cols-3">
                         <div className="relative group">
-                          <Button variant="hero" size="xl" className="w-full relative z-10" asChild>
+                          <Button variant="hero" size="lg" className="w-full relative z-10 min-h-[48px] text-base px-6 py-4" asChild>
                             <a href="#kontakt">
                               Zapytaj o wycenę <ArrowRight className="ml-2 h-5 w-5" />
                             </a>
@@ -383,7 +383,7 @@ export function LandingPage() {
                         </div>
                         <div className="relative group">
                           <Motion3DTilt tiltMax={4} liftAmount={8} className="w-full">
-                            <Button variant="hero" size="xl" className="w-full relative z-10" asChild>
+                            <Button variant="hero" size="lg" className="w-full relative z-10 min-h-[48px] text-base px-6 py-4" asChild>
                               <a href="#oferta">
                                 Zobacz ofertę <ArrowRight className="ml-2 h-5 w-5" />
                               </a>
@@ -447,7 +447,7 @@ export function LandingPage() {
                         </div>
                         <div className="relative group">
                           <Motion3DTilt tiltMax={4} liftAmount={8} className="w-full">
-                            <Button variant="hero" size="xl" className="w-full relative z-10" asChild>
+                            <Button variant="hero" size="lg" className="w-full relative z-10 min-h-[48px] text-base px-6 py-4" asChild>
                               <a href="#galeria">
                                 Galeria <ArrowRight className="ml-2 h-5 w-5" />
                               </a>
@@ -533,7 +533,7 @@ export function LandingPage() {
         </section>
 
         {/* ABOUT / EXPERIENCE - Unified Panel */}
-        <section id="o-firmie" className="container py-4 md:py-5">
+        <section id="o-firmie" className="container py-6 md:py-4 md:py-5">
           <UnifiedPanel>
             <div className="grid gap-10 md:grid-cols-12">
               <div className="md:col-span-5">
@@ -580,7 +580,7 @@ export function LandingPage() {
 
         {/* OFFER */}
         <section id="oferta" className="relative">
-          <div className="container py-4 md:py-5">
+          <div className="container py-6 md:py-4 md:py-5">
             <UnifiedPanel>
               <SectionHeading
                 eyebrow="Oferta"
@@ -632,7 +632,7 @@ export function LandingPage() {
         </section>
 
         {/* AC */}
-        <section id="klimatyzacja" className="container py-4 md:py-5">
+        <section id="klimatyzacja" className="container py-6 md:py-4 md:py-5">
           <UnifiedPanel>
             <div className="grid gap-10 md:grid-cols-12">
               <div className="md:col-span-7">
@@ -668,15 +668,15 @@ export function LandingPage() {
                     <p className="text-sm text-muted-foreground">Doświadczenie</p>
                     <div className="mt-4 grid gap-3">
                       <div className="rounded-xl bg-teal-50/50 p-4 border border-teal-100/50">
-                        <p className="text-2xl font-semibold text-slate-800">10 lat</p>
+                        <p className="text-xl md:text-2xl font-semibold text-slate-800">10 lat</p>
                         <p className="text-sm text-slate-500">produkcji kanałów wentylacyjnych</p>
                       </div>
                       <div className="rounded-xl bg-teal-50/50 p-4 border border-teal-100/50">
-                        <p className="text-2xl font-semibold text-slate-800">10 lat</p>
+                        <p className="text-xl md:text-2xl font-semibold text-slate-800">10 lat</p>
                         <p className="text-sm text-slate-500">doradztwa i montażu klimatyzacji</p>
                       </div>
                     </div>
-                    <Button variant="hero" className="mt-6 w-full" asChild>
+                    <Button variant="hero" className="mt-6 w-full min-h-[48px] text-base px-6 py-4" asChild>
                       <a href="#kontakt">Skontaktuj się</a>
                     </Button>
                   </div>
@@ -687,7 +687,7 @@ export function LandingPage() {
         </section>
 
         {/* WHY */}
-        <section id="dlaczego" className="container py-4 md:py-5">
+        <section id="dlaczego" className="container py-6 md:py-4 md:py-5">
           <UnifiedPanel>
             <SectionHeading
               eyebrow="Dlaczego my"
@@ -735,7 +735,7 @@ export function LandingPage() {
         </section>
 
         {/* GALLERY */}
-        <section id="galeria" className="container py-4 md:py-5">
+        <section id="galeria" className="container py-6 md:py-4 md:py-5">
           <UnifiedPanel>
               <SectionHeading
                 eyebrow="Galeria"
@@ -749,7 +749,7 @@ export function LandingPage() {
                 }
                 description="Kilka ujęć z produkcji i elementów HVAC — jakość widać w detalach."
               />
-              <div className="mt-10 grid gap-4 md:grid-cols-12">
+              <div className="mt-10 grid gap-4 grid-cols-1 md:grid-cols-12">
                 <GalleryTile 
                   src={gallery09} 
                   alt="Kanały wentylacyjne – detal" 
@@ -791,7 +791,7 @@ export function LandingPage() {
 
           {/* CONTACT */}
           <section id="kontakt" className="relative overflow-hidden">
-            <div className="container py-4 md:py-5">
+            <div className="container py-6 md:py-4 md:py-5">
               <UnifiedPanel>
                 <div className="grid gap-10 md:grid-cols-12">
                   <div className="md:col-span-7">
@@ -800,7 +800,7 @@ export function LandingPage() {
                         {/* Decorative side accent */}
                         <div className="absolute left-0 top-8 h-12 w-1 rounded-r-full bg-teal-500/40" />
 
-                        <h2 className="text-3xl font-semibold tracking-tight md:text-4xl text-slate-800 leading-tight">
+                        <h2 className="text-2xl md:text-4xl font-semibold tracking-tight text-slate-800 leading-tight">
                           <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
                             Skontaktuj się
                           </span>{" "}
@@ -809,7 +809,7 @@ export function LandingPage() {
                         <p className="mt-4 text-lg text-slate-600 leading-relaxed font-medium/80">
                           Wyślij zapytanie lub zadzwoń — odpowiemy szybko i konkretnie.
                         </p>
-                        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                        <div className="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2">
                           <div className="rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm">
                             <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider">E-mail</p>
                             <a className="mt-2 block text-lg font-semibold text-slate-800 hover:text-teal-600 transition-colors hover:underline" href="mailto:biuro@ventepolska.pl">
@@ -848,7 +848,7 @@ export function LandingPage() {
                           Ten prototyp skupia się na warstwie wizualnej. Jeśli chcesz, dodamy formularz kontaktowy z wysyłką.
                         </p>
                         <div className="mt-5 grid gap-3">
-                          <Button variant="hero" className="w-full" asChild>
+                          <Button variant="hero" className="w-full min-h-[48px] text-base px-6 py-4" asChild>
                             <a href="mailto:biuro@ventepolska.pl?subject=Zapytanie%20Vente%20Polska">Napisz e-mail</a>
                           </Button>
                           <Button variant="glass" className="w-full" asChild>

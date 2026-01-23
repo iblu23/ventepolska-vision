@@ -203,20 +203,23 @@ export function LandingHeader() {
           "transition-[max-height] duration-300 ease-out",
         )}
       >
-        <div className="container py-4">
-          <div className="flex flex-col gap-3">
+        <div className="container py-6">
+          <div className="flex flex-col gap-2">
             {nav.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                className="rounded-lg px-4 py-3 text-base font-medium bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:bg-white/80 hover:shadow-md hover:shadow-teal-500/10 transition-all duration-300 min-h-[44px] flex items-center"
               >
                 {item.label}
               </a>
             ))}
-            <Button variant="hero" className="mt-2" asChild>
-              <a href="#kontakt">Zapytaj o wycenę</a>
+            <Button variant="hero" className="mt-4 min-h-[48px] text-base px-6 py-3" asChild>
+              <a href="#kontakt" onClick={() => setOpen(false)}>
+                <Phone className="mr-2 h-4 w-4" />
+                Zapytaj o wycenę
+              </a>
             </Button>
           </div>
         </div>
