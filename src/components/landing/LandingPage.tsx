@@ -177,14 +177,8 @@ function GalleryTile({
         />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
         
-        {/* Hover overlay with view hint */}
-        <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20 flex items-center justify-center">
-          <div className="opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            <div className="rounded-full bg-white/90 p-2">
-              <ArrowRight className="h-4 w-4 text-slate-800" />
-            </div>
-          </div>
-        </div>
+        {/* Hover overlay */}
+        <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />
       </div>
     </Motion3DTilt>
   );
