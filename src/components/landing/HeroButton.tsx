@@ -25,7 +25,7 @@ export const HeroButton = memo(({ href, children, withTilt = false }: HeroButton
                         {children}
                     </span>
                     <div
-                        className="cta-arrow-container ml-2 md:ml-3 flex items-center transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:translate-x-2 group-hover:scale-110 group-active:translate-x-2 group-active:scale-110"
+                        className="cta-arrow-container ml-2 md:ml-3 flex items-center transition-all duration-500 ease-&lsqb;cubic-bezier(0.34,1.56,0.64,1)&rsqb; group-hover:translate-x-2 group-hover:scale-110 group-active:translate-x-2 group-active:scale-110"
                         style={{
                             transformStyle: 'preserve-3d',
                             transform: 'rotateY(0deg) rotateZ(0deg) translateZ(0px)'
@@ -66,9 +66,9 @@ export const HeroButton = memo(({ href, children, withTilt = false }: HeroButton
 
             {/* Simple edge glow */}
             <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
-              <div
-                className="absolute inset-0 rounded-xl border-2 border-teal-500/40 shadow-[0_0_20px_rgba(20,184,166,0.8)]"
-              />
+                <div
+                    className="absolute inset-0 rounded-xl border-2 border-teal-500/40 shadow-[0_0_20px_rgba(20,184,166,0.8)]"
+                />
             </div>
 
         </div>
