@@ -276,21 +276,201 @@ All colors MUST be HSL.
     box-shadow: 0 0 6px rgba(20, 184, 166, 0.6);
   }
 
-  /* Mobile optimizations */
+  /* Mobile performance optimizations */
   @media (max-width: 768px) {
-    .click-spark {
-      will-change: transform, opacity;
+    /* Disable complex animations on mobile for better performance */
+    .group:hover .group-hover\\:animate-spin {
+      animation: none !important;
     }
     
-    .spark-line {
-      will-change: transform, height, opacity;
+    /* Reduce will-change properties on mobile */
+    .will-change-transform {
+      will-change: auto;
     }
     
-    /* Reduce motion on mobile for better performance */
-    @media (prefers-reduced-motion: reduce) {
-      .spark-line {
-        animation: none !important;
-      }
+    /* Optimize backdrop filters for mobile */
+    .backdrop-blur-sm {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+    
+    /* Disable heavy shadows on mobile */
+    .shadow-2xl {
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    /* Optimize transforms */
+    .hover\\:scale-105:hover {
+      transform: scale(1.02);
+    }
+    
+    .hover\\:scale-110:hover {
+      transform: scale(1.05);
+    }
+    
+    .hover\\:-translate-y-3:hover {
+      transform: translateY(-1px);
+    }
+    
+    /* Faster transitions on mobile */
+    .duration-300 {
+      transition-duration: 150ms;
+    }
+    
+    .duration-500 {
+      transition-duration: 250ms;
+    }
+    
+    .duration-700 {
+      transition-duration: 350ms;
+    }
+    
+    /* Disable parallax on mobile */
+    .parallax-layer {
+      transform: none !important;
+    }
+    
+    /* Optimize image loading */
+    img {
+      content-visibility: auto;
+      contain-intrinsic-size: 400px 300px;
+    }
+  }
+
+  /* Mobile typography and readability improvements */
+  @media (max-width: 768px) {
+    /* Improve readability with better line heights */
+    body {
+      line-height: 1.6;
+    }
+    
+    /* Optimize font sizes for mobile */
+    .text-xs {
+      font-size: 0.75rem;
+      line-height: 1.4;
+    }
+    
+    .text-sm {
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+    
+    .text-base {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    
+    .text-lg {
+      font-size: 1.125rem;
+      line-height: 1.6;
+    }
+    
+    .text-xl {
+      font-size: 1.25rem;
+      line-height: 1.5;
+    }
+    
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 1.4;
+    }
+    
+    .text-3xl {
+      font-size: 1.75rem;
+      line-height: 1.3;
+    }
+    
+    .text-4xl {
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+    
+    /* Improve paragraph spacing */
+    p {
+      margin-bottom: 1rem;
+    }
+    
+    /* Better contrast for mobile */
+    .text-slate-500 {
+      color: rgb(71 85 105); /* Slightly darker for better contrast */
+    }
+    
+    .text-slate-600 {
+      color: rgb(51 65 85); /* Slightly darker for better contrast */
+    }
+    
+    /* Improve button text readability */
+    button {
+      font-weight: 500;
+      letter-spacing: 0.025em;
+    }
+    
+    /* Better heading spacing */
+    h1, h2, h3, h4, h5, h6 {
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+    
+    /* Improve list readability */
+    li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+    
+    /* Better link spacing */
+    a {
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+  }
+
+  /* Extra small mobile typography */
+  @media (max-width: 480px) {
+    /* Further optimize for very small screens */
+    .text-xs {
+      font-size: 0.7rem;
+    }
+    
+    .text-sm {
+      font-size: 0.8rem;
+    }
+    
+    .text-base {
+      font-size: 0.9rem;
+    }
+    
+    .text-lg {
+      font-size: 1rem;
+    }
+    
+    .text-xl {
+      font-size: 1.1rem;
+    }
+    
+    .text-2xl {
+      font-size: 1.3rem;
+    }
+    
+    .text-3xl {
+      font-size: 1.5rem;
+    }
+    
+    .text-4xl {
+      font-size: 1.7rem;
+    }
+    
+    /* Reduce letter spacing for better readability */
+    .tracking-tight {
+      letter-spacing: -0.025em;
+    }
+    
+    /* Improve touch target spacing */
+    .gap-4 {
+      gap: 1rem;
+    }
+    
+    .gap-6 {
+      gap: 1.25rem;
     }
   }
 }

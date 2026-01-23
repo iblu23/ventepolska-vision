@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ArrowRight, BadgeCheck, Clock, Factory, ShieldCheck, Wrench, X, ChevronLeft, ChevronRight, Move3D, Ruler, Layers, Target, Zap, Settings, Compass, Focus, User, Users, Hand, Heart, Star, Award, Crown, Combine, Package, Box, Grid, Puzzle, Network, GitBranch, Square, Container, PackageOpen, Minimize2, Maximize2, Circle, Mail, Phone, Globe, Smartphone } from "lucide-react";
+import { ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { GlowGridBackdrop } from "@/components/landing/GlowGridBackdrop";
 import { MeshGradient, FloatingOrbs } from "@/components/landing/ModernBackgrounds";
 import { SectionHeading } from "@/components/landing/SectionHeading";
@@ -52,7 +52,7 @@ const FullscreenGallery = memo(({
       {/* Close button */}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 z-10 rounded-full bg-white/10 p-4 text-white transition-colors hover:bg-white/20 md:p-3"
+        className="absolute top-4 right-4 z-10 rounded-full bg-white/10 p-3 sm:p-4 text-white transition-colors hover:bg-white/20 md:p-3 touch-manipulation"
         aria-label="Close gallery"
       >
         <X className="h-6 w-6 md:h-5 md:w-5" />
@@ -61,7 +61,7 @@ const FullscreenGallery = memo(({
       {/* Previous button */}
       <button
         onClick={onPrevious}
-        className="absolute left-4 z-10 rounded-full bg-white/10 p-3 text-white transition-colors hover:bg-white/20 md:p-2"
+        className="absolute left-4 z-10 rounded-full bg-white/10 p-2 sm:p-3 text-white transition-colors hover:bg-white/20 md:p-2 touch-manipulation"
         aria-label="Previous image"
       >
         <ChevronLeft className="h-6 w-6 md:h-5 md:w-5" />
@@ -70,7 +70,7 @@ const FullscreenGallery = memo(({
       {/* Next button */}
       <button
         onClick={onNext}
-        className="absolute right-4 z-10 rounded-full bg-white/10 p-4 text-white transition-colors hover:bg-white/20 md:p-3"
+        className="absolute right-4 z-10 rounded-full bg-white/10 p-3 sm:p-4 text-white transition-colors hover:bg-white/20 md:p-3 touch-manipulation"
         aria-label="Next image"
       >
         <ChevronRight className="h-6 w-6 md:h-5 md:w-5" />
@@ -91,7 +91,7 @@ const FullscreenGallery = memo(({
       </div>
 
       {/* Thumbnail strip */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1 md:gap-2 rounded-lg bg-black/50 p-2 max-w-[90vw] overflow-x-auto">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-2 rounded-lg bg-black/50 p-2 max-w-[90vw] overflow-x-auto">
         {galleryImages.map((image, index) => (
           <button
             key={index}
@@ -101,7 +101,7 @@ const FullscreenGallery = memo(({
               window.dispatchEvent(event);
             }}
             className={cn(
-              "h-12 w-12 md:h-12 md:w-12 min-w-[48px] overflow-hidden rounded border-2 transition-all flex-shrink-0",
+              "h-10 w-10 sm:h-12 sm:w-12 md:h-12 md:w-12 min-w-[40px] sm:min-w-[48px] overflow-hidden rounded border-2 transition-all flex-shrink-0 touch-manipulation",
               index === currentIndex
                 ? "border-teal-400 opacity-100"
                 : "border-transparent opacity-60 hover:opacity-80"
@@ -121,16 +121,12 @@ const FullscreenGallery = memo(({
 
 FullscreenGallery.displayName = "FullscreenGallery";
 
-const Stat = memo(({ value, label, icon: Icon }: { value: string; label: string; icon?: typeof Move3D }) => (
+const Stat = memo(({ value, label, icon }: { value: string; label: string; icon?: string }) => (
   <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
     <div className="group h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
       <div className="flex items-start gap-4">
         <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-          {Icon ? (
-            <Icon className="h-5 w-5 transition-transform duration-2000 ease-in-out group-hover:animate-spin" />
-          ) : (
-            <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📊</span>
-          )}
+          <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">{icon || "📊"}</span>
         </div>
         <div className="flex-1">
           <p className="text-xl md:text-2xl font-semibold tracking-tight text-slate-800 transition-all duration-300 group-hover:text-slate-900">{value}</p>
@@ -148,8 +144,8 @@ Stat.displayName = "Stat";
 // Define a generic icon type
 type IconType = React.ComponentType<{ className?: string }>;
 
-const InfoCard = memo(({ icon: Icon, title, description, className }: {
-  icon: IconType;
+const InfoCard = memo(({ icon, title, description, className }: {
+  icon: string;
   title: string;
   description: string;
   className?: string;
@@ -157,7 +153,7 @@ const InfoCard = memo(({ icon: Icon, title, description, className }: {
   <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
     <div className="flex items-start gap-4">
       <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-        <Icon className="h-5 w-5 transition-transform duration-2000 ease-in-out group-hover:animate-spin" />
+        <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">{icon}</span>
       </div>
       <div className="flex-1">
         <h3 className="text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{title}</h3>
@@ -442,12 +438,12 @@ export function LandingPage() {
       <main>
         {/* HERO */}
         <section id="hero" className="relative overflow-hidden">
-          <div className="container relative z-10 py-4 md:py-6 lg:py-8">
-            <div className="grid items-center gap-6 md:grid-cols-12">
+          <div className="container relative z-10 py-6 px-4 sm:px-6 md:py-8 lg:py-8">
+            <div className="grid items-center gap-8 md:gap-6 lg:gap-8 md:grid-cols-12">
               <div className="md:col-span-6 animate-fade-in">
                 <Motion3DTilt tiltMax={5} liftAmount={12} className="h-full">
                   {/* Panel with matte glass + aqua rim border */}
-                  <div className="h-full rounded-2xl border border-teal-200/40 bg-white p-6 md:p-8 shadow-lg shadow-teal-500/5"
+                  <div className="h-full rounded-2xl border border-teal-200/40 bg-white p-4 sm:p-5 md:p-6 lg:p-8 shadow-lg shadow-teal-500/5"
                     style={{
                       background: "linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(240,253,250,0.7) 100%)",
                     }}
@@ -456,7 +452,7 @@ export function LandingPage() {
                     <ParallaxLayer depth={1.6}>
                       <Motion3DTilt tiltMax={15} liftAmount={15} className="hidden md:block">
                         <p className="group inline-flex items-center gap-2 rounded-full border border-teal-200/50 bg-white px-4 py-1.5 text-xs text-muted-foreground shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-1 hover:scale-105 cursor-default">
-                          <BadgeCheck className="h-4 w-4 md:h-5 md:w-5 text-teal-600 transition-all duration-2000 ease-in-out group-hover:animate-spin" />
+                          <span className="text-lg font-semibold text-teal-600 transition-all duration-2000 ease-in-out group-hover:animate-spin">✅</span>
                           <span className="group-hover:text-slate-800 transition-colors duration-300">
                             {t('landing.hero.badge')}
                           </span>
@@ -464,7 +460,7 @@ export function LandingPage() {
                       </Motion3DTilt>
                       {/* Mobile version without heavy 3D tilt */}
                       <p className="md:hidden group inline-flex items-center gap-2 rounded-full border border-teal-200/50 bg-white px-4 py-1.5 text-xs text-muted-foreground shadow-sm transition-all duration-300 active:shadow-lg active:shadow-teal-500/20 active:border-teal-400/50 cursor-default">
-                        <BadgeCheck className="h-5 w-5 text-teal-600 transition-all duration-500 group-active:scale-125 group-active:rotate-[360deg] group-active:text-teal-500" />
+                        <span className="text-lg font-semibold text-teal-600 transition-all duration-500 group-active:scale-125 group-active:rotate-[360deg] group-active:text-teal-500">✅</span>
                         <span className="group-active:text-slate-800 transition-colors duration-300">
                           {t('landing.hero.badge')}
                         </span>
@@ -477,7 +473,7 @@ export function LandingPage() {
                         {/* Decorative side accent */}
                         <div className="absolute left-0 top-8 h-12 w-1 rounded-r-full bg-teal-500/40" />
 
-                        <h1 className="text-xl md:text-2xl lg:text-4xl font-semibold tracking-tight text-slate-800 leading-[1.15]">
+                        <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold tracking-tight text-slate-800 leading-[1.2] sm:leading-[1.15]">
                           <span className={`inline-block ${heroVisible ? 'animate-fade-in' : 'opacity-0'}`}>
                             {Array.from("Produkcja i montaż").map((char, index) => (
                               <span
@@ -521,41 +517,75 @@ export function LandingPage() {
                             ))}
                           </span>
                         </h1>
-                        <p className="mt-6 max-w-xl text-base md:text-lg text-slate-600 leading-relaxed font-medium/80">
+                        <p className="mt-4 sm:mt-6 max-w-full text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed font-medium/80">
                           Precyzyjne elementy HVAC pod Twój projekt — od doradztwa, przez produkcję, po terminową
                           realizację i montaż. Wydajność, trwałość i jakość, która się broni w praktyce.
                         </p>
                       </div>
                     </ParallaxLayer>
 
-                    {/* CTA Buttons - depth 1.6 (foreground) */}
+                    {/* Content Grid - Stat cards left, CTA buttons right */}
                     <ParallaxLayer depth={1.6}>
-                      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 md:grid-cols-3">
-                        <HeroButton href="#kontakt">
-                          {t('landing.hero.cta_quote')}
-                        </HeroButton>
-                        <HeroButton href="#oferta" withTilt>
-                          {t('landing.hero.cta_offer')}
-                        </HeroButton>
-                        <HeroButton href="#galeria" withTilt>
-                          {t('landing.hero.cta_gallery')}
-                        </HeroButton>
-                      </div>
-                    </ParallaxLayer>
-
-                    {/* Stat cards - depth 1.6 (foreground) */}
-                    <ParallaxLayer depth={1.6}>
-                      <div className="mt-6 grid grid-cols-2 gap-2 md:grid-cols-3">
-                        <Stat value="100x100" label={t('landing.stats.min_dimension')} icon={Move3D} />
-                        <Stat value="1500" label={t('landing.stats.max_length')} icon={Ruler} />
-                        <Stat value="0.5-1.5" label={t('landing.stats.sheet_thickness')} icon={Layers} />
+                      <div className="mt-4 sm:mt-6 grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                        {/* Left column - Stat cards */}
+                        <div className="grid grid-cols-1 gap-4">
+                          <Stat value="100x100" label={t('landing.stats.min_dimension')} icon="📏" />
+                          <Stat value="1500" label={t('landing.stats.max_length')} icon="📐" />
+                          <Stat value="0.5-1.5" label={t('landing.stats.sheet_thickness')} icon="📄" />
+                        </div>
+                        
+                        {/* Right column - CTA buttons */}
+                        <div className="grid grid-cols-1 gap-4">
+                          <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
+                            <div className="group h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
+                              <div className="flex items-start gap-4">
+                                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                                  <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">💬</span>
+                                </div>
+                                <div className="flex-1">
+                                  <HeroButton href="#kontakt">
+                                    {t('landing.hero.cta_quote')}
+                                  </HeroButton>
+                                </div>
+                              </div>
+                            </div>
+                          </Motion3DTilt>
+                          <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
+                            <div className="group h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
+                              <div className="flex items-start gap-4">
+                                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                                  <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📋</span>
+                                </div>
+                                <div className="flex-1">
+                                  <HeroButton href="#oferta" withTilt>
+                                    {t('landing.hero.cta_offer')}
+                                  </HeroButton>
+                                </div>
+                              </div>
+                            </div>
+                          </Motion3DTilt>
+                          <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
+                            <div className="group h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
+                              <div className="flex items-start gap-4">
+                                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                                  <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">🖼️</span>
+                                </div>
+                                <div className="flex-1">
+                                  <HeroButton href="#galeria" withTilt>
+                                    {t('landing.hero.cta_gallery')}
+                                  </HeroButton>
+                                </div>
+                              </div>
+                            </div>
+                          </Motion3DTilt>
+                        </div>
                       </div>
                     </ParallaxLayer>
                   </div>
                 </Motion3DTilt>
               </div>
 
-              <div className="md:col-span-6 h-full min-h-[500px] md:min-h-0">
+              <div className="md:col-span-6 h-full min-h-[400px] sm:min-h-[450px] md:min-h-0">
                 <HeroCarousel />
               </div>
             </div>
@@ -563,7 +593,7 @@ export function LandingPage() {
         </section>
 
         {/* ABOUT / EXPERIENCE - Unified Panel */}
-        <section id="o-firmie" className="container py-2 md:py-1.5 md:py-2">
+        <section id="o-firmie" className="container px-4 sm:px-6 py-4 sm:py-6 md:py-2 md:py-1.5 md:py-2">
           <UnifiedPanel>
             <div className="grid gap-10 md:grid-cols-12">
               <div className="md:col-span-5">
@@ -623,21 +653,21 @@ export function LandingPage() {
               <div className="md:col-span-7 grid gap-3">
                 <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
                   <InfoCard
-                    icon={Factory}
+                    icon="🏭"
                     title={t('landing.about.production_line')}
                     description={t('landing.about.production_line_desc')}
                   />
                 </Motion3DTilt>
                 <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
                   <InfoCard
-                    icon={ShieldCheck}
+                    icon="🛡️"
                     title={t('landing.about.durability')}
                     description={t('landing.about.durability_desc')}
                   />
                 </Motion3DTilt>
                 <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
                   <InfoCard
-                    icon={Clock}
+                    icon="⏰"
                     title={t('landing.about.timeliness')}
                     description={t('landing.about.timeliness_desc')}
                   />
@@ -649,7 +679,7 @@ export function LandingPage() {
 
         {/* OFFER */}
         <section id="oferta" className="relative">
-          <div className="container py-3 md:py-2 md:py-2.5">
+          <div className="container px-4 sm:px-6 py-4 sm:py-6 md:py-2 md:py-2 md:py-2.5">
             <UnifiedPanel>
               <SectionHeading
                 eyebrow={
@@ -694,7 +724,7 @@ export function LandingPage() {
                   <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-4 md:p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
                     <div className="flex items-start gap-2 md:gap-3">
                       <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-                        <Square className="h-4 w-4 md:h-5 md:w-5 text-teal-600 transition-transform duration-2000 ease-in-out group-hover:animate-spin group-hover:scale-125" />
+                        <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">⬜</span>
                       </div>
                       <div className="flex-1">
                         <h3 className="text-base md:text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{t('landing.offer.rectangular_ducts')}</h3>
@@ -709,7 +739,7 @@ export function LandingPage() {
                   <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-4 md:p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
                     <div className="flex items-start gap-2 md:gap-3">
                       <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-                        <Box className="h-4 w-4 md:h-5 md:w-5 text-teal-600 transition-transform duration-2000 ease-in-out group-hover:animate-spin group-hover:scale-125" />
+                        <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📦</span>
                       </div>
                       <div className="flex-1">
                         <h3 className="text-base md:text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{t('landing.offer.rectangular_fittings')}</h3>
@@ -724,7 +754,7 @@ export function LandingPage() {
                   <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-4 md:p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
                     <div className="flex items-start gap-2 md:gap-3">
                       <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-                        <Circle className="h-4 w-4 md:h-5 md:w-5 text-teal-600 transition-transform duration-2000 ease-in-out group-hover:animate-spin group-hover:scale-125" />
+                        <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">⭕</span>
                       </div>
                       <div className="flex-1">
                         <h3 className="text-base md:text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{t('landing.offer.round_elements')}</h3>
@@ -741,7 +771,7 @@ export function LandingPage() {
         </section>
 
         {/* AC */}
-        <section id="klimatyzacja" className="container py-3 md:py-2 md:py-2.5">
+        <section id="klimatyzacja" className="container px-4 sm:px-6 py-4 sm:py-6 md:py-2 md:py-2 md:py-2.5">
           <UnifiedPanel>
             <div className="grid gap-10 md:grid-cols-12">
               <div className="md:col-span-7">
@@ -798,12 +828,12 @@ export function LandingPage() {
                 >
                   <div className="grid gap-4 sm:grid-cols-2">
                     <InfoCard
-                      icon={Wrench}
+                      icon="🔧"
                       title={t('landing.air_conditioning.from_selection_to_startup')}
                       description={t('landing.air_conditioning.from_selection_to_startup_desc')}
                     />
                     <InfoCard
-                      icon={BadgeCheck}
+                      icon="✅"
                       title={t('landing.air_conditioning.service_and_support')}
                       description={t('landing.air_conditioning.service_and_support_desc')}
                     />
@@ -835,7 +865,7 @@ export function LandingPage() {
         </section>
 
         {/* WHY */}
-        <section id="dlaczego" className="container py-3 md:py-2 md:py-2.5">
+        <section id="dlaczego" className="container px-4 sm:px-6 py-4 sm:py-6 md:py-2 md:py-2 md:py-2.5">
           <UnifiedPanel>
             <SectionHeading
               eyebrow={
@@ -894,33 +924,29 @@ export function LandingPage() {
                 {
                   title: t('landing.why_us.precision'),
                   desc: t('landing.why_us.precision_desc'),
-                  icon: Ruler,
+                  icon: "📏",
                 },
                 {
                   title: t('landing.why_us.individual_approach'),
                   desc: t('landing.why_us.individual_approach_desc'),
-                  icon: User,
+                  icon: "👤",
                 },
                 {
                   title: t('landing.why_us.timeliness_wu'),
                   desc: t('landing.why_us.timeliness_wu_desc'),
-                  icon: Clock,
+                  icon: "⏰",
                 },
                 {
                   title: t('landing.why_us.comprehensiveness'),
                   desc: t('landing.why_us.comprehensiveness_desc'),
-                  icon: Layers,
+                  icon: "📚",
                 },
               ].map((item) => (
                 <Motion3DTilt key={item.title} tiltMax={4} liftAmount={8}>
                   <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
                     <div className="flex items-start gap-2 md:gap-3">
                       <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-                        {item.icon ? (
-                          <item.icon className="h-5 w-5 text-teal-600 transition-transform duration-2000 ease-in-out group-hover:animate-spin" />
-                        ) : (
-                          <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">✓</span>
-                        )}
+                        <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">{item.icon}</span>
                       </div>
                       <div className="flex-1">
                         <h3 className="text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{item.title}</h3>
@@ -935,41 +961,41 @@ export function LandingPage() {
         </section>
 
         {/* GALLERY */}
-        <section id="galeria" className="container py-3 md:py-2 md:py-2.5">
+        <section id="galeria" className="container px-4 sm:px-6 py-4 sm:py-6 md:py-2 md:py-2 md:py-2.5">
           <UnifiedPanel>
-            <div className="grid gap-4 grid-cols-1 md:grid-cols-12">
+            <div className="grid gap-3 sm:gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-12">
               <GalleryTile
                 src={gallery09}
                 alt="Kanały wentylacyjne – detal"
-                className="md:col-span-7 md:row-span-2"
+                className="col-span-2 row-span-2 sm:col-span-2 sm:row-span-2 md:col-span-7 md:row-span-2"
                 onClick={() => openGallery(0)}
                 index={0}
               />
               <GalleryTile
                 src={gallery06}
                 alt="Produkcja HVAC – stanowisko"
-                className="md:col-span-5"
+                className="col-span-1 row-span-1 sm:col-span-1 sm:row-span-1 md:col-span-5"
                 onClick={() => openGallery(1)}
                 index={1}
               />
               <GalleryTile
                 src={gallery07}
                 alt="Kształtki wentylacyjne – element"
-                className="md:col-span-5"
+                className="col-span-1 row-span-1 sm:col-span-1 sm:row-span-1 md:col-span-5"
                 onClick={() => openGallery(2)}
                 index={2}
               />
               <GalleryTile
                 src={gallery08}
                 alt="Kanały i kształtki – montaż"
-                className="md:col-span-4"
+                className="col-span-1 row-span-1 sm:col-span-1 sm:row-span-1 md:col-span-4"
                 onClick={() => openGallery(3)}
                 index={3}
               />
               <GalleryTile
                 src={gallery05}
                 alt="Produkcja kanałów – linia"
-                className="md:col-span-8"
+                className="col-span-2 row-span-1 sm:col-span-2 sm:row-span-1 md:col-span-8"
                 onClick={() => openGallery(4)}
                 index={4}
               />
@@ -979,7 +1005,7 @@ export function LandingPage() {
 
         {/* CONTACT */}
         <section id="kontakt" className="relative overflow-hidden">
-          <div className="container py-3 md:py-2 md:py-2.5">
+          <div className="container px-4 sm:px-6 py-4 sm:py-6 md:py-2 md:py-2 md:py-2.5">
             <UnifiedPanel>
               <div className="grid gap-10 md:grid-cols-12">
                 <div className="md:col-span-7">
@@ -1110,7 +1136,7 @@ export function LandingPage() {
           </div>
         </section>
 
-        <footer className="mt-5 flex flex-col gap-2 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between container pb-3">
+        <footer className="mt-6 sm:mt-8 flex flex-col gap-2 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between container px-4 sm:px-6 pb-4 sm:pb-6">
           <p>{t('landing.footer.copyright', { year: new Date().getFullYear() })}</p>
           <p className="text-muted-foreground/80">{t('landing.footer.tech')}</p>
         </footer>

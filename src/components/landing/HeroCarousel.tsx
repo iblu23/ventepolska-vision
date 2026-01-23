@@ -54,18 +54,18 @@ export function HeroCarousel({ className }: { className?: string }) {
                     variant="ghost"
                     size="icon"
                     onClick={prevSlide}
-                    className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/30 text-white pointer-events-auto transition-transform hover:scale-110 active:scale-95"
+                    className="group h-10 w-10 md:h-12 md:w-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/30 text-white pointer-events-auto transition-transform hover:scale-110 active:scale-95"
                 >
-                    <ChevronLeft className="h-6 w-6" />
+                    <ChevronLeft className="h-6 w-6 transition-transform duration-2000 ease-in-out group-hover:animate-spin" />
                 </Button>
 
                 <Button
                     variant="ghost"
                     size="icon"
                     onClick={nextSlide}
-                    className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/30 text-white pointer-events-auto transition-transform hover:scale-110 active:scale-95"
+                    className="group h-10 w-10 md:h-12 md:w-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/30 text-white pointer-events-auto transition-transform hover:scale-110 active:scale-95"
                 >
-                    <ChevronRight className="h-6 w-6" />
+                    <ChevronRight className="h-6 w-6 transition-transform duration-2000 ease-in-out group-hover:animate-spin" />
                 </Button>
             </div>
 
@@ -76,7 +76,7 @@ export function HeroCarousel({ className }: { className?: string }) {
                         key={index}
                         onClick={() => setCurrentIndex(index)}
                         className={cn(
-                            "h-2 w-2 rounded-full transition-all duration-300 shadow-sm",
+                            "h-2 w-2 rounded-full transition-all duration-300 shadow-sm transition-transform duration-2000 ease-in-out group-hover:animate-spin",
                             index === currentIndex
                                 ? "bg-white w-6"
                                 : "bg-white/50 hover:bg-white/80"
