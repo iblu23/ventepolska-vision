@@ -28,12 +28,16 @@ export function LandingHeader() {
     <header className="sticky top-0 z-50">
       <div className="border-b border-border/60 bg-background/70 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-24 items-center justify-between gap-4">
-          <a href="#" className="group flex items-center">
+          <a href="#" className="group flex items-center gap-3">
             <img
               src="/logo-brand.png"
               alt="Vente Polska Logo"
               className="h-20 w-auto object-contain transition-transform group-hover:scale-105"
             />
+            <div className="leading-tight">
+              <p className="text-sm font-semibold text-slate-800">Vente Polska</p>
+              <p className="text-xs text-muted-foreground">HVAC • produkcja i montaż</p>
+            </div>
           </a>
 
           <nav className="hidden items-center gap-6 md:flex">
