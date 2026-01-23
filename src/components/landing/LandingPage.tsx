@@ -7,6 +7,7 @@ import { Motion3DTilt, ParallaxLayer } from "@/components/landing/Motion3DTilt";
 import { HeroCarousel } from "@/components/landing/HeroCarousel";
 import { HeroButton } from "@/components/landing/HeroButton";
 import { LanguageToggle } from "@/components/ui/LanguageToggle";
+import SplashCursor from "@/components/SplashCursor";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect, useCallback, useMemo, memo } from "react";
 import heroImage from "@/assets/vente-hero.jpg";
@@ -316,6 +317,7 @@ export function LandingPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SplashCursor />
       <FullscreenGallery
         isOpen={isGalleryOpen}
         currentIndex={currentImageIndex}
