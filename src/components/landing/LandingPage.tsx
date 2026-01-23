@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ArrowRight, BadgeCheck, Clock, Factory, ShieldCheck, Wrench, X, ChevronLeft, ChevronRight, Move3D, Ruler, Layers, Target, Zap, Settings, Compass, Focus, User, Users, Hand, Heart, Star, Award, Crown, Combine, Package, Box, Grid, Puzzle, Network, GitBranch, Square, Container, PackageOpen, Minimize2, Maximize2, Circle, Mail, Phone, Globe, Smartphone } from "lucide-react";
 import { GlowGridBackdrop } from "@/components/landing/GlowGridBackdrop";
+import { MeshGradient, FloatingOrbs } from "@/components/landing/ModernBackgrounds";
 import { SectionHeading } from "@/components/landing/SectionHeading";
 import { Motion3DTilt, ParallaxLayer } from "@/components/landing/Motion3DTilt";
 import { HeroCarousel } from "@/components/landing/HeroCarousel";
@@ -441,9 +442,8 @@ export function LandingPage() {
       <main>
         {/* HERO */}
         <section id="hero" className="relative overflow-hidden">
-          <GlowGridBackdrop />
           <div className="container relative z-10 py-4 md:py-6 lg:py-8">
-            <div className="grid items-center gap-10 md:grid-cols-12">
+            <div className="grid items-center gap-6 md:grid-cols-12">
               <div className="md:col-span-6 animate-fade-in">
                 <Motion3DTilt tiltMax={5} liftAmount={12} className="h-full">
                   {/* Panel with matte glass + aqua rim border */}
@@ -530,7 +530,7 @@ export function LandingPage() {
 
                     {/* CTA Buttons - depth 1.6 (foreground) */}
                     <ParallaxLayer depth={1.6}>
-                      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 md:grid-cols-3">
+                      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 md:grid-cols-3">
                         <HeroButton href="#kontakt">
                           {t('landing.hero.cta_quote')}
                         </HeroButton>
@@ -545,7 +545,7 @@ export function LandingPage() {
 
                     {/* Stat cards - depth 1.6 (foreground) */}
                     <ParallaxLayer depth={1.6}>
-                      <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3">
+                      <div className="mt-6 grid grid-cols-2 gap-2 md:grid-cols-3">
                         <Stat value="100x100" label={t('landing.stats.min_dimension')} icon={Move3D} />
                         <Stat value="1500" label={t('landing.stats.max_length')} icon={Ruler} />
                         <Stat value="0.5-1.5" label={t('landing.stats.sheet_thickness')} icon={Layers} />
@@ -563,7 +563,7 @@ export function LandingPage() {
         </section>
 
         {/* ABOUT / EXPERIENCE - Unified Panel */}
-        <section id="o-firmie" className="container py-6 md:py-4 md:py-5">
+        <section id="o-firmie" className="container py-2 md:py-1.5 md:py-2">
           <UnifiedPanel>
             <div className="grid gap-10 md:grid-cols-12">
               <div className="md:col-span-5">
@@ -620,7 +620,7 @@ export function LandingPage() {
                   description={t('landing.about.description')}
                 />
               </div>
-              <div className="md:col-span-7 grid gap-4">
+              <div className="md:col-span-7 grid gap-3">
                 <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
                   <InfoCard
                     icon={Factory}
@@ -649,7 +649,7 @@ export function LandingPage() {
 
         {/* OFFER */}
         <section id="oferta" className="relative">
-          <div className="container py-6 md:py-4 md:py-5">
+          <div className="container py-3 md:py-2 md:py-2.5">
             <UnifiedPanel>
               <SectionHeading
                 eyebrow={
@@ -689,10 +689,10 @@ export function LandingPage() {
                 description={t('landing.offer.description')}
               />
 
-              <div className="mt-10 grid gap-4 md:grid-cols-3 sm:grid-cols-2">
+              <div className="mt-8 grid gap-3 md:grid-cols-3 sm:grid-cols-2">
                 <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
                   <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-4 md:p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
-                    <div className="flex items-start gap-3 md:gap-4">
+                    <div className="flex items-start gap-2 md:gap-3">
                       <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
                         <Square className="h-4 w-4 md:h-5 md:w-5 text-teal-600 transition-transform duration-2000 ease-in-out group-hover:animate-spin group-hover:scale-125" />
                       </div>
@@ -707,7 +707,7 @@ export function LandingPage() {
                 </Motion3DTilt>
                 <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
                   <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-4 md:p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
-                    <div className="flex items-start gap-3 md:gap-4">
+                    <div className="flex items-start gap-2 md:gap-3">
                       <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
                         <Box className="h-4 w-4 md:h-5 md:w-5 text-teal-600 transition-transform duration-2000 ease-in-out group-hover:animate-spin group-hover:scale-125" />
                       </div>
@@ -722,7 +722,7 @@ export function LandingPage() {
                 </Motion3DTilt>
                 <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
                   <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-4 md:p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
-                    <div className="flex items-start gap-3 md:gap-4">
+                    <div className="flex items-start gap-2 md:gap-3">
                       <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
                         <Circle className="h-4 w-4 md:h-5 md:w-5 text-teal-600 transition-transform duration-2000 ease-in-out group-hover:animate-spin group-hover:scale-125" />
                       </div>
@@ -741,7 +741,7 @@ export function LandingPage() {
         </section>
 
         {/* AC */}
-        <section id="klimatyzacja" className="container py-6 md:py-4 md:py-5">
+        <section id="klimatyzacja" className="container py-3 md:py-2 md:py-2.5">
           <UnifiedPanel>
             <div className="grid gap-10 md:grid-cols-12">
               <div className="md:col-span-7">
@@ -835,7 +835,7 @@ export function LandingPage() {
         </section>
 
         {/* WHY */}
-        <section id="dlaczego" className="container py-6 md:py-4 md:py-5">
+        <section id="dlaczego" className="container py-3 md:py-2 md:py-2.5">
           <UnifiedPanel>
             <SectionHeading
               eyebrow={
@@ -914,7 +914,7 @@ export function LandingPage() {
               ].map((item) => (
                 <Motion3DTilt key={item.title} tiltMax={4} liftAmount={8}>
                   <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
-                    <div className="flex items-start gap-3 md:gap-4">
+                    <div className="flex items-start gap-2 md:gap-3">
                       <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
                         {item.icon ? (
                           <item.icon className="h-5 w-5 text-teal-600 transition-transform duration-2000 ease-in-out group-hover:animate-spin" />
@@ -935,7 +935,7 @@ export function LandingPage() {
         </section>
 
         {/* GALLERY */}
-        <section id="galeria" className="container py-6 md:py-4 md:py-5">
+        <section id="galeria" className="container py-3 md:py-2 md:py-2.5">
           <UnifiedPanel>
             <div className="grid gap-4 grid-cols-1 md:grid-cols-12">
               <GalleryTile
@@ -979,7 +979,7 @@ export function LandingPage() {
 
         {/* CONTACT */}
         <section id="kontakt" className="relative overflow-hidden">
-          <div className="container py-6 md:py-4 md:py-5">
+          <div className="container py-3 md:py-2 md:py-2.5">
             <UnifiedPanel>
               <div className="grid gap-10 md:grid-cols-12">
                 <div className="md:col-span-7">
@@ -1023,7 +1023,7 @@ export function LandingPage() {
                       </p>
                       <div className="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2">
                         <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
-                          <div className="flex items-start gap-3 md:gap-4">
+                          <div className="flex items-start gap-2 md:gap-3">
                             <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
                               <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📧</span>
                             </div>
@@ -1036,7 +1036,7 @@ export function LandingPage() {
                           </div>
                         </div>
                         <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
-                          <div className="flex items-start gap-3 md:gap-4">
+                          <div className="flex items-start gap-2 md:gap-3">
                             <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
                               <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📞</span>
                             </div>
@@ -1049,7 +1049,7 @@ export function LandingPage() {
                           </div>
                         </div>
                         <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
-                          <div className="flex items-start gap-3 md:gap-4">
+                          <div className="flex items-start gap-2 md:gap-3">
                             <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
                               <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📱</span>
                             </div>
@@ -1062,7 +1062,7 @@ export function LandingPage() {
                           </div>
                         </div>
                         <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
-                          <div className="flex items-start gap-3 md:gap-4">
+                          <div className="flex items-start gap-2 md:gap-3">
                             <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
                               <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">🌐</span>
                             </div>
@@ -1083,7 +1083,7 @@ export function LandingPage() {
                 <div className="md:col-span-5">
                   <Motion3DTilt tiltMax={4} liftAmount={8}>
                     <div className="group h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
-                      <div className="flex items-start gap-3 md:gap-4">
+                      <div className="flex items-start gap-2 md:gap-3">
                         <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
                           <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">💬</span>
                         </div>
@@ -1110,7 +1110,7 @@ export function LandingPage() {
           </div>
         </section>
 
-        <footer className="mt-10 flex flex-col gap-2 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between container pb-6">
+        <footer className="mt-5 flex flex-col gap-2 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between container pb-3">
           <p>{t('landing.footer.copyright', { year: new Date().getFullYear() })}</p>
           <p className="text-muted-foreground/80">{t('landing.footer.tech')}</p>
         </footer>
