@@ -587,16 +587,16 @@ export function LandingPage() {
                 description={t('landing.offer.description')}
               />
 
-              <div className="mt-10 grid gap-4 md:grid-cols-3">
+              <div className="mt-10 grid gap-4 md:grid-cols-3 sm:grid-cols-2">
                 <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
-                  <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
-                    <div className="flex items-start gap-4">
-                      <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-                        <Square className="h-5 w-5 text-teal-600 transition-transform duration-2000 ease-in-out group-hover:animate-spin group-hover:scale-125" />
+                  <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-4 md:p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
+                    <div className="flex items-start gap-3 md:gap-4">
+                      <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                        <Square className="h-4 w-4 md:h-5 md:w-5 text-teal-600 transition-transform duration-2000 ease-in-out group-hover:animate-spin group-hover:scale-125" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{t('landing.offer.rectangular_ducts')}</h3>
-                        <ul className="mt-3 space-y-2 text-sm text-slate-500 transition-all duration-300 group-hover:text-slate-600">
+                        <h3 className="text-base md:text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{t('landing.offer.rectangular_ducts')}</h3>
+                        <ul className="mt-2 md:mt-3 space-y-1 md:space-y-2 text-xs md:text-sm text-slate-500 transition-all duration-300 group-hover:text-slate-600">
                           <li>{t('landing.offer.rectangular_ducts_list')}</li>
                         </ul>
                       </div>
@@ -604,14 +604,14 @@ export function LandingPage() {
                   </div>
                 </Motion3DTilt>
                 <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
-                  <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
-                    <div className="flex items-start gap-4">
-                      <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-                        <Box className="h-5 w-5 text-teal-600 transition-transform duration-2000 ease-in-out group-hover:animate-spin group-hover:scale-125" />
+                  <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-4 md:p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
+                    <div className="flex items-start gap-3 md:gap-4">
+                      <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                        <Box className="h-4 w-4 md:h-5 md:w-5 text-teal-600 transition-transform duration-2000 ease-in-out group-hover:animate-spin group-hover:scale-125" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{t('landing.offer.rectangular_fittings')}</h3>
-                        <ul className="mt-3 space-y-2 text-sm text-slate-500 transition-all duration-300 group-hover:text-slate-600">
+                        <h3 className="text-base md:text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{t('landing.offer.rectangular_fittings')}</h3>
+                        <ul className="mt-2 md:mt-3 space-y-1 md:space-y-2 text-xs md:text-sm text-slate-500 transition-all duration-300 group-hover:text-slate-600">
                           <li>{t('landing.offer.rectangular_fittings_list')}</li>
                         </ul>
                       </div>
@@ -619,14 +619,14 @@ export function LandingPage() {
                   </div>
                 </Motion3DTilt>
                 <Motion3DTilt tiltMax={4} liftAmount={8} className="h-full">
-                  <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
-                    <div className="flex items-start gap-4">
-                      <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
-                        <Circle className="h-5 w-5 text-teal-600 transition-transform duration-2000 ease-in-out group-hover:animate-spin group-hover:scale-125" />
+                  <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-4 md:p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 hover:-translate-y-2 hover:scale-105">
+                    <div className="flex items-start gap-3 md:gap-4">
+                      <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                        <Circle className="h-4 w-4 md:h-5 md:w-5 text-teal-600 transition-transform duration-2000 ease-in-out group-hover:animate-spin group-hover:scale-125" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{t('landing.offer.round_elements')}</h3>
-                        <ul className="mt-3 space-y-2 text-sm text-slate-500 transition-all duration-300 group-hover:text-slate-600">
+                        <h3 className="text-base md:text-lg font-semibold text-slate-800 transition-all duration-300 group-hover:text-slate-900">{t('landing.offer.round_elements')}</h3>
+                        <ul className="mt-2 md:mt-3 space-y-1 md:space-y-2 text-xs md:text-sm text-slate-500 transition-all duration-300 group-hover:text-slate-600">
                           <li>{t('landing.offer.round_elements_list')}</li>
                         </ul>
                       </div>
@@ -812,8 +812,8 @@ export function LandingPage() {
               ].map((item) => (
                 <Motion3DTilt key={item.title} tiltMax={4} liftAmount={8}>
                   <div className="group h-full rounded-2xl border border-teal-200/50 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
-                    <div className="flex items-start gap-4">
-                      <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                    <div className="flex items-start gap-3 md:gap-4">
+                      <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
                         {item.icon ? (
                           <item.icon className="h-5 w-5 text-teal-600 transition-transform duration-2000 ease-in-out group-hover:animate-spin" />
                         ) : (
@@ -921,8 +921,8 @@ export function LandingPage() {
                       </p>
                       <div className="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2">
                         <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
-                          <div className="flex items-start gap-4">
-                            <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                          <div className="flex items-start gap-3 md:gap-4">
+                            <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
                               <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📧</span>
                             </div>
                             <div className="flex-1">
@@ -934,8 +934,8 @@ export function LandingPage() {
                           </div>
                         </div>
                         <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
-                          <div className="flex items-start gap-4">
-                            <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                          <div className="flex items-start gap-3 md:gap-4">
+                            <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
                               <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📞</span>
                             </div>
                             <div className="flex-1">
@@ -947,8 +947,8 @@ export function LandingPage() {
                           </div>
                         </div>
                         <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
-                          <div className="flex items-start gap-4">
-                            <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                          <div className="flex items-start gap-3 md:gap-4">
+                            <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
                               <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">📱</span>
                             </div>
                             <div className="flex-1">
@@ -960,8 +960,8 @@ export function LandingPage() {
                           </div>
                         </div>
                         <div className="group rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-teal-500/30 hover:border-teal-300/80 hover:-translate-y-3 hover:scale-[1.03]">
-                          <div className="flex items-start gap-4">
-                            <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                          <div className="flex items-start gap-3 md:gap-4">
+                            <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
                               <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">🌐</span>
                             </div>
                             <div className="flex-1">
@@ -981,8 +981,8 @@ export function LandingPage() {
                 <div className="md:col-span-5">
                   <Motion3DTilt tiltMax={4} liftAmount={8}>
                     <div className="group h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:shadow-xl hover:shadow-teal-500/20 hover:border-teal-300/80 md:hover:shadow-2xl md:hover:shadow-teal-500/30 md:hover:-translate-y-3 md:hover:scale-[1.03]">
-                      <div className="flex items-start gap-4">
-                        <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
+                      <div className="flex items-start gap-3 md:gap-4">
+                        <div className="grid h-10 w-10 md:h-11 md:w-11 shrink-0 place-items-center rounded-xl bg-teal-100/80 text-teal-600 transition-all duration-300 group-hover:bg-teal-200/90">
                           <span className="text-lg font-semibold transition-transform duration-2000 ease-in-out group-hover:animate-spin">💬</span>
                         </div>
                         <div className="flex-1">
