@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ArrowRight, BadgeCheck, Clock, Factory, ShieldCheck, Wrench, X, ChevronLeft, ChevronRight, Move3D, Ruler, Layers, Target, Zap, Settings, Compass, Focus, User, Users, Hand, Heart, Star, Award, Crown, Combine, Package, Box, Grid, Puzzle, Network, GitBranch, Square, Container, PackageOpen, Minimize2, Maximize2, Circle } from "lucide-react";
+import { ArrowRight, BadgeCheck, Clock, Factory, ShieldCheck, Wrench, X, ChevronLeft, ChevronRight, Move3D, Ruler, Layers, Target, Zap, Settings, Compass, Focus, User, Users, Hand, Heart, Star, Award, Crown, Combine, Package, Box, Grid, Puzzle, Network, GitBranch, Square, Container, PackageOpen, Minimize2, Maximize2, Circle, Mail, Phone, Globe, Smartphone } from "lucide-react";
 import { GlowGridBackdrop } from "@/components/landing/GlowGridBackdrop";
 import { SectionHeading } from "@/components/landing/SectionHeading";
 import { Motion3DTilt, ParallaxLayer } from "@/components/landing/Motion3DTilt";
@@ -9,7 +9,7 @@ import { HeroButton } from "@/components/landing/HeroButton";
 import { LanguageToggle } from "@/components/ui/LanguageToggle";
 import WindEffect from "@/components/landing/WindEffect";
 import { useTranslation } from "react-i18next";
-import { useState, useEffect, useCallback, useMemo, memo } from "react";
+import { useState, useEffect, useCallback, useMemo, memo, useRef } from "react";
 import heroImage from "@/assets/vente-hero.jpg";
 import gallery05 from "@/assets/gallery-05.jpg";
 import gallery06 from "@/assets/gallery-06.jpg";
@@ -233,6 +233,32 @@ export function LandingPage() {
   const [acVisible, setAcVisible] = useState(false);
   const [whyVisible, setWhyVisible] = useState(false);
   const [contactVisible, setContactVisible] = useState(false);
+  const [sparks, setSparks] = useState<Array<{ id: number; x: number; y: number }>>([]);
+  const sparkIdRef = useRef(0);
+
+  // Global click handler for sparks
+  const handleGlobalClick = useCallback((e: MouseEvent) => {
+    const newSpark = {
+      id: sparkIdRef.current++,
+      x: e.clientX,
+      y: e.clientY
+    };
+    
+    setSparks(prev => [...prev, newSpark]);
+    
+    // Remove spark after animation
+    setTimeout(() => {
+      setSparks(prev => prev.filter(spark => spark.id !== newSpark.id));
+    }, 600);
+  }, []);
+
+  // Add global click listener
+  useEffect(() => {
+    document.addEventListener('click', handleGlobalClick);
+    return () => {
+      document.removeEventListener('click', handleGlobalClick);
+    };
+  }, [handleGlobalClick]);
 
   // Intersection observer for scroll-triggered animations
   useEffect(() => {
@@ -329,6 +355,39 @@ export function LandingPage() {
   return (
     <div className="min-h-screen bg-sky-50">
       <WindEffect />
+      {/* Global ClickSpark Container */}
+      {sparks.map(spark => (
+        <div
+          key={spark.id}
+          className="click-spark"
+          style={{
+            position: 'fixed',
+            left: spark.x,
+            top: spark.y,
+            transform: 'translate(-50%, -50%)',
+            pointerEvents: 'none',
+            zIndex: 9999
+          }}
+        >
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+              className="spark-line"
+              style={{
+                position: 'absolute',
+                width: '2px',
+                height: '20px',
+                background: 'linear-gradient(to bottom, #14b8a6, #0d9488, #5eead4)',
+                left: '50%',
+                top: '50%',
+                transformOrigin: 'center bottom',
+                transform: `translateX(-50%) rotate(${i * 45}deg)`,
+                animation: 'spark-expand 0.6s ease-out forwards'
+              }}
+            />
+          ))}
+        </div>
+      ))}
       <FullscreenGallery
         isOpen={isGalleryOpen}
         currentIndex={currentImageIndex}
@@ -340,7 +399,7 @@ export function LandingPage() {
         {/* HERO */}
         <section id="hero" className="relative overflow-hidden">
           <GlowGridBackdrop />
-          <div className="container relative py-4 md:py-6 lg:py-8">
+          <div className="container relative z-10 py-4 md:py-6 lg:py-8">
             <div className="grid items-center gap-10 md:grid-cols-12">
               <div className="md:col-span-6 animate-fade-in">
                 <Motion3DTilt tiltMax={5} liftAmount={12} className="h-full">
@@ -787,7 +846,7 @@ export function LandingPage() {
               description={t('landing.why_us.description')}
             />
 
-            <div className="mt-10 grid gap-4 md:grid-cols-2">
+            <div className="mt-10 grid gap-2 md:gap-3 md:grid-cols-2">
               {[
                 {
                   title: t('landing.why_us.precision'),
