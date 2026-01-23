@@ -194,7 +194,7 @@ GalleryTile.displayName = "GalleryTile";
 
 // Unified Panel style - moved to constant to prevent recreation on every render
 const unifiedPanelStyle = {
-  background: "linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(240, 253, 250, 0.7) 100%)"
+  background: "linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(240, 253, 250, 1) 100%)"
 };
 const UnifiedPanel = memo(({ children, className }: { children: React.ReactNode; className?: string }) => (
   <Motion3DTilt className={cn("h-full", className)}>
@@ -845,7 +845,7 @@ export function LandingPage() {
 
                 <div className="md:col-span-5">
                   <Motion3DTilt tiltMax={4} liftAmount={8}>
-                    <div className="rounded-2xl border border-teal-200/50 bg-white/80 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
+                    <div className="h-full rounded-xl border border-teal-200/50 bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10 hover:border-teal-300/60">
                       <p className="text-sm text-muted-foreground">{t('landing.contact.quick_message')}</p>
                       <p className="mt-2 text-sm text-slate-500 leading-relaxed">
                         {t('landing.contact.prototype_note')}

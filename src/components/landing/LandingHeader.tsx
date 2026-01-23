@@ -29,7 +29,7 @@ export function LandingHeader() {
 
   return (
     <header className="sticky top-0 z-50">
-      <div className="border-b border-border/60 bg-background/80">
+      <div className="border-b border-border/60 bg-background">
         <div className="container flex h-16 md:h-20 lg:h-24 items-center justify-between gap-2 md:gap-4">
           <a href="#" className="group flex items-center gap-3">
             <img
@@ -59,52 +59,17 @@ export function LandingHeader() {
                   </span>
                   
                   
-                  {/* Hover effects */}
-                  <div className="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-300 group-hover:border-teal-500/60 group-hover:shadow-[0_0_30px_rgba(20,184,166,0.6),0_0_60px_rgba(20,184,166,0.3)] group-hover:transform-gpu"
+                  {/* Panel background */}
+                  <div className="absolute inset-0 rounded-xl border border-teal-200/50 bg-white shadow-lg shadow-teal-500/5 transition-all duration-300 group-hover:border-teal-300/60 group-hover:shadow-teal-500/20"
                     style={{
-                      transform: 'translateZ(-25px) translateZ(0px)',
-                      transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                      background: "linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(240,253,250,1) 100%)",
+                      transform: 'translateZ(-20px)',
                     }}
                   />
                   
                   {/* Active click state */}
                   <div className="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-150 active:border-teal-500/80 active:shadow-[0_0_40px_rgba(20,184,166,0.8),0_0_80px_rgba(20,184,166,0.4)] active:transform-gpu"
-                    style={{
-                      transform: 'translateZ(-35px) translateZ(0px)',
-                    }}
                   />
-                  
-                  {/* Volumetric edge glow */}
-                  <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <div className="absolute inset-0 rounded-xl border-2 border-teal-500/40 shadow-[0_0_20px_rgba(20,184,166,0.8),inset_0_0_20px_rgba(20,184,166,0.2)]"
-                      style={{
-                        filter: 'blur(2px)',
-                      }}
-                    />
-                  </div>
-                  
-                  {/* Glass reflection ripple */}
-                  <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-transparent via-white/20 to-transparent transform scale-0 group-hover:scale-150 transition-transform duration-700"
-                      style={{
-                        transformOrigin: 'center',
-                      }}
-                    />
-                  </div>
-                  
-                  {/* Lens flare */}
-                  <div className="absolute inset-0 rounded-xl overflow-hidden opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <div className="absolute top-1/2 left-1/2 w-8 h-8 -translate-x-1/2 -translate-y-1/2 bg-gradient-radial from-teal-300/40 via-teal-200/20 to-transparent animate-pulse" />
-                  </div>
-                  
-                  {/* Circuit patterns */}
-                  <div className="absolute inset-0 rounded-xl opacity-10 transition-opacity duration-300">
-                    <div className="absolute inset-0 rounded-xl"
-                      style={{
-                        backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(20,184,166,0.1) 2px, rgba(20,184,166,0.1) 4px)`,
-                      }}
-                    />
-                  </div>
                 </a>
               </div>
             ))}
@@ -127,11 +92,11 @@ export function LandingHeader() {
                   </span>
                   
                   
-                  {/* Hover effects */}
-                  <div className="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-300 group-hover:border-teal-500/60 group-hover:shadow-[0_0_30px_rgba(20,184,166,0.6),0_0_60px_rgba(20,184,166,0.3)] group-hover:transform-gpu"
+                  {/* Panel background */}
+                  <div className="absolute inset-0 rounded-xl border border-teal-200/50 bg-white shadow-lg shadow-teal-500/5 transition-all duration-300 group-hover:border-teal-300/60 group-hover:shadow-teal-500/20"
                     style={{
-                      transform: 'translateZ(-25px) translateZ(0px)',
-                      transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                      background: "linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(240,253,250,1) 100%)",
+                      transform: 'translateZ(-20px)',
                     }}
                   />
                   
