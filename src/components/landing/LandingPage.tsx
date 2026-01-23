@@ -812,25 +812,25 @@ export function LandingPage() {
                         <div className="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2">
                           <div className="rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm">
                             <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider">E-mail</p>
-                            <a className="mt-2 block text-lg font-semibold text-slate-800 hover:text-teal-600 transition-colors hover:underline" href="mailto:biuro@ventepolska.pl">
+                            <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="mailto:biuro@ventepolska.pl">
                               biuro@ventepolska.pl
                             </a>
                           </div>
                           <div className="rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm">
                             <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider">Dział Wentylacji</p>
-                            <a className="mt-2 block text-lg font-semibold text-slate-800 hover:text-teal-600 transition-colors hover:underline" href="tel:+48796201999">
+                            <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="tel:+48796201999">
                               796 201 999
                             </a>
                           </div>
                           <div className="rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm">
                             <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider">Dział Klimatyzacji</p>
-                            <a className="mt-2 block text-lg font-semibold text-slate-800 hover:text-teal-600 transition-colors hover:underline" href="tel:+48509088215">
+                            <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="tel:+48509088215">
                               509 088 215
                             </a>
                           </div>
                           <div className="rounded-2xl bg-teal-50/50 p-5 border border-teal-100/50 shadow-sm">
                             <p className="text-sm font-medium text-teal-700/80 uppercase tracking-wider">Strona</p>
-                            <a className="mt-2 block text-lg font-semibold text-slate-800 hover:text-teal-600 transition-colors hover:underline" href="https://ventepolska.pl/" target="_blank" rel="noreferrer">
+                            <a className="mt-2 block text-lg font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent hover:text-teal-600 transition-colors hover:underline" href="https://ventepolska.pl/" target="_blank" rel="noreferrer">
                               ventepolska.pl
                             </a>
                           </div>
