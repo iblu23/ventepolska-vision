@@ -1,16 +1,115 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ArrowRight, BadgeCheck, Clock, Factory, ShieldCheck, Wrench } from "lucide-react";
+import { ArrowRight, BadgeCheck, Clock, Factory, ShieldCheck, Wrench, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { GlowGridBackdrop } from "@/components/landing/GlowGridBackdrop";
 import { SectionHeading } from "@/components/landing/SectionHeading";
 import { Motion3DTilt, ParallaxLayer } from "@/components/landing/Motion3DTilt";
 import { HeroCarousel } from "@/components/landing/HeroCarousel";
+import { useState, useEffect } from "react";
 import heroImage from "@/assets/vente-hero.jpg";
 import gallery05 from "@/assets/gallery-05.jpg";
 import gallery06 from "@/assets/gallery-06.jpg";
 import gallery07 from "@/assets/gallery-07.jpg";
 import gallery08 from "@/assets/gallery-08.jpg";
 import gallery09 from "@/assets/gallery-09.jpg";
+
+// Gallery images array
+const galleryImages = [
+  { src: gallery05, alt: "Gallery Image 1" },
+  { src: gallery06, alt: "Gallery Image 2" },
+  { src: gallery07, alt: "Gallery Image 3" },
+  { src: gallery08, alt: "Gallery Image 4" },
+  { src: gallery09, alt: "Gallery Image 5" },
+];
+
+function FullscreenGallery({ 
+  isOpen, 
+  currentIndex, 
+  onClose, 
+  onPrevious, 
+  onNext 
+}: {
+  isOpen: boolean;
+  currentIndex: number;
+  onClose: () => void;
+  onPrevious: () => void;
+  onNext: () => void;
+}) {
+  if (!isOpen) return null;
+
+  const currentImage = galleryImages[currentIndex];
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm">
+      {/* Close button */}
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-4 z-10 rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
+        aria-label="Close gallery"
+      >
+        <X className="h-6 w-6" />
+      </button>
+
+      {/* Previous button */}
+      <button
+        onClick={onPrevious}
+        className="absolute left-4 z-10 rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
+        aria-label="Previous image"
+      >
+        <ChevronLeft className="h-6 w-6" />
+      </button>
+
+      {/* Next button */}
+      <button
+        onClick={onNext}
+        className="absolute right-4 z-10 rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
+        aria-label="Next image"
+      >
+        <ChevronRight className="h-6 w-6" />
+      </button>
+
+      {/* Image counter */}
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 rounded-full bg-white/10 px-3 py-1 text-sm text-white">
+        {currentIndex + 1} / {galleryImages.length}
+      </div>
+
+      {/* Main image */}
+      <div className="relative max-h-[90vh] max-w-[90vw]">
+        <img
+          src={currentImage.src}
+          alt={currentImage.alt}
+          className="h-auto w-auto max-h-[90vh] max-w-[90vw] object-contain"
+        />
+      </div>
+
+      {/* Thumbnail strip */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 rounded-lg bg-black/50 p-2">
+        {galleryImages.map((image, index) => (
+          <button
+            key={index}
+            onClick={() => {
+              // This will be handled by parent component
+              const event = new CustomEvent('goToImage', { detail: index });
+              window.dispatchEvent(event);
+            }}
+            className={cn(
+              "h-12 w-12 overflow-hidden rounded border-2 transition-all",
+              index === currentIndex
+                ? "border-teal-400 opacity-100"
+                : "border-transparent opacity-60 hover:opacity-80"
+            )}
+          >
+            <img
+              src={image.src}
+              alt={image.alt}
+              className="h-full w-full object-cover"
+            />
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function Stat({ value, label }: { value: string; label: string }) {
   return (
@@ -51,17 +150,41 @@ function InfoCard({
 
 
 
-function GalleryTile({ src, alt, className }: { src: string; alt: string; className?: string }) {
+function GalleryTile({ 
+  src, 
+  alt, 
+  className, 
+  onClick, 
+  index 
+}: { 
+  src: string; 
+  alt: string; 
+  className?: string;
+  onClick?: () => void;
+  index?: number;
+}) {
   return (
     <Motion3DTilt tiltMax={3} liftAmount={6} className={cn("h-full", className)}>
-      <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-card shadow-card h-full">
+      <div 
+        className="relative overflow-hidden rounded-2xl border border-border/60 bg-card shadow-card h-full cursor-pointer group"
+        onClick={onClick}
+      >
         <img
           src={src}
           alt={alt}
           loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-500 will-change-transform hover:scale-[1.04]"
+          className="h-full w-full object-cover transition-transform duration-500 will-change-transform group-hover:scale-[1.04]"
         />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+        
+        {/* Hover overlay with view hint */}
+        <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20 flex items-center justify-center">
+          <div className="opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <div className="rounded-full bg-white/90 p-2">
+              <ArrowRight className="h-4 w-4 text-slate-800" />
+            </div>
+          </div>
+        </div>
       </div>
     </Motion3DTilt>
   );
@@ -86,8 +209,75 @@ function UnifiedPanel({ children, className }: { children: React.ReactNode; clas
 
 
 export function LandingPage() {
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const openGallery = (index: number) => {
+    setCurrentImageIndex(index);
+    setIsGalleryOpen(true);
+  };
+
+  const closeGallery = () => {
+    setIsGalleryOpen(false);
+  };
+
+  const goToPrevious = () => {
+    setCurrentImageIndex((prev) => 
+      prev === 0 ? galleryImages.length - 1 : prev - 1
+    );
+  };
+
+  const goToNext = () => {
+    setCurrentImageIndex((prev) => 
+      prev === galleryImages.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  // Handle custom event for thumbnail navigation
+  useEffect(() => {
+    const handleGoToImage = (event: CustomEvent) => {
+      setCurrentImageIndex(event.detail);
+    };
+
+    window.addEventListener('goToImage', handleGoToImage as EventListener);
+    return () => {
+      window.removeEventListener('goToImage', handleGoToImage as EventListener);
+    };
+  }, []);
+
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!isGalleryOpen) return;
+      
+      switch (event.key) {
+        case 'Escape':
+          closeGallery();
+          break;
+        case 'ArrowLeft':
+          goToPrevious();
+          break;
+        case 'ArrowRight':
+          goToNext();
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isGalleryOpen]);
+
   return (
     <div className="min-h-screen bg-background">
+      <FullscreenGallery
+        isOpen={isGalleryOpen}
+        currentIndex={currentImageIndex}
+        onClose={closeGallery}
+        onPrevious={goToPrevious}
+        onNext={goToNext}
+      />
       <main>
         {/* HERO */}
         <section className="relative overflow-hidden">
@@ -566,11 +756,41 @@ export function LandingPage() {
                 description="Kilka ujęć z produkcji i elementów HVAC — jakość widać w detalach."
               />
               <div className="mt-10 grid gap-4 md:grid-cols-12">
-                <GalleryTile src={gallery09} alt="Kanały wentylacyjne – detal" className="md:col-span-7 md:row-span-2" />
-                <GalleryTile src={gallery06} alt="Produkcja HVAC – stanowisko" className="md:col-span-5" />
-                <GalleryTile src={gallery07} alt="Kształtki wentylacyjne – element" className="md:col-span-5" />
-                <GalleryTile src={gallery08} alt="Kanały i kształtki – montaż" className="md:col-span-4" />
-                <GalleryTile src={gallery05} alt="Produkcja kanałów – linia" className="md:col-span-8" />
+                <GalleryTile 
+                  src={gallery09} 
+                  alt="Kanały wentylacyjne – detal" 
+                  className="md:col-span-7 md:row-span-2"
+                  onClick={() => openGallery(0)}
+                  index={0}
+                />
+                <GalleryTile 
+                  src={gallery06} 
+                  alt="Produkcja HVAC – stanowisko" 
+                  className="md:col-span-5"
+                  onClick={() => openGallery(1)}
+                  index={1}
+                />
+                <GalleryTile 
+                  src={gallery07} 
+                  alt="Kształtki wentylacyjne – element" 
+                  className="md:col-span-5"
+                  onClick={() => openGallery(2)}
+                  index={2}
+                />
+                <GalleryTile 
+                  src={gallery08} 
+                  alt="Kanały i kształtki – montaż" 
+                  className="md:col-span-4"
+                  onClick={() => openGallery(3)}
+                  index={3}
+                />
+                <GalleryTile 
+                  src={gallery05} 
+                  alt="Produkcja kanałów – linia" 
+                  className="md:col-span-8"
+                  onClick={() => openGallery(4)}
+                  index={4}
+                />
               </div>
             </UnifiedPanel>
           </section>
